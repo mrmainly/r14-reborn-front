@@ -1,0 +1,34 @@
+import React from 'react'
+
+import { makeStyles } from '@material-ui/core/styles'
+import { Typography, Box } from '@material-ui/core'
+
+import ButtonCustom from '../../components/customElements/ButtonCustom'
+import { useHistory } from 'react-router-dom'
+
+import Layout from '../../components/layout/Layout'
+
+const useStyles = makeStyles(() => ({
+    container: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+        flexDirection: 'column'
+    }
+}))
+
+const Failed = () => {
+    const classes = useStyles()
+    const router = useHistory()
+    return (
+        <Layout>
+            <div className={classes.container}>
+                <Typography variant="h5" style={{ marginBottom: 20 }}>Оплата не прошла</Typography>
+                <ButtonCustom text="Перейти на главную страницу" onClick={() => { router.push('/') }} />
+            </div>
+        </Layout>
+    )
+}
+
+export default Failed
