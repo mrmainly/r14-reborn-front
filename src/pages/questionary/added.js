@@ -90,10 +90,8 @@ const Added = () => {
                 <Box className={classes.copyright}>
                     <Typography>
                         Размещение анкет на сайте платное, подробности на странице стоимость и
-                        <Link to={'/profile/service-cost'} >
-                            <a style={{ color: themeMain.palette.linkStyle.pink, marginLeft: 5 }}>
-                                оплата услуг.
-                            </a>
+                        <Link to={'/profile/service-cost'} style={{ color: themeMain.palette.linkStyle.pink, marginLeft: 5 }}>
+                            оплата услуг.
                         </Link>
                     </Typography>
                 </Box>

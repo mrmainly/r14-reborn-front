@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
 const ButtonCustom = ({ text, onClick }) => {
     const classes = useStyles()
     return (
-        <Button variant="contained" className={classes.btn} onClick={onClick}>
+        <Button variant="contained" className={classes.btn} onClick={onClick} type="submit">
             {text}
         </Button>
     )

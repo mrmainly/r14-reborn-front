@@ -29,28 +29,61 @@ const api = (url) => {
 
 class API {
     getToken({ phone, password }, dispatch, router) {
-        const headers = this.getHeaders()
         api('api/users/login/').post(null, {
             phone: phone,
             password: password
-        }, { headers }).then(res => {
+        }).then(res => {
             cookie.set('jwttoken', res.data.token)
             router.push('/profile')
         }).catch(() => { dispatch({ type: 'notification', payload: { status: 'error', active: true, text: 'такокго пользователя не существует' } }) })
     }
     register({ phone, password }, dispatch, router) {
-        const headers = this.getHeaders()
         api('api/users/register/').post(null, {
             phone: phone,
             password: password
-        }, { headers }).then(res => {
+        }).then(res => {
             router.push('/auth/Login')
             dispatch({ type: 'notification', payload: { text: 'смс был отпрален', status: 'success', active: true } })
         }).catch(() => { dispatch({ type: 'notification', payload: { text: 'вы не правильно заполнили поле телефона или такой пользователь уже существует', status: 'error', active: true } }) })
     }
-    async getList() {
-        let result = await api('api/surveys/woman/').get(null)
+    async getSurveys(gender) {
+        let result = await api(`api/surveys/${gender}/`).get(null)
         return result
+    }
+    async getSurveyDetail(gender, id) {
+        let result = await api(`api/surveys/${gender}/${id}`).get(null)
+        return result
+    }
+    surveyDelete(gender, id) {
+        api(`api/surveys/${gender}/${id}`).delete().then(res => {
+            console.log(res)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+    getListDetailPut(gender, id, data) {
+        api(`api/surveys/${gender}/${id}`).put(null, {
+            ...data
+        }).then((res) => {
+            console.log(res)
+        }).catch(error => {
+            throw new Error('error')
+        })
+    }
+    async getBalance() {
+        let result = api('api/payment/balance/').get()
+        return result
+    }
+    async sendSurveys(gender, router, data, dispatch) {
+        console.log(data)
+        api(`api/surveys/${gender}/`).post().then(res => {
+            console.log('surveyPostResult', res)
+            dispatch({ type: 'notification', payload: { status: 'success', active: true, text: 'анкета создана' } })
+            router.push('/profile')
+        }).catch(error => {
+            console.log(error)
+            dispatch({ type: 'notification', payload: { status: 'error', active: true, text: 'ошибка в анкете' } })
+        })
     }
 }
 

@@ -33,7 +33,6 @@ const Layout = ({ children }) => {
             jssStyles.parentElement.removeChild(jssStyles);
         }
     }, [])
-
     const changeShowSideBar = (pathName) => {
         if (pathName.match(/profile/g) || pathName.match(/questionary/g)) {
             return true
@@ -41,7 +40,6 @@ const Layout = ({ children }) => {
             return false
         }
     }
-
     return (
         <React.Fragment>
             <div style={{ background: themeMain.palette.background.default, overflow: 'hidden' }}>

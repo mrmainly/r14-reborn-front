@@ -8,6 +8,7 @@ import { useHistory, Link } from 'react-router-dom'
 import themeMain from '../../theme'
 import ButtonCustom from '../customElements/ButtonCustom'
 import { DispatchContext } from '../../store';
+import API from '../../utils/api'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -88,6 +89,7 @@ const SidePanel = (props) => {
     const classes = useStyles()
     const router = useHistory()
     const [drawerState, setDrawerState] = useState(true)
+    const [balance, setBalance] = useState(0)
     const dispatch = useContext(DispatchContext)
     React.useEffect(() => {
         function handleResize() {
@@ -100,6 +102,10 @@ const SidePanel = (props) => {
         }
         handleResize()
         window.addEventListener('resize', handleResize)
+        API.getBalance().then(res => {
+            console.log('balance', res.data)
+            setBalance(res.data.balance)
+        })
     }, [])
     const objectBarContent = [
         {
@@ -159,7 +165,7 @@ const SidePanel = (props) => {
             ]
         },
     ]
-    console.log(router)
+
     return (
         <div>
             <Box className={classes.buttonShow} onClick={() => { setDrawerState(!drawerState) }}>
@@ -174,7 +180,7 @@ const SidePanel = (props) => {
                     <Box className={classes.paymentBox}>
                         <Box className={classes.paymentBox_title}>
                             <Typography variant="body1">Баланс:</Typography>
-                            <Box className={classes.titleBox}><Typography variant="body1" style={{ color: '#D959DC', marginRight: 5, fontWeight: 'bold' }}>20200</Typography> <img src="/image/Frame3281.png" style={{ marginTop: '-5px' }} /></Box>
+                            <Box className={classes.titleBox}><Typography variant="body1" style={{ color: '#D959DC', marginRight: 5, fontWeight: 'bold' }}>{balance}</Typography> <img src="/image/Frame3281.png" style={{ marginTop: '-5px' }} /></Box>
                         </Box>
                         <Box className={classes.paymentBox_ActionBox}>
                             <ButtonCustom text="Пополнить баланс" onClick={() => {

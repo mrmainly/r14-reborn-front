@@ -8,7 +8,7 @@ import GirlsFormListFunction from '../../../formList/GirlsFormList'
 import ButtonCustom from '../../../components/customElements/ButtonCustom'
 import { DispatchContext } from '../../../store'
 import Layout from '../../../components/layout/Layout'
-import api from '../../../utils/api'
+import API from '../../../utils/api'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -130,11 +130,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-// const initialFormState = GirlsFormListFunction().map(item => item.row.reduce((result, item) => {
-//     let value = Object.keys(item.fetchLabel)
-//     result[value] = item[value]
-//     return result
-// }, {}))
 const initialFormState = {
 
 }
@@ -148,9 +143,7 @@ const CreatingFormGirl = () => {
     const [formStateGirl, dispatchGirl] = useReducer(surveyReducer, girlsurvey)
     const dispatchNoti = useContext(DispatchContext)
     const router = useHistory()
-    console.log(formState)
     const handleTextChange = (e, type) => {
-        console.log(type)
         dispatch({
             type: type,
             field: e.target.name,
@@ -165,19 +158,7 @@ const CreatingFormGirl = () => {
         })
     }
     const sendSurvayGirls = () => {
-        api('/api/surveys/').post(null, {
-            ...formState,
-            womansurvey: {
-                ...formStateGirl
-            }
-        }).then((res) => {
-            console.log(res)
-            dispatchNoti({ type: 'notification', payload: { status: 'success', active: true, text: 'анкета создана' } })
-            router.push('/profile')
-        }).catch((e) => {
-            console.log(e)
-            dispatchNoti({ type: 'notification', payload: { status: 'error', active: true, text: 'ошибка в анкете' } })
-        })
+        API.sendSurveys('woman', router, { ...formState, womansurvey: { ...formStateGirl } }, dispatchNoti)
     }
     const classes = useStyles()
     return (

@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonCustom from '../../components/customElements/ButtonCustom';
-import { Box } from '@material-ui/core'
+import { Box, Typography, Grid } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 
 import { DispatchContext } from '../../store';
 import Layout from '../../components/layout/Layout';
 import API from '../../utils/api'
+import { Form } from '../../components/customElements/Form'
+import { Input } from '../../components/customElements/Input'
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -45,20 +45,18 @@ const useStyles = makeStyles((theme) => ({
 export default function Register() {
     const classes = useStyles()
     const dispatch = useContext(DispatchContext)
-    const [phone, setPhone] = useState()
-    const [password, setPassword] = useState([])
-    const [verPassword, setVerPassword] = useState([])
     const router = useHistory()
-
-    const sendForCreateUser = () => {
+    const { register, handleSubmit, errors } = useForm({
+        mode: "onBlur"
+    })
+    const onSubmit = ({ password, verPassword, phone }) => {
         if (verPassword == password) {
             if (password.length >= 8) {
                 API.register({ phone, password }, dispatch, router)
             } else {
                 dispatch({ type: 'notification', payload: { status: 'error', active: true, text: 'пароль должен состоять минимум из 8 символов' } })
             }
-        }
-        else {
+        } else {
             dispatch({ type: 'notification', payload: { text: 'пароли не совподают', status: 'error', active: true } })
         }
     }
@@ -69,52 +67,22 @@ export default function Register() {
                     <Typography component="h1" variant="h5">
                         Регистрация
                     </Typography>
-                    <div className={classes.form}>
-                        <Grid container spacing={2}>
+                    <Form className={classes.form} onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+                        <Grid container spacing={1}>
                             <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    label="Номер телефона"
-                                    autoComplete="phone"
-                                    value={phone}
-                                    onChange={(e) => {
-                                        setPhone(e.target.value)
-                                    }}
-                                />
+                                <Input {...register('phone')} id="phone" type="number" label="Телефон" />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    label="Пароль"
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => {
-                                        setPassword(e.target.value)
-                                    }}
-                                />
+                                <Input {...register('password')} id="password" type="password" label="Пароль" />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    label="проверить пароль"
-                                    type="password"
-                                    value={verPassword}
-                                    onChange={(e) => {
-                                        setVerPassword(e.target.value)
-                                    }}
-                                />
+                                <Input {...register('verPassword')} id="verPassword" type="password" label="Проверка пароля" />
                             </Grid>
                         </Grid>
                         <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: 20 }}>
-                            <ButtonCustom text="Зарегестрироваться" onClick={() => sendForCreateUser()} />
+                            <ButtonCustom text="Зарегестрироваться" />
                         </Box>
-                    </div>
+                    </Form>
                 </div>
             </div>
         </Layout>

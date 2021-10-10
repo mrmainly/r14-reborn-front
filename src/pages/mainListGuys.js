@@ -31,7 +31,7 @@ export default function MainListGuys() {
     //     getListMan(state.slogo.params)
     // }, [state.slogo.params])
     useEffect(() => {
-        API.getList('man').then((res) => {
+        API.getSurveys('man').then((res) => {
             setStateList(res.data)
         })
     }, [])

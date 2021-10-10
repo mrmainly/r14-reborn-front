@@ -31,7 +31,7 @@ export default function MainListFirms() {
     //     getListFirms(state.slogo.params)
     // }, [state.slogo.params])
     useEffect(() => {
-        API.getList('organisation').then((res) => {
+        API.getSurveys('organisation').then((res) => {
             setStateList(res.data)
         })
     }, [])

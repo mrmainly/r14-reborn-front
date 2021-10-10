@@ -1,14 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography, Grid, TextField } from '@material-ui/core'
-
+import { Box, Typography, Grid } from '@material-ui/core'
 import { useHistory, Link } from 'react-router-dom'
-import cookie from 'js-cookie'
+import { useForm } from 'react-hook-form'
 
 import ButtonCustom from '../../components/customElements/ButtonCustom';
 import { DispatchContext } from '../../store';
 import Layout from '../../components/layout/Layout';
 import API from '../../utils/api'
+import { Form } from '../../components/customElements/Form'
+import { Input } from '../../components/customElements/Input'
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -45,11 +46,12 @@ export default function Login() {
     const classes = useStyles();
     const router = useHistory()
     const dispatch = useContext(DispatchContext)
-    const [phone, setPhone] = useState()
-    const [password, setPassword] = useState()
 
-    const sendLogin = () => {
-        API.getToken({ phone, password }, dispatch, router)
+    const { register, handleSubmit, errors } = useForm({
+        mode: "onBlur"
+    })
+    const onSubmit = (data) => {
+        API.getToken({ ...data }, dispatch, router)
     }
 
     return (
@@ -59,44 +61,31 @@ export default function Login() {
                     <Typography component="h1" variant="h5">
                         Авторизация
                     </Typography>
-                    <div className={classes.form}>
+                    <Form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField
-                                    variant="outlined"
-                                    required
-                                    fullWidth
-                                    type="number"
-                                    label="Телефон"
-                                    value={phone}
-                                    onChange={(e) => {
-                                        setPhone(e.target.value)
-                                    }}
-                                />
+                                <Input {...register('phone')} id="phone" type="number" label="Телефон" />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField variant="outlined" required fullWidth label="Пароль" type="password"
-                                    value={password}
-                                    onChange={(e) => {
-                                        setPassword(e.target.value)
-                                    }}
-                                />
+                                <Input {...register('password')} id="password" type="password" label="Пароль" />
                             </Grid>
                         </Grid>
-                        <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: 20 }}>
-                            <ButtonCustom text="Войти" onClick={() => { sendLogin() }} />
-                            <Box style={{ marginTop: 10 }}>
-                                <Link to="/auth/forgot-password" >
-                                    Забыли пароль?
-                                </Link>
-                            </Box>
-                            <Box style={{ marginTop: 8 }}>
-                                <Link to="/auth/register" >
-                                    Зарегистрироваться
-                                </Link>
-                            </Box>
+                        <Box style={{ marginTop: 10 }}>
+                            <ButtonCustom text="Войти" />
                         </Box>
-                    </div>
+                    </Form>
+                    <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                        <Box style={{ marginTop: 10 }}>
+                            <Link to="/auth/forgot-password" >
+                                Забыли пароль?
+                            </Link>
+                        </Box>
+                        <Box style={{ marginTop: 8 }}>
+                            <Link to="/auth/register" >
+                                Зарегистрироваться
+                            </Link>
+                        </Box>
+                    </Box>
                 </div>
             </div>
         </Layout>

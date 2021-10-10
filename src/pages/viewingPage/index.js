@@ -29,7 +29,7 @@ const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
     const [data, setData] = useState()
     const classes = useStyles()
     useEffect(() => {
-        API.getListDetail('woman', id).then((res) => {
+        API.getSurveyDetail('woman', id).then((res) => {
             setData(res.data)
         })
     }, [])

@@ -31,7 +31,7 @@ export default function Home() {
   //   getListGirls(state.slogo.params)
   // }, [state.slogo.params])
   const getListGirls = () => {
-    API.getList('woman').then((res) => {
+    API.getSurveys('woman').then((res) => {
       setStateList(res.data)
     })
   }
