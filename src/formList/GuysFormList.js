@@ -5,29 +5,28 @@ const GuysFormListFunction = (formState, manState) => {
             row: [
                 {
                     label: 'Ваше имя',
-                    value: formState.name,
-                    type: 'text',
+                    type: 'input',
                     must: true,
-                    fetchLabel: 'name'
+                    fetchLabel: 'name',
+                    typeInput: 'input'
                 },
                 {
                     label: 'Возраст, лет',
-                    value: formState.age,
-                    type: 'number',
+                    type: 'input',
                     must: true,
-                    fetchLabel: 'age'
+                    fetchLabel: 'age',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Рост, см',
-                    value: formState.height,
-                    type: 'number',
+                    type: 'input',
                     must: true,
-                    fetchLabel: 'height'
+                    fetchLabel: 'height',
+                    typeInput: 'number'
                 },
                 {
                     fetchLabel: 'hair_color',
                     type: 'select',
-                    value: formState.hair_color,
                     label: 'Цвет волос',
                     must: true,
                     default: 'Другое',
@@ -49,7 +48,6 @@ const GuysFormListFunction = (formState, manState) => {
                 {
                     fetchLabel: 'nationality',
                     type: 'select',
-                    value: formState.nationality,
                     label: 'Нацианальность',
                     must: true,
                     default: 'Другая',
@@ -75,7 +73,6 @@ const GuysFormListFunction = (formState, manState) => {
                 {
                     fetchLabel: 'body_type',
                     type: 'select',
-                    value: formState.body_type,
                     label: 'Телосложение',
                     default: 'Другое',
                     must: true,
@@ -101,7 +98,6 @@ const GuysFormListFunction = (formState, manState) => {
                 {
                     fetchLabel: 'orientation',
                     type: 'select',
-                    value: formState.orientation,
                     label: 'Ориентация',
                     default: 'Гетеросексуальная',
                     must: true,
@@ -122,17 +118,17 @@ const GuysFormListFunction = (formState, manState) => {
                 },
                 {
                     label: 'Вес, кг',
-                    value: formState.weight,
-                    type: 'number',
+                    type: 'input',
                     must: true,
-                    fetchLabel: 'weight'
+                    fetchLabel: 'weight',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Длина члена, см',
-                    value: manState.penis_length,
-                    type: 'inputMan',
+                    type: 'input',
                     must: true,
-                    fetchLabel: 'penis_length'
+                    fetchLabel: 'penis_length',
+                    typeInput: 'number'
                 },
             ]
         },
@@ -141,14 +137,12 @@ const GuysFormListFunction = (formState, manState) => {
             row: [
                 {
                     label: 'Улица ',
-                    value: formState.address,
-                    type: 'text',
+                    type: 'input',
                     fetchLabel: 'address'
                 },
                 {
                     label: 'Телефон',
-                    value: formState.phone,
-                    type: 'text',
+                    type: 'input',
                     must: true,
                     fetchLabel: 'phone'
                 },
@@ -162,57 +156,57 @@ const GuysFormListFunction = (formState, manState) => {
                 },
                 {
                     label: 'Апартаменты: 1 час',
-                    value: formState.apartment_per_hour,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'apartment_per_hour',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Апартаменты: 2 часа',
-                    value: formState.apartment_per_two_hours,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'apartment_per_two_hours',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Апартаменты: ночь',
-                    value: formState.apartment_per_night,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'apartment_per_night',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     description: 'Если вы не выезжаете к клиенту, то оставьте поля пустыми',
                 },
                 {
                     label: 'Выезд: 1 час',
-                    value: formState.check_out_per_hour,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'check_out_per_hour',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Выезд: 2 часа',
-                    value: formState.check_out_per_two_hours,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'check_out_per_two_hours',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Выезд: ночь',
-                    value: formState.check_out_per_night,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'check_out_per_night',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Выезжаем:',
                     type: 'checkBox',
-                    list: [{ labelCheckBox: 'на квартиру', checked: formState.check_out_apartment, fetchLabel: 'check_out_apartment' },
-                    { labelCheckBox: 'в гостиницу', checked: formState.check_out_hotel, fetchLabel: 'check_out_hotel' },
-                    { labelCheckBox: 'в загородный дом', checked: formState.check_out_house, fetchLabel: 'check_out_house' },
-                    { labelCheckBox: 'в офис', checked: formState.check_out_office, fetchLabel: 'check_out_office' },
-                    { labelCheckBox: 'в сауну', checked: formState.check_out_sauna, fetchLabel: 'check_out_sauna' }]
+                    list: [{ labelCheckBox: 'на квартиру', fetchLabel: 'check_out_apartment' },
+                    { labelCheckBox: 'в гостиницу', fetchLabel: 'check_out_hotel' },
+                    { labelCheckBox: 'в загородный дом', fetchLabel: 'check_out_house' },
+                    { labelCheckBox: 'в офис', fetchLabel: 'check_out_office' },
+                    { labelCheckBox: 'в сауну', fetchLabel: 'check_out_sauna' }]
                 },
             ]
         },
@@ -226,7 +220,6 @@ const GuysFormListFunction = (formState, manState) => {
                     description: '2. Запрещено в поле "О себе" указывать любые контактные данные: телефон, telegram, емайл и пр.!'
                 },
                 {
-                    value: formState.description,
                     type: 'textArea',
                     fetchLabel: 'description',
                     must: true,

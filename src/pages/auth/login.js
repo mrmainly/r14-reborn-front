@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Typography, Grid } from '@material-ui/core'
 import { useHistory, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from 'yup'
 
 import ButtonCustom from '../../components/customElements/ButtonCustom';
 import { DispatchContext } from '../../store';
@@ -42,13 +44,30 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+const schema = yup.object().shape({
+    phone: yup.string().required('обязательное поле'),
+    password: yup.string().required('обязательное поле'),
+})
+
+// const normalizePhoneNumber = (value) => {
+
+//     let phone = parsePhoneNumberFromString(value)
+//     if (!phone) {
+//         return value
+//     }
+//     return (
+//         phone.formatInternational()
+//     )
+// }
+
 export default function Login() {
     const classes = useStyles();
     const router = useHistory()
     const dispatch = useContext(DispatchContext)
 
-    const { register, handleSubmit, errors } = useForm({
-        mode: "onBlur"
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        mode: "onBlur",
+        resolver: yupResolver(schema)
     })
     const onSubmit = (data) => {
         API.getToken({ ...data }, dispatch, router)
@@ -64,10 +83,10 @@ export default function Login() {
                     <Form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <Input {...register('phone')} id="phone" type="number" label="Телефон" />
+                                <Input {...register('phone')} id="phone" type="tel" label="Телефон" error={!!errors.phone} helperText={errors?.phone?.message} />
                             </Grid>
                             <Grid item xs={12}>
-                                <Input {...register('password')} id="password" type="password" label="Пароль" />
+                                <Input {...register('password')} id="password" type="password" label="Пароль" error={!!errors.password} helperText={errors?.password?.message} />
                             </Grid>
                         </Grid>
                         <Box style={{ marginTop: 10 }}>

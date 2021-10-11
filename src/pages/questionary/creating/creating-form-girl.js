@@ -1,14 +1,15 @@
-import React, { useReducer, useContext } from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, Typography, Grid, TextField, FormControlLabel, Checkbox, TextareaAutosize, FormControl, InputLabel, Select, MenuItem, InputAdornment } from '@material-ui/core'
+import { Box, Typography, Grid, FormControlLabel, Checkbox, FormControl, InputLabel, Select, MenuItem, InputAdornment, TextField } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 
-import surveyReducer from '../../../reducer/surveyReducer'
 import GirlsFormListFunction from '../../../formList/GirlsFormList'
 import ButtonCustom from '../../../components/customElements/ButtonCustom'
-import { DispatchContext } from '../../../store'
 import Layout from '../../../components/layout/Layout'
 import API from '../../../utils/api'
+import { useForm } from 'react-hook-form'
+import { Form } from '../../../components/customElements/Form'
+import { Input } from '../../../components/customElements/Input'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -130,92 +131,83 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const initialFormState = {
-
-}
-
-const girlsurvey = {
-
-}
-
 const CreatingFormGirl = () => {
-    const [formState, dispatch] = useReducer(surveyReducer, initialFormState)
-    const [formStateGirl, dispatchGirl] = useReducer(surveyReducer, girlsurvey)
-    const dispatchNoti = useContext(DispatchContext)
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        mode: "onBlur",
+    })
     const router = useHistory()
-    const handleTextChange = (e, type) => {
-        dispatch({
-            type: type,
-            field: e.target.name,
-            payload: e.target.value
-        })
-    }
-    const handleTextChangeGirl = (e, type) => {
-        dispatchGirl({
-            type: type,
-            field: e.target.name,
-            payload: e.target.value
-        })
-    }
-    const sendSurvayGirls = () => {
-        API.sendSurveys('woman', router, { ...formState, womansurvey: { ...formStateGirl } }, dispatchNoti)
-    }
     const classes = useStyles()
+    const onSubmit = (data) => {
+        // API.sendSurveys('woman', router, { ...formState, womansurvey: { ...formStateGirl } }, dispatchNoti)
+        console.log('sendData', data)
+    }
     return (
         <Layout>
-            <Box className={classes.container}>
+            <Form className={classes.container} onSubmit={handleSubmit(onSubmit)}>
                 <Typography variant="h6" style={{ margin: '0 auto' }}>
                     Создание анкеты девушки:
                 </Typography>
-                {GirlsFormListFunction ? GirlsFormListFunction(formState, formStateGirl).map((item, index) => (
+                {GirlsFormListFunction ? GirlsFormListFunction().map((item, index) => (
                     <Box className={classes.formBox} key={index}>
                         <Box className={classes.titleBox}>
                             <Typography variant="body1" style={{ fontWeight: 'bold' }}>{item.title}</Typography>
                             <Typography className={classes.titleSurcharge}>{item.titleSurcharge}</Typography>
                         </Box>
-                        {item.row.map((itemRow, index) => (
+                        {item.row.map((itemForm, index) => (
                             <Grid key={index} style={{ width: '100%' }}>
-                                {itemRow.type == 'input' ?
+                                {itemForm.type == 'input' ?
                                     <Box className={classes.textFieldBox}>
                                         <Box className={classes.textFieldBox_labelBox}>
-                                            <Typography>{itemRow.label}</Typography>
-                                            {itemRow.must &&
+                                            <Typography>{itemForm.label}</Typography>
+                                            {itemForm.must &&
                                                 <Typography style={{ color: 'red', marginLeft: 5 }}>*</Typography>
                                             }
                                         </Box>
-                                        <TextField
-                                            size="small"
-                                            onChange={(e) => handleTextChange(e, 'input')}
-                                            value={itemRow.value}
-                                            variant="outlined"
-                                            fullWidth
+                                        <Input
+                                            {...register(itemForm.fetchLabel, { required: itemForm.must == true ? true : false })}
+                                            id={itemForm.fetchLabel}
+                                            aria-invalid={errors[itemForm.fetchLabel] ? "true" : "false"}
+                                            type={itemForm.typeInput}
                                             className={classes.TextFieldStyle}
-                                            name={itemRow.fetchLabel}
+                                            helperText={errors[itemForm.fetchLabel] && errors[itemForm.fetchLabel].type == 'required' ? 'обязательное поле' : ''}
+                                            error={!!errors[itemForm.fetchLabel]}
                                         />
                                     </Box>
-                                    : itemRow.type == 'checkBox' ?
+                                    : itemForm.type == 'checkBox' ?
                                         <Box className={classes.checkBoxStyle}>
-                                            <Typography>{itemRow.label}</Typography>
-                                            {itemRow.list.map((itemCheckBoxList, index) => (
+                                            <Typography>{itemForm.label}</Typography>
+                                            {itemForm.list.map((itemCheckBoxList, index) => (
                                                 <FormControlLabel
-                                                    control={<Checkbox name={itemCheckBoxList.fetchLabel} checked={itemCheckBoxList.checked} onChange={(e) => handleTextChange(e, 'check')} />}
-                                                    label={itemCheckBoxList.labelCheckBox} key={index} />
+                                                    control={<Checkbox />}
+                                                    label={itemCheckBoxList.labelCheckBox}
+                                                    name={itemCheckBoxList.fetchLabel}
+                                                    {...register(itemCheckBoxList.fetchLabel)}
+                                                    key={index}
+                                                />
                                             ))}
                                         </Box>
-                                        : itemRow.type == 'textArea' ?
+                                        : itemForm.type == 'textArea' ?
                                             <div style={{ display: 'flex', alignItems: 'start', marginTop: 20 }}>
-                                                <Box className={classes.textFieldBox_labelBox}>
-                                                    {itemRow.must &&
-                                                        <Typography style={{ color: 'red', marginRight: 5 }}>*</Typography>
-                                                    }
-                                                </Box>
-                                                <TextareaAutosize className={classes.textAreaStyles} aria-label="maximum height" minRows={10} placeholder="Напишите подробное описание о себе и о своих улсугах." value={itemRow.value} onChange={(e) => handleTextChange(e, 'input')} name={itemRow.fetchLabel} />
+                                                <TextField
+                                                    id="outlined-multiline-static"
+                                                    multiline
+                                                    fullWidth
+                                                    variant="outlined"
+                                                    color='primary'
+                                                    aria-label="maximum height"
+                                                    minRows={10}
+                                                    error={!!errors[itemForm.fetchLabel]}
+                                                    placeholder="Ваше сообщение"
+                                                    name={itemForm.fetchLabel}
+                                                    {...register(itemForm.fetchLabel, { required: itemForm.must == true ? true : false })}
+                                                    helperText={errors[itemForm.fetchLabel] && errors[itemForm.fetchLabel].type == 'required' ? 'обязательное поле' : ''}
+                                                />
                                             </div>
-                                            : itemRow.type == 'select' ?
+                                            : itemForm.type == 'select' ?
                                                 <div className={classes.textFieldBox}>
                                                     <Box className={classes.textFieldBox_labelBox}>
-                                                        <Typography>{itemRow.label}:</Typography>
-                                                        {itemRow.must &&
+                                                        <Typography>{itemForm.label}:</Typography>
+                                                        {itemForm.must &&
                                                             <Typography style={{ color: 'red', marginLeft: 5 }}>*</Typography>
                                                         }
                                                     </Box>
@@ -224,43 +216,45 @@ const CreatingFormGirl = () => {
                                                         <Select
                                                             labelId="demo-simple-select-label"
                                                             id="demo-simple-select"
-                                                            name={itemRow.fetchLabel}
-                                                            value={itemRow.value}
-                                                            defaultValue={itemRow.default}
-                                                            onChange={(e) => handleTextChange(e, 'input')}
+                                                            aria-invalid={errors[itemForm.fetchLabel] ? "true" : "false"}
+                                                            name={itemForm.fetchLabel}
+                                                            defaultValue={itemForm.default}
+                                                            {...register(itemForm.fetchLabel, { required: itemForm.must == true ? true : false })}
+                                                            helperText={errors[itemForm.fetchLabel] && errors[itemForm.fetchLabel].type == 'required' ? 'обязательное поле' : ''}
+                                                            error={!!errors[itemForm.fetchLabel]}
                                                         >
                                                             {
-                                                                itemRow.selectArrey ? itemRow.selectArrey.map((itemOptions, index) => (
+                                                                itemForm.selectArrey ? itemForm.selectArrey.map((itemOptions, index) => (
                                                                     <MenuItem key={index} value={itemOptions.optionValue}>{itemOptions.optionText}</MenuItem>
-                                                                )) : 'itemRow.selectArrey undefiend'
+                                                                )) : 'itemForm.selectArrey undefiend'
                                                             }
                                                         </Select>
                                                     </FormControl>
                                                 </div>
-                                                : itemRow.type == 'inputGirl' ?
+                                                : itemForm.type == 'inputGirl' ?
                                                     <Box className={classes.textFieldBox}>
                                                         <Box className={classes.textFieldBox_labelBox}>
-                                                            {itemRow.checkBoxType !== "notCheckbox" ?
-                                                                <Checkbox checked={itemRow.value ? true : false} name={itemRow.fetchLabel} value={'0'} onChange={(e) => { handleTextChangeGirl(e, 'input') }} />
+                                                            {itemForm.checkBoxType !== "notCheckbox" ?
+                                                                <FormControlLabel
+                                                                    control={<Checkbox />}
+                                                                    label={itemForm.labelCheckBox}
+                                                                    name={itemForm.fetchLabel}
+                                                                    {...register(itemForm.fetchLabel)}
+                                                                />
                                                                 : ''}
-                                                            <Typography>{itemRow.label}</Typography>
-                                                            {itemRow.must &&
+                                                            <Typography>{itemForm.label}</Typography>
+                                                            {itemForm.must &&
                                                                 <Typography style={{ color: 'red', marginLeft: 5 }}>*</Typography>
                                                             }
                                                         </Box>
-                                                        <TextField
-                                                            size="small"
-                                                            onChange={(e) => handleTextChangeGirl(e, 'input')}
-                                                            value={itemRow.value}
-                                                            variant="outlined"
+                                                        <Input
                                                             type="number"
-                                                            required
-                                                            fullWidth
                                                             className={classes.TextFieldStyle}
-                                                            name={itemRow.fetchLabel}
+                                                            name={itemForm.fetchLabel}
+                                                            {...register(itemForm.fetchLabel)}
                                                             InputProps={{
                                                                 startAdornment: (
-                                                                    itemRow.manyType !== "notMoney" ?
+                                                                    itemForm.manyType !== "notMoney" ?
                                                                         <InputAdornment position="start">
                                                                             <img src={'/image/currency.png'} style={{ width: 20 }} />
                                                                         </InputAdornment>
@@ -268,48 +262,22 @@ const CreatingFormGirl = () => {
                                                                 ),
                                                             }}
                                                         />
-                                                    </Box> : itemRow.type == 'number' ?
-                                                        <Box className={classes.textFieldBox}>
-                                                            <Box className={classes.textFieldBox_labelBox}>
-                                                                <Typography>{itemRow.label}</Typography>
-                                                                {itemRow.must &&
-                                                                    <Typography style={{ color: 'red', marginLeft: 5 }}>*</Typography>
-                                                                }
-                                                            </Box>
-                                                            <TextField size="small"
-                                                                onChange={(e) => handleTextChange(e, 'input')}
-                                                                value={itemRow.value}
-                                                                variant="outlined"
-                                                                type={itemRow.type}
-                                                                required
-                                                                fullWidth
-                                                                className={classes.TextFieldStyle}
-                                                                name={itemRow.fetchLabel}
-                                                                InputProps={{
-                                                                    startAdornment: (
-                                                                        itemRow.manyType == "currency" ?
-                                                                            <InputAdornment position="start">
-                                                                                <img src={'/image/currency.png'} style={{ width: 20 }} />
-                                                                            </InputAdornment>
-                                                                            : ''
-                                                                    ),
-                                                                }}
-                                                            />
-                                                        </Box> : itemRow.description ?
-                                                            <Box>
-                                                                <Typography style={{ color: '#FF0000', marginTop: 10 }}>
-                                                                    {itemRow.description}
-                                                                </Typography>
-                                                            </Box>
-                                                            : ''}
+                                                    </Box>
+                                                    : itemForm.description ?
+                                                        <Box>
+                                                            <Typography style={{ color: '#FF0000', marginTop: 10 }}>
+                                                                {itemForm.description}
+                                                            </Typography>
+                                                        </Box>
+                                                        : ''}
                             </Grid>
                         ))}
                     </Box>
                 )) : ''}
                 <Box className={classes.btnBox}>
-                    <ButtonCustom text={'Создать анкету'} onClick={() => sendSurvayGirls()} />
+                    <ButtonCustom text={'Создать анкету'} />
                 </Box>
-            </Box>
+            </Form>
         </Layout>
     )
 }

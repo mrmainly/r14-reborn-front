@@ -1,22 +1,22 @@
-const FirmsFormListFunction = (formState) => {
+const FirmsFormListFunction = () => {
     const FirmsFormList = [
         {
             title: 'Основная информация',
             row: [
                 {
                     label: 'Название фирмы',
-                    value: formState.organisation,
                     type: 'input',
                     typeFirmsInput: 'text',
                     must: true,
-                    fetchLabel: 'organisation'
+                    fetchLabel: 'organisation',
+                    typeInput: 'input'
                 },
                 {
                     label: 'Телефон',
-                    value: formState.phone,
-                    type: 'number',
+                    type: 'input',
                     must: true,
-                    fetchLabel: 'phone'
+                    fetchLabel: 'phone',
+                    typeInput: 'number'
                 },
             ]
         },
@@ -28,48 +28,48 @@ const FirmsFormListFunction = (formState) => {
                 },
                 {
                     label: 'Апартаменты: 1 час',
-                    value: formState.apartment_per_hour,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'apartment_per_hour',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Апартаменты: 2 часа',
-                    value: formState.apartment_per_two_hours,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'apartment_per_two_hours',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Апартаменты: ночь',
-                    value: formState.apartment_per_night,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'apartment_per_night',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     description: 'Если вы не выезжаете к клиенту, то оставьте поля пустыми',
                 },
                 {
                     label: 'Выезд: 1 час',
-                    value: formState.check_out_per_hour,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'check_out_per_hour',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Выезд: 2 часа',
-                    value: formState.check_out_per_two_hours,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'check_out_per_two_hours',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Выезд: ночь',
-                    value: formState.check_out_per_night,
-                    type: 'number',
+                    type: 'input',
                     fetchLabel: 'check_out_per_night',
-                    secondType: 'currency'
+                    secondType: 'currency',
+                    typeInput: 'number'
                 },
             ]
         },
@@ -83,9 +83,9 @@ const FirmsFormListFunction = (formState) => {
                     description: '2. Запрещено в поле "О себе" указывать любые контактные данные: телефон, telegram, емайл и пр.!'
                 },
                 {
-                    value: formState.description,
                     type: 'textArea',
-                    fetchLabel: 'description'
+                    fetchLabel: 'description',
+                    must: true
                 },
             ]
         },

@@ -8,7 +8,10 @@ import GuysFormListFunction from '../../../formList/GuysFormList'
 import ButtonCustom from '../../../components/customElements/ButtonCustom'
 import { DispatchContext } from '../../../store'
 import Layout from '../../../components/layout/Layout'
-import api from '../../../utils/api'
+import API from '../../../utils/api'
+import { useForm } from 'react-hook-form'
+import { Form } from '../../../components/customElements/Form'
+import { Input } from '../../../components/customElements/Input'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -52,7 +55,8 @@ const useStyles = makeStyles((theme) => ({
     },
     textFieldBox_labelBox: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     checkBoxStyle: {
         display: 'flex',
@@ -63,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
     textAreaStyles: {
         width: '60%',
         height: 100,
-        marginTop: 20,
         [theme.breakpoints.down('xs')]: {
             width: '100%',
         },
@@ -108,186 +111,148 @@ const useStyles = makeStyles((theme) => ({
             width: '100%'
         },
     },
+    selectInputStyle: {
+        width: '50%',
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+        },
+    },
 }))
 
-// const initialFormState = GirlsFormListFunction().map(item => item.row.reduce((result, item) => {
-//     let value = Object.keys(item.fetchLabel)
-//     result[value] = item[value]
-//     return result
-// }, {}))
-const initialFormState = {
-
-}
-const mansurvey = {
-
-}
-
 const CreatingFormGuys = () => {
-    const [formState, dispatch] = useReducer(surveyReducer, initialFormState)
-    const [formStateMan, dispatchMan] = useReducer(surveyReducer, mansurvey)
-    const dispatchNoti = useContext(DispatchContext)
-    const handleTextChange = (e, type) => {
-        dispatch({
-            type: type,
-            field: e.target.name,
-            payload: e.target.value
-        })
-    }
-    const handleTextChangeMan = (e, type) => {
-        dispatchMan({
-            type: type,
-            field: e.target.name,
-            payload: e.target.value
-        })
-    }
     const classes = useStyles()
     const router = useHistory()
-    const sendSurvayGays = () => {
-        api('/api/surveys/').post(null, {
-            ...formState,
-            mansurvey: {
-                ...formStateMan
-            }
-        }).then((res) => {
-            console.log(res)
-            dispatchNoti({ type: 'notification', payload: { status: 'success', active: true, text: 'анкета создана' } })
-            router.push('/profile')
+    // const sendSurvayGays = () => {
+    //     api('/api/surveys/').post(null, {
+    //         ...formState,
+    //         mansurvey: {
+    //             ...formStateMan
+    //         }
+    //     }).then((res) => {
+    //         console.log(res)
+    //         dispatchNoti({ type: 'notification', payload: { status: 'success', active: true, text: 'анкета создана' } })
+    //         router.push('/profile')
 
-        }).catch((e) => {
-            console.log(e)
-            dispatchNoti({ type: 'notification', payload: { status: 'error', active: true, text: 'ошибка в анкете' } })
-        })
+    //     }).catch((e) => {
+    //         console.log(e)
+    //         dispatchNoti({ type: 'notification', payload: { status: 'error', active: true, text: 'ошибка в анкете' } })
+    //     })
+    // }
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        mode: "onBlur",
+    })
+    const onSubmit = (data) => {
+        // API.sendSurveys('woman', router, { ...formState, womansurvey: { ...formStateGirl } }, dispatchNoti)
+        console.log('sendData', data)
     }
     return (
         <Layout>
-            <Box className={classes.container}>
+            <Form className={classes.container} onSubmit={handleSubmit(onSubmit)} >
                 <Typography variant="h6" style={{ margin: '0 auto' }}>
                     Создание анкеты парня:
                 </Typography>
-                {GuysFormListFunction ? GuysFormListFunction(formState, formStateMan).map((item, index) => (
+                {GuysFormListFunction ? GuysFormListFunction().map((item, index) => (
                     <Box className={classes.formBox} key={index}>
                         <Box className={classes.titleBox}>
                             <Typography variant="body1" style={{ fontWeight: 'bold' }}>{item.title}</Typography>
                             <Typography style={{ fontWeight: 'bold' }}>{item.titleSurcharge}</Typography>
                         </Box>
-                        {item.row.map((itemRow, index) => (
+                        {item.row.map((itemForm, index) => (
                             <Grid key={index} style={{ width: '100%' }}>
-                                {itemRow.type == 'text' ?
+                                {itemForm.type == 'input' ?
                                     <Box className={classes.textFieldBox}>
                                         <Box className={classes.textFieldBox_labelBox}>
-                                            <Typography>{itemRow.label}</Typography>
-                                            {itemRow.must &&
+                                            <Typography>{itemForm.label}</Typography>
+                                            {itemForm.must &&
                                                 <Typography style={{ color: 'red', marginLeft: 5 }}>*</Typography>
                                             }
                                         </Box>
-                                        <TextField size="small"
-                                            onChange={(e) => handleTextChange(e, 'input')}
-                                            value={itemRow.value}
-                                            variant="outlined"
-                                            type={itemRow.type}
-                                            required
-                                            fullWidth
+                                        <Input
+                                            {...register(itemForm.fetchLabel, { required: itemForm.must == true ? true : false })}
+                                            id={itemForm.fetchLabel}
+                                            aria-invalid={errors[itemForm.fetchLabel] ? "true" : "false"}
+                                            type={itemForm.typeInput}
                                             className={classes.TextFieldStyle}
-                                            name={itemRow.fetchLabel}
+                                            helperText={errors[itemForm.fetchLabel] && errors[itemForm.fetchLabel].type == 'required' ? 'обязательное поле' : ''}
+                                            error={!!errors[itemForm.fetchLabel]}
                                         />
                                     </Box>
-                                    : itemRow.type == 'checkBox' ?
+                                    : itemForm.type == 'checkBox' ?
                                         <Box className={classes.checkBoxStyle}>
-                                            <Typography>{itemRow.label}</Typography>
-                                            {itemRow.list.map((itemCheckBoxList, index) => (
+                                            <Typography>{itemForm.label}</Typography>
+                                            {itemForm.list.map((itemCheckBoxList, index) => (
                                                 <FormControlLabel
-                                                    control={<Checkbox name={itemCheckBoxList.fetchLabel} value={itemCheckBoxList.value} onChange={(e) => handleTextChange(e, 'check')} />}
-                                                    label={itemCheckBoxList.labelCheckBox} key={index} />
+                                                    control={<Checkbox />}
+                                                    label={itemCheckBoxList.labelCheckBox}
+                                                    name={itemCheckBoxList.fetchLabel}
+                                                    {...register(itemCheckBoxList.fetchLabel)}
+                                                    key={index}
+                                                />
                                             ))}
                                         </Box>
-                                        : itemRow.type == 'inputMan' ? <Box className={classes.textFieldBox}>
-                                            <Box className={classes.textFieldBox_labelBox}>
-                                                <Typography>{itemRow.label}</Typography>
-                                                {itemRow.must &&
-                                                    <Typography style={{ color: 'red', marginLeft: 5 }}>*</Typography>
-                                                }
-                                            </Box>
-                                            <TextField
-                                                size="small"
-                                                onChange={(e) => handleTextChangeMan(e, 'input')}
-                                                value={itemRow.value}
-                                                variant="outlined"
-                                                type="number"
-                                                required
-                                                fullWidth
-                                                className={classes.TextFieldStyle}
-                                                name={itemRow.fetchLabel}
-                                            />
-                                        </Box> : itemRow.description ?
+                                        : itemForm.description ?
                                             <Box>
                                                 <Typography style={{ color: '#FF0000', marginTop: 10 }}>
-                                                    {itemRow.description}
+                                                    {itemForm.description}
                                                 </Typography>
                                             </Box>
-                                            : itemRow.type == 'number' ?
-                                                <Box className={classes.textFieldBox}>
+                                            : itemForm.type == 'select' ?
+                                                <div className={classes.textFieldBox}>
                                                     <Box className={classes.textFieldBox_labelBox}>
-                                                        <Typography>{itemRow.label}</Typography>
-                                                        {itemRow.must &&
+                                                        <Typography>{itemForm.label}:</Typography>
+                                                        {itemForm.must &&
                                                             <Typography style={{ color: 'red', marginLeft: 5 }}>*</Typography>
                                                         }
                                                     </Box>
-                                                    <TextField size="small"
-                                                        onChange={(e) => handleTextChange(e, 'input')}
-                                                        value={itemRow.value}
-                                                        variant="outlined"
-                                                        type={itemRow.type}
-                                                        required
-                                                        fullWidth
-                                                        className={classes.TextFieldStyle}
-                                                        name={itemRow.fetchLabel}
-                                                        InputProps={{
-                                                            startAdornment: (
-                                                                itemRow.secondType == "currency" ?
-                                                                    <InputAdornment position="start">
-                                                                        <img src={'/image/currency.png'} style={{ width: 20 }} />
-                                                                    </InputAdornment>
-                                                                    : ''),
-                                                        }}
-                                                    />
-                                                </Box>
-                                                : itemRow.type == 'select' ?
-                                                    <div className={classes.textFieldBox}>
+                                                    <FormControl className={classes.selectInputStyle}>
+                                                        <InputLabel id="demo-simple-select-label">Выберите значение</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            aria-invalid={errors[itemForm.fetchLabel] ? "true" : "false"}
+                                                            name={itemForm.fetchLabel}
+                                                            defaultValue={itemForm.default}
+                                                            {...register(itemForm.fetchLabel, { required: itemForm.must == true ? true : false })}
+                                                        // helperText={errors[itemForm.fetchLabel] && errors[itemForm.fetchLabel].type == 'required' ? 'обязательное поле' : ''}
+                                                        // error={!!errors[itemForm.fetchLabel]}
+                                                        >
+                                                            {
+                                                                itemForm.selectArrey ? itemForm.selectArrey.map((itemOptions, index) => (
+                                                                    <MenuItem key={index} value={itemOptions.optionValue}>{itemOptions.optionText}</MenuItem>
+                                                                )) : 'itemForm.selectArrey undefiend'
+                                                            }
+                                                        </Select>
+                                                    </FormControl>
+                                                </div> : itemForm.type == 'textArea' ?
+                                                    <div style={{ display: 'flex', alignItems: 'start', marginTop: 20 }}>
                                                         <Box className={classes.textFieldBox_labelBox}>
-                                                            <Typography>{itemRow.label}:</Typography>
-                                                            {itemRow.must &&
-                                                                <Typography style={{ color: 'red', marginLeft: 5 }}>*</Typography>
+                                                            {itemForm.must &&
+                                                                <Typography style={{ color: 'red', marginRight: 5 }}>*</Typography>
                                                             }
                                                         </Box>
-                                                        <FormControl className={classes.TextFieldStyle}>
-                                                            <InputLabel id="demo-simple-select-label">Любой</InputLabel>
-                                                            <Select
-                                                                labelId="demo-simple-select-label"
-                                                                id="demo-simple-select"
-                                                                value={itemRow.value}
-                                                                onChange={(e) => handleTextChange(e, 'input')}
-                                                                name={itemRow.fetchLabel}
-                                                                defaultValue={itemRow.default}
-                                                            >
-                                                                {
-                                                                    itemRow.selectArrey ? itemRow.selectArrey.map((itemOptions, index) => (
-                                                                        <MenuItem key={index} value={itemOptions.optionValue}>{itemOptions.optionText}</MenuItem>
-                                                                    )) : 'itemRow.selectArrey undefiend'
-                                                                }
-                                                            </Select>
-                                                        </FormControl>
-                                                    </div> : itemRow.type == 'textArea' ?
-                                                        <div>
-                                                            <TextareaAutosize className={classes.textAreaStyles} onChange={(e) => handleTextChange(e, 'input')} value={itemRow.value} aria-label="maximum height" minRows={10} placeholder="Напишите подробное описание о себе и о своих улсугах." name={itemRow.fetchLabel} />
-                                                        </div> : ''}
+                                                        <TextField
+                                                            id="outlined-multiline-static"
+                                                            multiline
+                                                            fullWidth
+                                                            variant="outlined"
+                                                            color='primary'
+                                                            aria-label="maximum height"
+                                                            minRows={10}
+                                                            error={!!errors[itemForm.fetchLabel]}
+                                                            placeholder="Ваше сообщение"
+                                                            name={itemForm.fetchLabel}
+                                                            {...register(itemForm.fetchLabel, { required: itemForm.must == true ? true : false })}
+                                                            helperText={errors[itemForm.fetchLabel] && errors[itemForm.fetchLabel].type == 'required' ? 'обязательное поле' : ''}
+                                                        />
+                                                    </div> : ''}
                             </Grid>
                         ))}
                     </Box>
                 )) : ''}
                 <Box className={classes.btnBox}>
-                    <ButtonCustom text={'Создать анкету'} onClick={() => { sendSurvayGays() }} />
+                    <ButtonCustom text={'Создать анкету'} />
                 </Box>
-            </Box>
+            </Form>
         </Layout>
     )
 }

@@ -5,44 +5,43 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
             row: [
                 {
                     label: 'Ваше имя',
-                    value: formState.username,
                     type: 'input',
                     must: true,
-                    fetchLabel: 'name'
+                    fetchLabel: 'name',
+                    typeInput: 'input'
                 },
                 {
                     label: 'Возраст, лет',
-                    value: formState.age,
-                    type: 'number',
+                    type: 'input',
                     must: true,
-                    fetchLabel: 'age'
+                    fetchLabel: 'age',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Рост, см',
-                    value: formState.height,
-                    type: 'number',
+                    type: 'input',
                     must: true,
-                    fetchLabel: 'height'
+                    fetchLabel: 'height',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Вес, кг',
-                    value: formState.weight,
-                    type: 'number',
+                    type: 'input',
                     must: true,
-                    fetchLabel: 'weight'
+                    fetchLabel: 'weight',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Грудь',
-                    value: formStateGirl.breast_size,
-                    type: 'inputGirl',
+                    type: 'input',
                     must: true,
                     fetchLabel: 'breast_size',
                     checkBoxType: 'notCheckbox',
                     manyType: 'notMoney',
+                    typeInput: 'number'
                 },
                 {
                     label: 'Национальность',
-                    value: formState.nationality,
                     type: 'select',
                     must: true,
                     fetchLabel: 'nationality',
@@ -68,7 +67,6 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                 },
                 {
                     label: 'Цвет волос',
-                    value: formState.hair_color,
                     type: 'select',
                     must: true,
                     fetchLabel: 'hair_color',
@@ -90,7 +88,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                 },
                 {
                     label: 'Ориентация',
-                    value: formState.orientation,
+                    // value: formState.orientation,
                     type: 'select',
                     must: true,
                     fetchLabel: 'orientation',
@@ -112,7 +110,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                 },
                 {
                     label: 'Телосложение',
-                    value: formState.body_type,
+
                     type: 'select',
                     must: true,
                     fetchLabel: 'body_type',
@@ -143,14 +141,14 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
             row: [
                 {
                     label: 'Улица',
-                    value: formState.address,
+                    typeInput: 'input',
                     type: 'input',
                     fetchLabel: 'address'
                 },
                 {
                     label: 'Телефон',
-                    value: formState.phone,
-                    type: 'number',
+                    typeInput: 'number',
+                    type: 'input',
                     must: true,
                     fetchLabel: 'phone'
                 },
@@ -161,7 +159,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
             row: [
                 {
                     label: 'Ограничение по возрасту',
-                    value: formState.age_limit,
+
                     type: 'select',
                     must: true,
                     fetchLabel: 'age_limit',
@@ -195,29 +193,29 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                 },
                 {
                     label: 'Апартаменты: 1 час',
-                    value: formState.apartment_per_hour,
-                    type: 'number',
+                    typeInput: 'number',
+                    type: 'input',
                     fetchLabel: 'apartment_per_hour',
                     manyType: 'currency'
                 },
                 {
                     label: 'Апартаменты: 2 часа',
-                    value: formState.apartment_per_two_hours,
-                    type: 'number',
+                    typeInput: 'number',
+                    type: 'input',
                     fetchLabel: 'apartment_per_two_hours',
                     manyType: 'currency'
                 },
                 {
                     label: 'Апартаменты: ночь',
-                    value: formState.apartment_per_night,
-                    type: 'number',
+                    typeInput: 'number',
+                    type: 'input',
                     fetchLabel: 'apartment_per_night',
                     manyType: 'currency'
                 },
                 {
                     label: 'Эспресс программа',
-                    value: formStateGirl.express,
-                    type: 'inputGirl',
+                    typeInput: 'number',
+                    type: 'input',
                     fetchLabel: 'express',
                     checkBoxType: 'notCheckbox',
                 },
@@ -229,33 +227,33 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                 },
                 {
                     label: 'Выезд: 1 час',
-                    value: formState.check_out_per_hour,
-                    type: 'number',
+                    typeInput: 'number',
+                    type: 'input',
                     fetchLabel: 'check_out_per_hour',
                     manyType: 'currency'
                 },
                 {
                     label: 'Выезд: 2 часа',
-                    value: formState.check_out_per_two_hours,
-                    type: 'number',
+                    typeInput: 'number',
+                    type: 'input',
                     fetchLabel: 'check_out_per_two_hours',
                     manyType: 'currency'
                 },
                 {
                     label: 'Выезд: ночь',
-                    value: formState.check_out_per_night,
-                    type: 'number',
+                    typeInput: 'number',
+                    type: 'input',
                     fetchLabel: 'check_out_per_night',
                     manyType: 'currency'
                 },
                 {
                     label: 'Выезжаем:',
                     type: 'checkBox',
-                    list: [{ labelCheckBox: 'на квартиру', checked: formState.check_out_apartment, fetchLabel: 'check_out_apartment' },
-                    { labelCheckBox: 'в гостиницу', checked: formState.check_out_hotel, fetchLabel: 'check_out_hotel' },
-                    { labelCheckBox: 'в загородный дом', checked: formState.check_out_house, fetchLabel: 'check_out_house' },
-                    { labelCheckBox: 'в офис', checked: formState.check_out_office, fetchLabel: 'check_out_office' },
-                    { labelCheckBox: 'в сауну', checked: formState.check_out_sauna, fetchLabel: 'check_out_sauna' }]
+                    list: [{ labelCheckBox: 'на квартиру', fetchLabel: 'check_out_apartment' },
+                    { labelCheckBox: 'в гостиницу', fetchLabel: 'check_out_hotel' },
+                    { labelCheckBox: 'в загородный дом', fetchLabel: 'check_out_house' },
+                    { labelCheckBox: 'в офис', fetchLabel: 'check_out_office' },
+                    { labelCheckBox: 'в сауну', fetchLabel: 'check_out_sauna' }]
                 },
             ]
         },
@@ -269,7 +267,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                     description: '2. Запрещено в поле "О себе" указывать любые контактные данные: телефон, telegram, емайл и пр.!'
                 },
                 {
-                    value: formState.description,
+
                     type: 'textArea',
                     fetchLabel: 'description',
                     must: true,
@@ -290,13 +288,11 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
             row: [
                 {
                     label: 'Секс классический',
-                    value: formStateGirl.classic_sex,
                     type: 'inputGirl',
                     fetchLabel: 'classic_sex',
                 },
                 {
                     label: 'Минет в презервативе',
-                    value: formStateGirl.blowjob_in_a_condom,
                     type: 'inputGirl',
                     fetchLabel: 'blowjob_in_a_condom',
                 },
@@ -309,106 +305,90 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
             row: [
                 {
                     label: 'Минет без резинки',
-                    value: formStateGirl.blowjob_without_an_elastic_band,
                     type: 'inputGirl',
                     fetchLabel: 'blowjob_without_an_elastic_band',
                 },
                 {
                     label: 'Анал',
-                    value: formStateGirl.anal_sex,
                     type: 'inputGirl',
                     fetchLabel: 'anal_sex',
                 },
                 {
                     label: 'Минет глубокий',
-                    value: formStateGirl.deep_blowjob,
                     type: 'inputGirl',
                     fetchLabel: 'deep_blowjob',
                 },
                 {
                     label: 'Cекс в машине',
-                    value: formStateGirl.sex_in_the_car,
                     type: 'inputGirl',
                     fetchLabel: 'sex_in_the_car',
 
                 },
                 {
                     label: 'Окончание на грудь',
-                    value: formStateGirl.cum_on_the_chest,
                     type: 'inputGirl',
                     fetchLabel: 'cum_on_the_chest',
 
                 },
                 {
                     label: 'Окончание на лицо',
-                    value: formStateGirl.cum_on_the_face,
                     type: 'inputGirl',
                     fetchLabel: 'cum_on_the_face',
 
                 },
                 {
                     label: 'Окончание в рот',
-                    value: formStateGirl.cum_in_the_mouth,
                     type: 'inputGirl',
                     fetchLabel: 'cum_in_the_mouth',
 
                 },
                 {
                     label: 'Куннилингус',
-                    value: formStateGirl.cunnilingus,
                     type: 'inputGirl',
                     fetchLabel: 'cunnilingus',
 
                 },
                 {
                     label: 'Поза 69',
-                    value: formStateGirl.pose_69,
                     type: 'inputGirl',
                     fetchLabel: 'pose_69',
 
                 },
                 {
                     label: 'Игрушки',
-                    value: formStateGirl.toys,
                     type: 'inputGirl',
                     fetchLabel: 'toys',
 
                 },
                 {
                     label: 'Ролевые игры',
-                    value: formStateGirl.role_playing_games,
                     type: 'inputGirl',
                     fetchLabel: 'role_playing_games',
 
                 },
                 {
                     label: 'Услуги семейной паре',
-                    value: formStateGirl.services_for_a_married_couple,
                     type: 'inputGirl',
                     fetchLabel: 'services_for_a_married_couple',
                 },
                 {
                     label: 'Фото и видео съемка',
-                    value: formStateGirl.photo_and_video_shooting,
                     type: 'inputGirl',
                     fetchLabel: 'photo_and_video_shooting',
 
                 },
                 {
                     label: 'Эскорт',
-                    value: formStateGirl.escort,
                     type: 'inputGirl',
                     fetchLabel: 'escort',
                 },
                 {
                     label: 'Стриптиз',
-                    value: formStateGirl.striptease,
                     type: 'inputGirl',
                     fetchLabel: 'striptease',
                 },
                 {
                     label: 'Лесби-шоу легкое',
-                    value: formStateGirl.lesbian_show_is_easy,
                     type: 'inputGirl',
                     fetchLabel: 'lesbian_show_is_easy',
                 },
@@ -420,49 +400,42 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
             row: [
                 {
                     label: 'Бандаж',
-                    value: formStateGirl.bandage,
                     type: 'inputGirl',
                     fetchLabel: 'bandage',
 
                 },
                 {
                     label: 'Госпожа',
-                    value: formStateGirl.madam,
                     type: 'inputGirl',
                     fetchLabel: 'madam',
 
                 },
                 {
                     label: 'Рабыня',
-                    value: formStateGirl.slave_girl,
                     type: 'inputGirl',
                     fetchLabel: 'slave_girl',
 
                 },
                 {
                     label: 'Легкая доминация',
-                    value: formStateGirl.easy_domination,
                     type: 'inputGirl',
                     fetchLabel: 'easy_domination',
 
                 },
                 {
                     label: 'Порка',
-                    value: formStateGirl.spanking,
                     type: 'inputGirl',
                     fetchLabel: 'spanking',
 
                 },
                 {
                     label: 'Фетиш',
-                    value: formStateGirl.fetish,
                     type: 'inputGirl',
                     fetchLabel: 'fetish',
 
                 },
                 {
                     label: 'Трамплинг',
-                    value: formStateGirl.trampling,
                     type: 'inputGirl',
                     fetchLabel: 'trampling',
 
@@ -475,63 +448,54 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
             row: [
                 {
                     label: 'Эротический',
-                    value: formStateGirl.erotic_massage,
                     type: 'inputGirl',
                     fetchLabel: 'erotic_massage',
 
                 },
                 {
                     label: 'Боди массаж',
-                    value: formStateGirl.body_massage,
                     type: 'inputGirl',
                     fetchLabel: 'body_massage',
 
                 },
                 {
                     label: 'Лингама массаж',
-                    value: formStateGirl.lingama_massage,
                     type: 'inputGirl',
                     fetchLabel: 'lingama_massage',
 
                 },
                 {
                     label: 'Расслабляющий',
-                    value: formStateGirl.relaxing_massage,
                     type: 'inputGirl',
                     fetchLabel: 'relaxing_massage',
 
                 },
                 {
                     label: 'Классический',
-                    value: formStateGirl.classic_massage,
                     type: 'inputGirl',
                     fetchLabel: 'classic_massage',
 
                 },
                 {
                     label: 'Профессиональный',
-                    value: formStateGirl.professional_massage,
                     type: 'inputGirl',
                     fetchLabel: 'professional_massage',
 
                 },
                 {
                     label: 'Урологический',
-                    value: formStateGirl.urological_massage,
                     type: 'inputGirl',
                     fetchLabel: 'urological_massage',
 
                 },
                 {
                     label: 'Точечный',
-                    value: formStateGirl.acupressure_massage,
                     type: 'inputGirl',
                     fetchLabel: 'acupressure_massage',
 
                 },
                 {
                     label: 'Ветка сакуры',
-                    value: formStateGirl.sakura_branch,
                     type: 'inputGirl',
                     fetchLabel: 'sakura_branch',
 
@@ -544,56 +508,48 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
             row: [
                 {
                     label: 'Страпон',
-                    value: formStateGirl.strap_on,
                     type: 'inputGirl',
                     fetchLabel: 'strap_on',
 
                 },
                 {
                     label: 'Анилингус делаю',
-                    value: formStateGirl.i_do_anilingus,
-                    type: 'inputGirl',
+                    type: 'inputGirlGirls',
                     fetchLabel: 'i_do_anilingus',
 
                 },
                 {
                     label: 'Золотой дождь выдача',
-                    value: formStateGirl.golden_rain_issue,
                     type: 'inputGirl',
                     fetchLabel: 'golden_rain_issue',
 
                 },
                 {
                     label: 'Золотой дождь прием',
-                    value: formStateGirl.golden_rain_reception,
                     type: 'inputGirl',
                     fetchLabel: 'golden_rain_reception',
 
                 },
                 {
                     label: 'Копрофагия выдача',
-                    value: formStateGirl.coprophagia_issue,
                     type: 'inputGirl',
                     fetchLabel: 'coprophagia_issue',
 
                 },
                 {
                     label: 'Копрофагия прием',
-                    value: formStateGirl.coprophagia_reception,
                     type: 'inputGirl',
                     fetchLabel: 'coprophagia_reception',
 
                 },
                 {
                     label: 'Фистинг анальный',
-                    value: formStateGirl.anal_fisting,
                     type: 'inputGirl',
                     fetchLabel: 'anal_fisting',
 
                 },
                 {
                     label: 'Фистинг классический',
-                    value: formStateGirl.classic_fisting,
                     type: 'inputGirl',
                     fetchLabel: 'classic_fisting',
 
@@ -606,24 +562,20 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
         //     row: [
         //         {
         //             label: '1.',
-        //             value: formState.age,
         //             type: 'individual',
         //             fetchLabel: 'age',
 
         //         },
         //         {
         //             label: '2.',
-        //             value: formState.age,
         //             type: 'individual',
         //             fetchLabel: 'age',
 
         //         },
         //         {
         //             label: '3.',
-        //             value: formState.age,
         //             type: 'individual',
         //             fetchLabel: 'checked',
-
         //         },
         //     ]
         // },
