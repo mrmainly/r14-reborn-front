@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, Typography, Grid, FormControlLabel, Checkbox, FormControl, InputLabel, Select, MenuItem, InputAdornment, TextField } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 
 import GirlsFormListFunction from '../../../formList/GirlsFormList'
+import { DispatchContext } from '../../../store'
 import ButtonCustom from '../../../components/customElements/ButtonCustom'
 import Layout from '../../../components/layout/Layout'
 import API from '../../../utils/api'
@@ -135,11 +136,11 @@ const CreatingFormGirl = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur",
     })
+    const dispatchNoti = useContext(DispatchContext)
     const router = useHistory()
     const classes = useStyles()
     const onSubmit = (data) => {
-        // API.sendSurveys('woman', router, { ...formState, womansurvey: { ...formStateGirl } }, dispatchNoti)
-        console.log('sendData', data)
+        API.sendSurveys('woman', router, data, dispatchNoti)
     }
     return (
         <Layout>

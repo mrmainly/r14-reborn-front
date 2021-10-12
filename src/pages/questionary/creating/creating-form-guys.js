@@ -1,9 +1,8 @@
 import React, { useReducer, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, Typography, Grid, TextField, FormControlLabel, Checkbox, TextareaAutosize, FormControl, InputAdornment, InputLabel, Select, MenuItem } from '@material-ui/core'
+import { Box, Typography, Grid, TextField, FormControlLabel, Checkbox, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 
-import surveyReducer from '../../../reducer/surveyReducer'
 import GuysFormListFunction from '../../../formList/GuysFormList'
 import ButtonCustom from '../../../components/customElements/ButtonCustom'
 import { DispatchContext } from '../../../store'
@@ -122,28 +121,12 @@ const useStyles = makeStyles((theme) => ({
 const CreatingFormGuys = () => {
     const classes = useStyles()
     const router = useHistory()
-    // const sendSurvayGays = () => {
-    //     api('/api/surveys/').post(null, {
-    //         ...formState,
-    //         mansurvey: {
-    //             ...formStateMan
-    //         }
-    //     }).then((res) => {
-    //         console.log(res)
-    //         dispatchNoti({ type: 'notification', payload: { status: 'success', active: true, text: 'анкета создана' } })
-    //         router.push('/profile')
-
-    //     }).catch((e) => {
-    //         console.log(e)
-    //         dispatchNoti({ type: 'notification', payload: { status: 'error', active: true, text: 'ошибка в анкете' } })
-    //     })
-    // }
+    const dispatchNoti = useContext(DispatchContext)
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur",
     })
     const onSubmit = (data) => {
-        // API.sendSurveys('woman', router, { ...formState, womansurvey: { ...formStateGirl } }, dispatchNoti)
-        console.log('sendData', data)
+        API.sendSurveys('man', router, data, dispatchNoti)
     }
     return (
         <Layout>

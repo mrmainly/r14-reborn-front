@@ -75,8 +75,8 @@ class API {
         return result
     }
     async sendSurveys(gender, router, data, dispatch) {
-        console.log(data)
-        api(`api/surveys/${gender}/`).post().then(res => {
+        console.log('send Dtat', data)
+        api(`api/surveys/${gender}/`).post(null, { ...data }).then(res => {
             console.log('surveyPostResult', res)
             dispatch({ type: 'notification', payload: { status: 'success', active: true, text: 'анкета создана' } })
             router.push('/profile')

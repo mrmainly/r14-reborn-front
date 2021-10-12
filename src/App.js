@@ -29,10 +29,7 @@ import CreatingFormFirms from './pages/questionary/creating/creating-form-firms'
 import CreatingFormGirl from './pages/questionary/creating/creating-form-girl';
 import CreatingFormGuys from './pages/questionary/creating/creating-form-guys';
 
-import Fieled from './pages/payment/failed'
 import Success from './pages/payment/success'
-
-import './App.css';
 import Failed from './pages/payment/failed';
 
 function App() {

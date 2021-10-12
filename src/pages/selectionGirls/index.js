@@ -1,14 +1,15 @@
 import React, { useState, useReducer } from 'react'
 import { Box, Typography, TextField, Grid, Checkbox, FormControlLabel, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import { useForm } from 'react-hook-form'
 
 import MainContentCard from '../../constructor/MainContentCard'
-import api from '../../utils/api'
+import API from '../../utils/api'
 import { FiltersListFormFunc, FilterListFormTwoFunc } from '../../formList/FiltersListForm'
 import ButtonCustom from '../../components/customElements/ButtonCustom'
 import Layout from '../../components/layout/Layout'
-
-import surveyReducer from '../../reducer/surveyReducer'
+import { Input } from '../../components/customElements/Input'
+import { Form } from '../../components/customElements/Form'
 
 const useStales = makeStyles((theme) => ({
     drawerBox: {
@@ -75,87 +76,66 @@ const useStales = makeStyles((theme) => ({
     }
 }))
 
-const initialFormState = {
-    name: '',
-    phone: ''
-}
-
 const SelectionGirls = () => {
-    const [data, setData] = useState([])
-    const [formState, dispatch] = useReducer(surveyReducer, initialFormState)
     const classes = useStales()
-    const handleTextChange = (e, type) => {
-        dispatch({
-            type: type,
-            field: e.target.name,
-            payload: e.target.value
-        })
-    }
-    const getListGirls = () => {
-        let params = ""
-        console.log(params)
-        for (var key in formState) {
-            if (params != "") {
-                params += "&";
-            }
-            params += key + "=" + encodeURIComponent(formState[key]);
-        }
-        console.log(params)
-        api('api/v1/surveys/list?mode=woman&' + params, null).get(null).then((res) => {
-            setData(res.data)
-        }).catch((error) => {
-            console.log('error', error)
-        })
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        mode: "onBlur",
+    })
+    const onSubmit = (data) => {
+        // let params = ""
+        // console.log(params)
+        // for (var key in formState) {
+        //     if (params != "") {
+        //         params += "&";
+        //     }
+        //     params += key + "=" + encodeURIComponent(formState[key]);
+        // }
+        // console.log(params)
+        // api('api/v1/surveys/list?mode=woman&' + params, null).get(null).then((res) => {
+        //     setData(res.data)
+        // }).catch((error) => {
+        //     console.log('error', error)
+        // })
+        console.log('data', data)
     }
     return (
         <Layout>
-            <Box className={classes.drawerBox}>
+            <Form className={classes.drawerBox} onSubmit={handleSubmit(onSubmit)}>
                 <Typography style={{ fontWeight: 'bold' }} variant="h5">Подбор анкет</Typography>
                 <Box className={classes.inputBox}>
                     <Box className={classes.textFieldBox_labelBox}>
                         <Typography>Имя девушки:</Typography>
                     </Box>
-                    <TextField
-                        size="small"
-                        variant="outlined"
-                        required
-                        fullWidth
+                    <Input
                         style={{ width: '50%' }}
-                        onChange={(e) => { handleTextChange(e, 'input') }}
-                        value={formState.name}
                         name={'name'}
+                        {...register('name')}
                     />
                 </Box>
                 <Box className={classes.inputBox}>
                     <Box className={classes.textFieldBox_labelBox}>
                         <Typography>Номер телефона:</Typography>
                     </Box>
-                    <TextField
-                        size="small"
-                        variant="outlined"
-                        required
-                        fullWidth
+                    <Input
                         style={{ width: '50%' }}
-                        onChange={(e) => { handleTextChange(e, 'input') }}
-                        value={formState.phone}
                         name={'phone'}
+                        {...register('phone')}
                     />
                 </Box>
                 <Grid container>
                     <Grid lg={5} sm={12} md={5} xl={5} xs={12} item>
-                        {FiltersListFormFunc ? FiltersListFormFunc(formState).map((item, index) => (
+                        {FiltersListFormFunc ? FiltersListFormFunc().map((item, index) => (
                             <Box key={index} className={classes.drawerBox_form}>
                                 <Typography style={{ fontWeight: 'bold' }} variant="h6">{item.title}</Typography>
-                                {item.row.map((itemRow, index) => (
+                                {item.row.map((itemForm, index) => (
                                     <div key={index}>
-                                        {itemRow.type == 'checkbox' ?
+                                        {itemForm.type == 'checkbox' ?
                                             <FormControlLabel
-                                                control={<Checkbox
-                                                    value={itemRow.value}
-                                                    name={itemRow.fetchLabel}
-                                                    onChange={(e) => handleTextChange(e, 'check')}
-                                                />}
-                                                label={itemRow.label}
+                                                control={<Checkbox />}
+                                                label={itemForm.label}
+                                                name={itemForm.fetchLabel}
+                                                {...register(itemForm.fetchLabel)}
+                                                key={index}
                                             />
                                             : ''
                                         }
@@ -165,65 +145,60 @@ const SelectionGirls = () => {
                         )) : 'нет форм'}
                     </Grid>
                     <Grid lg={5} sm={12} md={5} xl={5} xs={12} item>
-                        {FilterListFormTwoFunc ? FilterListFormTwoFunc(formState).map((item, index) => (
+                        {FilterListFormTwoFunc ? FilterListFormTwoFunc().map((item, index) => (
                             <Box key={index} className={classes.drawerBox_form}>
                                 <Typography style={{ fontWeight: 'bold' }}>{item.title}</Typography>
-                                {item.row.map((itemRow, index) => (
+                                {item.row.map((itemForm, index) => (
                                     <div key={index}>
-                                        {itemRow.type == 'checkbox' ?
+                                        {itemForm.type == 'checkbox' ?
                                             <FormControlLabel
-                                                control={<Checkbox name="checkedA" />}
-                                                label={itemRow.label}
+                                                control={<Checkbox />}
+                                                label={itemForm.label}
+                                                name={itemForm.fetchLabel}
+                                                {...register(itemForm.fetchLabel)}
+                                                key={index}
                                             />
-                                            : itemRow.type == 'TextField' ?
+                                            : itemForm.type == 'TextField' ?
                                                 <Box className={classes.textFieldBox}>
                                                     <Box className={classes.textFieldBox_labelBox}>
-                                                        <Typography>{itemRow.label}:</Typography>
+                                                        <Typography>{itemForm.label}:</Typography>
                                                     </Box>
-                                                    <TextField
-                                                        size="small"
-                                                        onChange={(e) => handleTextChange(e, 'input')}
-                                                        value={itemRow.valueMin}
-                                                        variant="outlined"
-                                                        label="От"
-                                                        required
-                                                        fullWidth
+                                                    <Input
+                                                        {...register(itemForm.fetchLabelMin)}
+                                                        id={itemForm.fetchLabelMin}
+                                                        type={'number'}
                                                         className={classes.TextFieldStyle}
-                                                        name={itemRow.fetchLabelMin}
-                                                        type='number'
+                                                        label={'мин'}
                                                     />
-                                                    <TextField
-                                                        size="small"
-                                                        onChange={(e) => handleTextChange(e, 'input')}
-                                                        value={itemRow.valueMax}
-                                                        variant="outlined"
-                                                        required
-                                                        label="До"
-                                                        fullWidth
+                                                    <Input
+                                                        {...register(itemForm.fetchLabelMax)}
+                                                        id={itemForm.fetchLabelMax}
+                                                        type={'number'}
                                                         className={classes.TextFieldStyle}
-                                                        name={itemRow.fetchLabelMax}
-                                                        type='number'
+                                                        label={'макс'}
                                                     />
                                                 </Box>
-                                                : itemRow.type == 'select' ?
+                                                : itemForm.type == 'select' ?
                                                     <div className={classes.textFieldBox}>
                                                         <Box className={classes.textFieldBox_labelBox}>
-                                                            <Typography>{itemRow.label}:</Typography>
+                                                            <Typography>{itemForm.label}:</Typography>
                                                         </Box>
                                                         <FormControl className={classes.selectInputStyle}>
                                                             <InputLabel id="demo-simple-select-label">Выберите значение</InputLabel>
                                                             <Select
                                                                 labelId="demo-simple-select-label"
                                                                 id="demo-simple-select"
-                                                                name={itemRow.fetchLabel}
-                                                                value={itemRow.value}
-                                                                defaultValue={itemRow.default}
-                                                                onChange={(e) => handleTextChange(e, 'input')}
+                                                                aria-invalid={errors[itemForm.fetchLabel] ? "true" : "false"}
+                                                                name={itemForm.fetchLabel}
+                                                                defaultValue={itemForm.default}
+                                                                {...register(itemForm.fetchLabel, { required: itemForm.must == true ? true : false })}
+                                                                helperText={errors[itemForm.fetchLabel] && errors[itemForm.fetchLabel].type == 'required' ? 'обязательное поле' : ''}
+                                                                error={!!errors[itemForm.fetchLabel]}
                                                             >
                                                                 {
-                                                                    itemRow.selectArrey ? itemRow.selectArrey.map((itemOptions, index) => (
+                                                                    itemForm.selectArrey ? itemForm.selectArrey.map((itemOptions, index) => (
                                                                         <MenuItem key={index} value={itemOptions.optionValue}>{itemOptions.optionText}</MenuItem>
-                                                                    )) : 'itemRow.selectArrey undefiend'
+                                                                    )) : 'itemForm.selectArrey undefiend'
                                                                 }
                                                             </Select>
                                                         </FormControl>
@@ -236,15 +211,15 @@ const SelectionGirls = () => {
                     </Grid>
                 </Grid>
                 <Box style={{ marginTop: 25 }}>
-                    <ButtonCustom text={'Подобрать девушку'} onClick={() => { getListGirls() }} />
+                    <ButtonCustom text={'Подобрать девушку'} />
                 </Box>
-            </Box>
-            {data.length > 0 ?
+            </Form>
+            {/* {data.length > 0 ?
                 <Box style={{ padding: 20 }}>
                     <Typography variant="h6">По вашим указанным параметрам найдено анкет {data.length}</Typography>
                 </Box>
                 : ''}
-            <MainContentCard cardsContent={data} showUnderButton={false} lg={6} xl={6} md={6} CardsIfNo={''} statusUser="anonim" />
+            <MainContentCard cardsContent={data} showUnderButton={false} lg={6} xl={6} md={6} CardsIfNo={''} statusUser="anonim" /> */}
         </Layout>
     )
 }

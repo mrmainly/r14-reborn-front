@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Box, Typography, Grid, Card, CardActionArea, CardMedia, MenuItem } from '@material-ui/core'
+import { Box, Typography, Grid, Card, CardActionArea, CardMedia } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -176,7 +176,7 @@ export default function CardCastom(props) {
                             </Typography>
                         </Box>
                         <Box className={classes.fullContent}>
-                            {props.organisation == '' ?
+                            {props.organisation === '' ?
                                 <Box className={classes.special}>
                                     <Typography variant="body1">
                                         Возраст: {props.age}
