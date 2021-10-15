@@ -29,10 +29,11 @@ const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
     const [data, setData] = useState()
     const classes = useStyles()
     useEffect(() => {
-        API.getSurveyDetail('woman', id).then((res) => {
+        API.getSurveyDetail(gender, id).then((res) => {
             setData(res.data)
         })
     }, [])
+    console.log(data)
     return (
         <Layout>
             {data ?
@@ -54,15 +55,15 @@ const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
                         check_out_per_hour={data.check_out_per_hour}
                         check_out_per_night={data.check_out_per_night}
                         check_out_per_two_hours={data.check_out_per_two_hours}
-                        express={data.womansurvey ? data.womansurvey.express : null}
+                        express={data.express ? data.express : null}
                     />
-                    {data.organisation == '' ?
+                    {gender !== 'organisation' ?
                         <div style={{ width: '100%' }}>
                             <DataInfo
                                 age={data.age}
                                 weight={data.weight}
-                                womansurvey={data.womansurvey}
-                                mansurvey={data.mansurvey}
+                                breast_size={data.breast_size}
+                                penis_length={data.penis_length}
                                 height={data.height}
                                 hair_color={data.hair_color}
                                 nationality={data.nationality}
@@ -76,11 +77,10 @@ const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
                             />
                         </div>
                         : ''}
-                    {
-                        data.womansurvey &&
-                        <SexualPreferenceList womansurvey={data.womansurvey} />
-                    }
-                    <Reviews id={data.id} reviews={data.reviews} statusUser={statusUser} />
+                    {data.breast_size ?
+                        <SexualPreferenceList {...data} />
+                        : ''}
+                    {/* <Reviews id={data.id} reviews={data.reviews} statusUser={statusUser} /> */}
                 </Box >
                 : ''}
         </Layout>

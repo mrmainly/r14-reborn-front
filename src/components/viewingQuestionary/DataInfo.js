@@ -51,10 +51,9 @@ const DataInfo = (props) => {
                     elementValue: `${props.height} см`,
                 },
                 {
-                    elementName: props.mansurvey !== null ? 'Длина члена' : 'Грудь',
-                    elementValue: props.mansurvey !== null ? `${props.mansurvey.penis_length} см` : `${props.womansurvey.breast_size} размер`,
+                    elementName: props.breast_size == null ? 'Длина члена' : 'Грудь',
+                    elementValue: props.breast_size == null ? `${props.penis_length} см` : `${props.breast_size} размер`,
                 },
-
             ]
         },
         {

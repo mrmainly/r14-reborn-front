@@ -155,7 +155,7 @@ export default function CardCastom(props) {
                 </Box>
             </Box>
             <CardActionArea className={classes.fullCard} onClick={() => router.push(`/viewingPage/${props.id}`,
-                { id: props.id, statusUser: props.statusUser, type: props.type },
+                { id: props.id, statusUser: props.statusUser, type: props.type, gender: props.gender },
             )}>
                 <Grid container>
                     <Grid item lg={5} sm={12} md={5} xl={5} xs={12}>
@@ -176,7 +176,7 @@ export default function CardCastom(props) {
                             </Typography>
                         </Box>
                         <Box className={classes.fullContent}>
-                            {props.organisation === '' ?
+                            {props.gender !== 'organisation' ?
                                 <Box className={classes.special}>
                                     <Typography variant="body1">
                                         Возраст: {props.age}
@@ -187,15 +187,13 @@ export default function CardCastom(props) {
                                     <Typography variant="body1">
                                         Вес: {props.weight} кг
                                     </Typography>
-                                    {props.womansurvey ?
+                                    {props.breast_size ?
                                         <Typography variant="body1">
-                                            Грудь: {props.womansurvey.breast_size} размер
+                                            Грудь: {props.breast_size} размер
                                         </Typography>
-                                        :
-                                        <Typography variant="body1">
-                                            Длина члена: {props.mansurvey.penis_length} см
-                                        </Typography>
-                                    }
+                                        : <Typography variant="body1">
+                                            Длина члена: {props.penis_length} см
+                                        </Typography>}
                                 </Box>
                                 : ''}
                             <Box className={classes.priceList}>

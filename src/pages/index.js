@@ -45,7 +45,7 @@ export default function Home() {
           <SideBarAnonim getListGirls={getListGirls} />
         </Grid>
         <Grid item lg={9} sm={12} md={12} xl={9} xs={12} >
-          <MainContentCard cardsContent={stateList} showUnderButton={false} lg={6} xl={6} md={6} statusUser="anonim" />
+          <MainContentCard gender="woman" cardsContent={stateList} showUnderButton={false} lg={6} xl={6} md={6} statusUser="anonim" />
         </Grid>
       </Grid>
     </Layout>

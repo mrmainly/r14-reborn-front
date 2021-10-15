@@ -6,9 +6,8 @@ const FirmsFormListFunction = () => {
                 {
                     label: 'Название фирмы',
                     type: 'input',
-                    typeFirmsInput: 'text',
                     must: true,
-                    fetchLabel: 'organisation',
+                    fetchLabel: 'name',
                     typeInput: 'input'
                 },
                 {

@@ -5,17 +5,28 @@ const testURL = 'http://127.0.0.1:8000/'
 const publicURL = 'http://backend:8000/'
 
 
-const api = (url) => {
+const api = (url, contentType) => {
     const token = cookie.get('jwttoken')
     if (token) {
-        const instance = axios.create({
-            baseURL: testURL + url,
-            headers: {
-                'Authorization': "Token " + token,
-                'Content-Type': 'application/json'
-            },
-        })
-        return instance
+        if (contentType === 'photo') {
+            const instance = axios.create({
+                baseURL: testURL + url,
+                headers: {
+                    'Authorization': "Token " + token,
+                    'Content-Type': 'multipart/form-data'
+                },
+            })
+            return instance
+        } else {
+            const instance = axios.create({
+                baseURL: testURL + url,
+                headers: {
+                    'Authorization': "Token " + token,
+                    'Content-Type': 'application/json'
+                },
+            })
+            return instance
+        }
     } else {
         const instance = axios.create({
             baseURL: testURL + url,
@@ -61,6 +72,15 @@ class API {
             console.log(error)
         })
     }
+    sendPhoto(gender, data) {
+        api(`api/surveys/${gender}/photos/load_photo/`).post(null, {
+            ...data
+        }).then(res => {
+            console.log(res)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
     getListDetailPut(gender, id, data) {
         api(`api/surveys/${gender}/${id}`).put(null, {
             ...data
@@ -75,7 +95,6 @@ class API {
         return result
     }
     async sendSurveys(gender, router, data, dispatch) {
-        console.log('send Dtat', data)
         api(`api/surveys/${gender}/`).post(null, { ...data }).then(res => {
             console.log('surveyPostResult', res)
             dispatch({ type: 'notification', payload: { status: 'success', active: true, text: 'анкета создана' } })

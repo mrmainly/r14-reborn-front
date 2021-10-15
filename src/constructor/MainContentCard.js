@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setShowModal, showUnderButton, xl, md, lg, type, statusUser }) => {
+const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setShowModal, showUnderButton, xl, md, lg, type, statusUser, gender }) => {
     const classes = useStyles()
     return (
         <Grid container className={classes.container_card}>
@@ -34,6 +34,7 @@ const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setSho
                         type={type}
                         statusUser={statusUser}
                         setShowModalRewiews={setShowModalRewiews}
+                        gender={gender}
                     />
                 </Grid>
             )) : <div style={{ marginLeft: 20, marginTop: 20 }}><Typography variant="h6">Нету анкет</Typography></div>}

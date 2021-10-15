@@ -43,18 +43,17 @@ const useStyles = makeStyles((theme) => ({
 
 const SexualPreferenceList = (props) => {
     const classes = useStyles()
-    const womansurveyData = props.womansurvey
     const arrayRate = [
         {
             title: 'Основные:',
             elements: [
                 {
                     elementName: 'Секс классический',
-                    elementValue: womansurveyData.classic_sex,
+                    elementValue: props.classic_sex,
                 },
                 {
                     elementName: 'Минет в презервативе',
-                    elementValue: womansurveyData.blowjob_in_a_condom,
+                    elementValue: props.blowjob_in_a_condom,
                 },
             ]
         },
@@ -63,67 +62,67 @@ const SexualPreferenceList = (props) => {
             elements: [
                 {
                     elementName: 'Куннилингус',
-                    elementValue: womansurveyData.cunnilingus
+                    elementValue: props.cunnilingus
                 },
                 {
                     elementName: 'Секс в позе 69',
-                    elementValue: womansurveyData.pose_69
+                    elementValue: props.pose_69
                 },
                 {
                     elementName: 'Окончание на грудь',
-                    elementValue: womansurveyData.cunnilingus
+                    elementValue: props.cunnilingus
                 },
                 {
                     elementName: 'Окончание на лицо',
-                    elementValue: womansurveyData.cum_on_the_face
+                    elementValue: props.cum_on_the_face
                 },
                 {
                     elementName: 'Окончание в рот',
-                    elementValue: womansurveyData.cum_in_the_mouth
+                    elementValue: props.cum_in_the_mouth
                 },
                 {
                     elementName: 'Секс игрушки',
-                    elementValue: womansurveyData.toys
+                    elementValue: props.toys
                 },
                 {
                     elementName: 'Ролевые игры',
-                    elementValue: womansurveyData.role_playing_games
+                    elementValue: props.role_playing_games
                 },
                 {
                     elementName: 'Секс в семейной паре',
-                    elementValue: womansurveyData.role_playing_games
+                    elementValue: props.role_playing_games
                 },
                 {
                     elementName: 'Эксорт услуги',
-                    elementValue: womansurveyData.escort
+                    elementValue: props.escort
                 },
                 {
                     elementName: 'Стриптиз',
-                    elementValue: womansurveyData.striptease
+                    elementValue: props.striptease
                 },
                 {
                     elementName: 'Лесби-шоу',
-                    elementValue: womansurveyData.lesbian_show_is_easy
+                    elementValue: props.lesbian_show_is_easy
                 },
                 {
                     elementName: 'Фото и видео съемка',
-                    elementValue: womansurveyData.photo_and_video_shooting
+                    elementValue: props.photo_and_video_shooting
                 },
                 {
                     elementName: 'Секс анальный',
-                    elementValue: womansurveyData.anal_sex,
+                    elementValue: props.anal_sex,
                 },
                 {
                     elementName: 'Секс втроем',
-                    elementValue: womansurveyData.threesome_sex
+                    elementValue: props.threesome_sex
                 },
                 {
                     elementName: 'Секс лесбийский',
-                    elementValue: womansurveyData.lesbian_sex,
+                    elementValue: props.lesbian_sex,
                 },
                 {
                     elementName: 'Секс в машине',
-                    elementValue: womansurveyData.sex_in_the_car
+                    elementValue: props.sex_in_the_car
                 },
             ]
         },
@@ -134,31 +133,31 @@ const SexualPreferenceList = (props) => {
             elements: [
                 {
                     elementName: 'Классический',
-                    elementValue: womansurveyData.classic_massage,
+                    elementValue: props.classic_massage,
                 },
                 {
                     elementName: 'Расслабляющий',
-                    elementValue: womansurveyData.relaxing_massage,
+                    elementValue: props.relaxing_massage,
                 },
                 {
                     elementName: 'Эротический',
-                    elementValue: womansurveyData.erotic_massage,
+                    elementValue: props.erotic_massage,
                 },
                 {
                     elementName: 'Профессиональный',
-                    elementValue: womansurveyData.professional_massage,
+                    elementValue: props.professional_massage,
                 },
                 {
                     elementName: 'Урологический',
-                    elementValue: womansurveyData.urological_massage,
+                    elementValue: props.urological_massage,
                 },
                 {
                     elementName: 'Боди массаж',
-                    elementValue: womansurveyData.body_massage,
+                    elementValue: props.body_massage,
                 },
                 {
                     elementName: 'Ветка сакуры',
-                    elementValue: womansurveyData.sakura_branch,
+                    elementValue: props.sakura_branch,
                 },
             ]
         },
@@ -167,31 +166,31 @@ const SexualPreferenceList = (props) => {
             elements: [
                 {
                     elementName: 'Госпожа',
-                    elementValue: womansurveyData.madam,
+                    elementValue: props.madam,
                 },
                 {
                     elementName: 'Рабыня',
-                    elementValue: womansurveyData.slave_girl
+                    elementValue: props.slave_girl
                 },
                 {
                     elementName: 'Лекгая доминация',
-                    elementValue: womansurveyData.easy_domination
+                    elementValue: props.easy_domination
                 },
                 {
                     elementName: 'Бандаж',
-                    elementValue: womansurveyData.bandage
+                    elementValue: props.bandage
                 },
                 {
                     elementName: 'Порка',
-                    elementValue: womansurveyData.spanking
+                    elementValue: props.spanking
                 },
                 {
                     elementName: 'Фетиш',
-                    elementValue: womansurveyData.fetish
+                    elementValue: props.fetish
                 },
                 {
                     elementName: 'Трамплинг',
-                    elementValue: womansurveyData.trampling
+                    elementValue: props.trampling
                 },
             ]
         },
@@ -200,35 +199,35 @@ const SexualPreferenceList = (props) => {
             elements: [
                 {
                     elementName: 'Страпон',
-                    elementValue: womansurveyData.strap_on,
+                    elementValue: props.strap_on,
                 },
                 {
                     elementName: 'Делаю анилингус',
-                    elementValue: womansurveyData.i_do_anilingus
+                    elementValue: props.i_do_anilingus
                 },
                 {
                     elementName: 'Выдаю золотой дождь',
-                    elementValue: womansurveyData.golden_rain_issue,
+                    elementValue: props.golden_rain_issue,
                 },
                 {
                     elementName: 'Принимаю золотой дождь',
-                    elementValue: womansurveyData.golden_rain_reception
+                    elementValue: props.golden_rain_reception
                 },
                 {
                     elementName: 'Копрофагия выдача',
-                    elementValue: womansurveyData.coprophagia_issue
+                    elementValue: props.coprophagia_issue
                 },
                 {
                     elementName: 'Копрофагия прием',
-                    elementValue: womansurveyData.coprophagia_reception
+                    elementValue: props.coprophagia_reception
                 },
                 {
                     elementName: 'Фистинг анальный',
-                    elementValue: womansurveyData.anal_fisting
+                    elementValue: props.anal_fisting
                 },
                 {
                     elementName: 'Фистинг классический',
-                    elementValue: womansurveyData.classic_fisting
+                    elementValue: props.classic_fisting
                 },
             ]
         },

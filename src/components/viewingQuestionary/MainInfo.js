@@ -7,7 +7,7 @@ import { DispatchContext } from '../../store'
 import themeMain from '../../theme'
 import ButtonCustom from '../customElements/ButtonCustom'
 import ImgModal from '../modal/ImgModal'
-import cookie from 'js-cookie'
+import API from '../../utils/api'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -132,21 +132,16 @@ const MainInfo = (props) => {
                 return 'Нет активности'
         }
     }
-    const sendPhoto = (type) => {
-        var formData = new FormData();
-        const urlCommon = 'http://backend:8000/api/v1/surveys/photo/load/'
-        const urlMain = 'http://backend:8000/api/v1/surveys/mainphoto/load/'
-        formData.append(type == 'mainPhoto' ? 'main_file' : 'file', photo)
-        formData.append('survey', props.id)
-        axios.post(type == 'mainPhoto' ? urlMain : urlCommon, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
+    const sendPhoto = async (type) => {
+        var formData = await new FormData();
+        await formData.append("image", 'hop');
+        API.sendPhoto('man', {
+            id: props.id,
+            formData,
+            is_main: type == 'mainPhoto' ? true : false,
+            survey: props.id
         })
-            .then((res) => {
-                // location.reload()
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+        console.log(formData)
     }
     const fileSelectHandler = (e) => {
         setPhoto(e.target.files[0])
@@ -195,10 +190,28 @@ const MainInfo = (props) => {
                         ))}
                     </Grid>
                 </Grid>
-                {props.statusUser == 'whore' ?
-                    <div style={{ width: '100%' }}>
-                        <div className={classes.fileChooseBox}>
-                            <Typography variant="h6">Обычное фото</Typography>
+
+                <div style={{ width: '100%' }}>
+                    <div className={classes.fileChooseBox}>
+                        <Typography variant="h6">Обычное фото</Typography>
+                        <div className={classes.fileChooseContent}>
+                            <TextField
+                                size="small"
+                                variant="outlined"
+                                required
+                                fullWidth
+                                type='file'
+                                accept=".png, .jpg"
+                                onChange={(event) => {
+                                    fileSelectHandler(event)
+                                }}
+                            />
+                            <div className={classes.boxButton}>
+                                <ButtonCustom text="Закачать" onClick={() => { sendPhoto() }} />
+                            </div>
+                        </div>
+                        <div style={{ width: '100%' }}>
+                            <Typography variant="h6">Главное фото</Typography>
                             <div className={classes.fileChooseContent}>
                                 <TextField
                                     size="small"
@@ -212,31 +225,13 @@ const MainInfo = (props) => {
                                     }}
                                 />
                                 <div className={classes.boxButton}>
-                                    <ButtonCustom text="Закачать" onClick={() => { sendPhoto() }} />
-                                </div>
-                            </div>
-                            <div style={{ width: '100%' }}>
-                                <Typography variant="h6">Главное фото</Typography>
-                                <div className={classes.fileChooseContent}>
-                                    <TextField
-                                        size="small"
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        type='file'
-                                        accept=".png, .jpg"
-                                        onChange={(event) => {
-                                            fileSelectHandler(event)
-                                        }}
-                                    />
-                                    <div className={classes.boxButton}>
-                                        <ButtonCustom text="Закачать" onClick={() => { sendPhoto('mainPhoto') }} />
-                                    </div>
+                                    <ButtonCustom text="Закачать" onClick={() => { sendPhoto('mainPhoto') }} />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    : ''}
+                </div>
+
             </Grid>
         </div>
     )

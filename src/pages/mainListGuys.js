@@ -39,7 +39,7 @@ export default function MainListGuys() {
         <Layout>
             <Grid container className={classes.contentProfileActive}>
                 <Grid item lg={12} sm={12} md={12} xl={12} xs={12}>
-                    <MainContentCard cardsContent={stateList} showUnderButton={false} lg={6} xl={6} md={6} statusUser="anonim" />
+                    <MainContentCard gender="man" cardsContent={stateList} showUnderButton={false} lg={6} xl={6} md={6} statusUser="anonim" />
                 </Grid>
             </Grid>
         </Layout>

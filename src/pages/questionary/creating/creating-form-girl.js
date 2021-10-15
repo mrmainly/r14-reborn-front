@@ -135,12 +135,21 @@ const useStyles = makeStyles((theme) => ({
 const CreatingFormGirl = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur",
+        defaultValue: {
+            classic_sex: null
+        }
     })
     const dispatchNoti = useContext(DispatchContext)
     const router = useHistory()
     const classes = useStyles()
     const onSubmit = (data) => {
+        Object.keys(data).forEach(el => {
+            if (data[el] === '') {
+                data[el] = null
+            }
+        })
         API.sendSurveys('woman', router, data, dispatchNoti)
+        console.log(data)
     }
     return (
         <Layout>
@@ -156,7 +165,7 @@ const CreatingFormGirl = () => {
                         </Box>
                         {item.row.map((itemForm, index) => (
                             <Grid key={index} style={{ width: '100%' }}>
-                                {itemForm.type == 'input' ?
+                                {itemForm.typeInput == 'input' ?
                                     <Box className={classes.textFieldBox}>
                                         <Box className={classes.textFieldBox_labelBox}>
                                             <Typography>{itemForm.label}</Typography>
@@ -221,8 +230,6 @@ const CreatingFormGirl = () => {
                                                             name={itemForm.fetchLabel}
                                                             defaultValue={itemForm.default}
                                                             {...register(itemForm.fetchLabel, { required: itemForm.must == true ? true : false })}
-                                                            helperText={errors[itemForm.fetchLabel] && errors[itemForm.fetchLabel].type == 'required' ? 'обязательное поле' : ''}
-                                                            error={!!errors[itemForm.fetchLabel]}
                                                         >
                                                             {
                                                                 itemForm.selectArrey ? itemForm.selectArrey.map((itemOptions, index) => (
@@ -235,14 +242,14 @@ const CreatingFormGirl = () => {
                                                 : itemForm.type == 'inputGirl' ?
                                                     <Box className={classes.textFieldBox}>
                                                         <Box className={classes.textFieldBox_labelBox}>
-                                                            {itemForm.checkBoxType !== "notCheckbox" ?
+                                                            {/* {itemForm.checkBoxType !== "notCheckbox" ?
                                                                 <FormControlLabel
-                                                                    control={<Checkbox />}
+                                                                    control={<Checkbox value={null} />}
                                                                     label={itemForm.labelCheckBox}
                                                                     name={itemForm.fetchLabel}
                                                                     {...register(itemForm.fetchLabel)}
                                                                 />
-                                                                : ''}
+                                                                : ''} */}
                                                             <Typography>{itemForm.label}</Typography>
                                                             {itemForm.must &&
                                                                 <Typography style={{ color: 'red', marginLeft: 5 }}>*</Typography>

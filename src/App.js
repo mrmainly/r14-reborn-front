@@ -32,7 +32,7 @@ import CreatingFormGuys from './pages/questionary/creating/creating-form-guys';
 import Success from './pages/payment/success'
 import Failed from './pages/payment/failed';
 
-function App() {
+const App = () => {
   const [state, dispatch] = useReducer(stateReducer, defaultStore)
   return (
     <DispatchContext.Provider value={dispatch}>
