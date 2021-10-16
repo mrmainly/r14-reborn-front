@@ -5,28 +5,17 @@ const testURL = 'http://127.0.0.1:8000/'
 const publicURL = 'http://backend:8000/'
 
 
-const api = (url, contentType) => {
+const api = (url) => {
     const token = cookie.get('jwttoken')
     if (token) {
-        if (contentType === 'photo') {
-            const instance = axios.create({
-                baseURL: testURL + url,
-                headers: {
-                    'Authorization': "Token " + token,
-                    'Content-Type': 'multipart/form-data'
-                },
-            })
-            return instance
-        } else {
-            const instance = axios.create({
-                baseURL: testURL + url,
-                headers: {
-                    'Authorization': "Token " + token,
-                    'Content-Type': 'application/json'
-                },
-            })
-            return instance
-        }
+        const instance = axios.create({
+            baseURL: testURL + url,
+            headers: {
+                'Authorization': "Token " + token,
+                'Content-Type': 'application/json'
+            },
+        })
+        return instance
     } else {
         const instance = axios.create({
             baseURL: testURL + url,
@@ -72,15 +61,7 @@ class API {
             console.log(error)
         })
     }
-    sendPhoto(gender, data) {
-        api(`api/surveys/${gender}/photos/load_photo/`).post(null, {
-            ...data
-        }).then(res => {
-            console.log(res)
-        }).catch(error => {
-            console.log(error)
-        })
-    }
+
     getListDetailPut(gender, id, data) {
         api(`api/surveys/${gender}/${id}`).put(null, {
             ...data

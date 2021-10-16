@@ -1,13 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, Grid, Typography, TextField, Button } from '@material-ui/core'
+import { Box, Grid, Typography, TextField } from '@material-ui/core'
 import axios from 'axios'
 
 import { DispatchContext } from '../../store'
 import themeMain from '../../theme'
 import ButtonCustom from '../customElements/ButtonCustom'
 import ImgModal from '../modal/ImgModal'
-import API from '../../utils/api'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -106,13 +105,10 @@ const MainInfo = (props) => {
         switch (propsData) {
             case 3:
                 return themeMain.palette.statusColor.premium
-                break;
             case 2:
                 return themeMain.palette.statusColor.vip
-                break;
             case 1:
                 return themeMain.palette.statusColor.common
-                break;
             default:
                 return '#ccc8c8'
         }
@@ -121,27 +117,29 @@ const MainInfo = (props) => {
         switch (propsData) {
             case 3:
                 return 'PREMIUM'
-                break;
             case 2:
                 return 'VIP'
-                break;
             case 1:
                 return 'COMMON'
-                break;
             default:
                 return 'Нет активности'
         }
     }
-    const sendPhoto = async (type) => {
-        var formData = await new FormData();
-        await formData.append("image", 'hop');
-        API.sendPhoto('man', {
-            id: props.id,
-            formData,
-            is_main: type == 'mainPhoto' ? true : false,
-            survey: props.id
+    const sendPhoto = (type) => {
+        let formData = new FormData()
+        formData.append('image', photo)
+        formData.append('is_main', type == 'mainPhoto' ? true : false)
+        formData.append('is_verify', true)
+        formData.append('survey', props.id)
+        axios.post(`http://127.0.0.1:8000/api/surveys/woman/photos/load_photo/`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
         })
-        console.log(formData)
+            .then((res) => {
+                window.location.reload()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
     const fileSelectHandler = (e) => {
         setPhoto(e.target.files[0])
@@ -182,9 +180,9 @@ const MainInfo = (props) => {
                     <Grid container className={classes.imgContainer}>
                         {props.photos.map((itemImage, index) => (
                             <Grid key={index} item lg={3} sm={3} md={3} xl={3} xs={5} className={classes.soImgBox}>
-                                <img src={itemImage.file} className={classes.soImg} onClick={() => {
+                                <img src={itemImage.image} className={classes.soImg} onClick={() => {
                                     setOpen(true)
-                                    dispatch({ type: 'photo', payload: { name: itemImage.file, id: itemImage.id, type: 'common' } })
+                                    dispatch({ type: 'photo', payload: { name: itemImage.image, id: itemImage.id, type: 'common' } })
                                 }} />
                             </Grid>
                         ))}
@@ -198,7 +196,6 @@ const MainInfo = (props) => {
                             <TextField
                                 size="small"
                                 variant="outlined"
-                                required
                                 fullWidth
                                 type='file'
                                 accept=".png, .jpg"
@@ -216,7 +213,6 @@ const MainInfo = (props) => {
                                 <TextField
                                     size="small"
                                     variant="outlined"
-                                    required
                                     fullWidth
                                     type='file'
                                     accept=".png, .jpg"
