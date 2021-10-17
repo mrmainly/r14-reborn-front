@@ -14,9 +14,10 @@ export const stateReducer = (state, action) => {
             return { ...state, cardsId: action.payload }
         case 'slogoDispatch':
             return { ...state, slogo: action.payload }
-
         case 'getList':
             return { ...state, data: action.payload }
+        case 'paymentChange':
+            return { ...state, open: action.payload }
         default:
             throw new Error();
     }

@@ -26,6 +26,9 @@ export const defaultStore = {
     },
     getList: {
         data: []
+    },
+    paymentChange: {
+        open: false
     }
 };
 
