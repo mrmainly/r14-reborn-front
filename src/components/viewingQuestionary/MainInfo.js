@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     InfoBox_mainText: {
-        height: 210,
+        height: '100%',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         wordWrap: 'break-word',
@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-
         [theme.breakpoints.down('xs')]: {
             flexDirection: 'column'
         },
@@ -74,9 +73,12 @@ const useStyles = makeStyles((theme) => ({
     },
     imgContainer: {
         marginTop: 16,
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        width: '100%',
         [theme.breakpoints.down('xs')]: {
             margin: '0 auto',
-            display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
         },
@@ -89,10 +91,16 @@ const useStyles = makeStyles((theme) => ({
     },
     soImg: {
         width: '90%',
+        height: 230,
         cursor: 'pointer',
-        [theme.breakpoints.down('xs')]: {
-            width: '100%'
+        objectFit: 'cover',
+        [theme.breakpoints.down('sm')]: {
+            height: 190
         },
+        [theme.breakpoints.down('xs')]: {
+            height: 150
+        },
+
     }
 }))
 
@@ -100,6 +108,7 @@ const MainInfo = (props) => {
     const classes = useStyles()
     const [photo, setPhoto] = useState()
     const [open, setOpen] = useState(false)
+    const MainPhoto = props.photos.filter(e => e.is_main == true)[0] ? props.photos.filter(e => e.is_main == true)[0].image : ''
     const dispatch = useContext(DispatchContext)
     const statusBlogBackground = (propsData) => {
         switch (propsData) {
@@ -128,7 +137,7 @@ const MainInfo = (props) => {
     const sendPhoto = (type) => {
         let formData = new FormData()
         formData.append('image', photo)
-        formData.append('is_main', type == 'mainPhoto' ? true : false)
+        formData.append('is_main', false)
         formData.append('is_verify', true)
         formData.append('survey', props.id)
         axios.post(`http://127.0.0.1:8000/api/surveys/woman/photos/load_photo/`, formData, {
@@ -151,18 +160,18 @@ const MainInfo = (props) => {
                 <Typography variant="h6">{statusName(props.status ? props.status.name : 'Нет активности')}</Typography>
             </Box>
             <Grid container>
-                <Grid item lg={4} sm={5} md={4} xl={4} xs={12}>
-                    <img src={props.mainPhoto ? props.mainPhoto.main_file : '/image/XVP.jpg'} className={classes.img} onClick={() => {
+                <Grid item lg={4} sm={6} md={4} xl={4} xs={12}>
+                    <img src={MainPhoto ? MainPhoto : '/image/XVP.jpg'} className={classes.img} onClick={() => {
                         setOpen(true)
-                        if (props.mainPhoto) {
-                            dispatch({ type: 'photo', payload: { name: props.mainPhoto.main_file, id: props.mainPhoto.id, type: 'main' } })
+                        if (MainPhoto) {
+                            dispatch({ type: 'photo', payload: { name: MainPhoto, id: props.photos.filter(e => e.is_main == true)[0].id, type: 'main', gender: props.gender } })
                         }
                         else {
                             dispatch({ type: 'photo', payload: { name: '/image/XVP.jpg' } })
                         }
                     }} />
                 </Grid>
-                <Grid item lg={8} sm={7} md={8} xl={8} xs={12} className={classes.InfoBox}>
+                <Grid item lg={8} sm={6} md={8} xl={8} xs={12} className={classes.InfoBox}>
                     <Typography variant="h6">{props.name}</Typography>
                     <Box className={classes.phoneAndIdBlock}>
                         <Typography variant="body1" style={{ color: '#302DD2' }}>
@@ -177,60 +186,42 @@ const MainInfo = (props) => {
                             {props.description}
                         </Typography>
                     </Box>
-                    <Grid container className={classes.imgContainer}>
-                        {props.photos.map((itemImage, index) => (
-                            <Grid key={index} item lg={3} sm={3} md={3} xl={3} xs={5} className={classes.soImgBox}>
-                                <img src={itemImage.image} className={classes.soImg} onClick={() => {
-                                    setOpen(true)
-                                    dispatch({ type: 'photo', payload: { name: itemImage.image, id: itemImage.id, type: 'common' } })
-                                }} />
-                            </Grid>
-                        ))}
-                    </Grid>
                 </Grid>
-                {props.statusUser == 'whore' ?
-                    <div style={{ width: '100%' }}>
-                        <div className={classes.fileChooseBox}>
-                            <Typography variant="h6">Обычное фото</Typography>
-                            <div className={classes.fileChooseContent}>
-                                <TextField
-                                    size="small"
-                                    variant="outlined"
-                                    fullWidth
-                                    type='file'
-                                    accept=".png, .jpg"
-                                    onChange={(event) => {
-                                        fileSelectHandler(event)
-                                    }}
-                                />
-                                <div className={classes.boxButton}>
-                                    <ButtonCustom text="Закачать" onClick={() => { sendPhoto() }} />
-                                </div>
-                            </div>
-                            <div style={{ width: '100%' }}>
-                                <Typography variant="h6">Главное фото</Typography>
-                                <div className={classes.fileChooseContent}>
-                                    <TextField
-                                        size="small"
-                                        variant="outlined"
-                                        fullWidth
-                                        type='file'
-                                        accept=".png, .jpg"
-                                        onChange={(event) => {
-                                            fileSelectHandler(event)
-                                        }}
-                                    />
-                                    <div className={classes.boxButton}>
-                                        <ButtonCustom text="Закачать" onClick={() => { sendPhoto('mainPhoto') }} />
-                                    </div>
-                                </div>
+            </Grid>
+            <Grid container className={classes.imgContainer}>
+                {props.photos.map((itemImage, index) => (
+                    <Grid item key={index} lg={3} sm={3} md={3} xl={3} xs={5} className={classes.soImgBox} style={{ display: itemImage.is_main ? 'none' : 'block' }}>
+                        <img src={itemImage.image} className={classes.soImg} onClick={() => {
+                            setOpen(true)
+                            dispatch({ type: 'photo', payload: { name: itemImage.image, id: itemImage.id, type: 'common', gender: props.gender } })
+                        }} />
+                    </Grid>
+                ))}
+            </Grid>
+
+            {props.statusUser == 'whore' ?
+                <div style={{ width: '100%' }}>
+                    <div className={classes.fileChooseBox}>
+                        <Typography variant="h6">Добавить фото</Typography>
+                        <div className={classes.fileChooseContent}>
+                            <TextField
+                                size="small"
+                                variant="outlined"
+                                fullWidth
+                                type='file'
+                                accept=".png, .jpg"
+                                onChange={(event) => {
+                                    fileSelectHandler(event)
+                                }}
+                            />
+                            <div className={classes.boxButton}>
+                                <ButtonCustom text="Закачать" onClick={() => { sendPhoto() }} />
                             </div>
                         </div>
                     </div>
-                    : ''}
-
-            </Grid>
-        </div>
+                </div>
+                : ''}
+        </div >
     )
 }
 

@@ -28,6 +28,7 @@ export default function Home() {
   useEffect(() => {
     getListGirls(state.slogo.params)
   }, [state.slogo.params])
+  console.log(stateList)
   return (
     <Layout>
       <Grid container className={classes.contentProfileActive}>

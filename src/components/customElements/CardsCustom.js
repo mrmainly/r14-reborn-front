@@ -14,6 +14,12 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         marginTop: 20,
         borderRadius: 5,
+        [theme.breakpoints.down('xs')]: {
+            width: 300,
+        },
+        "@media (max-width: 356px)": {
+            width: 280,
+        },
     },
     cover: {
         height: 200,
@@ -157,7 +163,7 @@ export default function CardCastom(props) {
                         <CardMedia
                             className={classes.cover}
                             alt="Contemplative Reptile"
-                            image={props.main_photos ? props.main_photos.main_file : '/image/XVP.jpg'}
+                            image={props.photos.filter(e => e.is_main == true)[0] ? props.photos.filter(e => e.is_main == true)[0].image : '/image/XVP.jpg'}
                             title="Contemplative Reptile"
                         />
                     </Grid>

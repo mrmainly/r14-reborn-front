@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core'
+import { Button, Box } from '@material-ui/core'
 import { StateContext } from '../../store/index'
-import axios from 'axios'
+import API from '../../utils/api'
 
 const useStyles = makeStyles((theme) => ({
     Box: {
@@ -33,16 +33,12 @@ export default function ImgModal({ open, setOpen, statusUser }) {
     const handleClose = () => {
         setOpen(false);
     };
+    console.log('id', state.photo.id)
     const removePhoto = () => {
-        const urlCommon = '/api/photoRemove'
-        const urlMain = '/api/photoMainRemove'
-        axios.post(state.photo.type == 'main' ? urlMain : urlCommon, {
-            photo: state.photo.id,
-        }).then((res) => {
-            // location.reload();
-        }).catch((error) => {
-            console.log(error)
-        })
+        API.deletePhoto(state.photo.gender, state.photo.id)
+    }
+    const setMain = () => {
+        API.setMainPhoto(state.photo.id, state.photo.gender)
     }
     return (
         <Dialog
@@ -52,7 +48,10 @@ export default function ImgModal({ open, setOpen, statusUser }) {
             <div className={classes.Box}>
                 <img src={state.photo.name} className={classes.img} />
                 {statusUser == 'whore' ?
-                    <Button variant="contained" onClick={() => { removePhoto() }}>Удалить фото</Button>
+                    <Box style={{ display: 'flex', flexDirection: 'column' }}>
+                        <Button variant="contained" onClick={() => { removePhoto() }}>Удалить фото</Button>
+                        <Button variant="contained" onClick={() => { setMain() }}>Сделать его основным</Button>
+                    </Box>
                     : ''}
             </div>
         </Dialog>

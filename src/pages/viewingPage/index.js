@@ -47,6 +47,7 @@ const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
                         mainPhoto={data.main_photos}
                         statusUser={statusUser}
                         status={data.status}
+                        gender={gender}
                     />
                     <RateInfo
                         apartment_per_hour={data.apartment_per_hour}

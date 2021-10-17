@@ -65,7 +65,18 @@ class API {
             console.log(error)
         })
     }
-
+    deletePhoto(gender, id) {
+        api(`api/surveys/${gender}/${id}/photos/delete_photo/`).delete().then(res => {
+            window.location.reload()
+        }).catch(e => console.log(e))
+    }
+    setMainPhoto(id, gender) {
+        api(`api/surveys/${gender}/${id}/photos/set_main/`).get().then(res => {
+            window.location.reload()
+        }).catch(e => {
+            console.log(e)
+        })
+    }
     getListDetailPut(gender, id, data) {
         api(`api/surveys/${gender}/${id}`).put(null, {
             ...data

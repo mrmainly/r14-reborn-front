@@ -13,6 +13,7 @@ export const defaultStore = {
         name: '',
         id: '',
         type: '',
+        gender: ''
     },
     search: {
         mode: 'woman',

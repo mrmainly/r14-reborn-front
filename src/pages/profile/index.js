@@ -25,7 +25,6 @@ const Profile = () => {
     const [showModal, setShowModal] = useState(false)
     const [showModalRewiews, setShowModalRewiews] = useState(false)
     const [stateList, setStateList] = useState([])
-    const [gender, setGender] = useState()
     const state = useContext(StateContext)
     useEffect(() => {
         API.getSurveysMe().then(res => {
@@ -35,8 +34,6 @@ const Profile = () => {
                 case 'man': setStateList(res.data.mans)
                     break;
                 case 'organisation': setStateList(res.data.organisations)
-                    break;
-                default: setStateList(res.data.womans)
             }
         })
     }, [state.search.mode])
