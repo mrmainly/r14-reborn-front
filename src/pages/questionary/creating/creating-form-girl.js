@@ -165,7 +165,7 @@ const CreatingFormGirl = () => {
                         </Box>
                         {item.row.map((itemForm, index) => (
                             <Grid key={index} style={{ width: '100%' }}>
-                                {itemForm.typeInput == 'input' ?
+                                {itemForm.type == 'input' ?
                                     <Box className={classes.textFieldBox}>
                                         <Box className={classes.textFieldBox_labelBox}>
                                             <Typography>{itemForm.label}</Typography>

@@ -188,27 +188,10 @@ const MainInfo = (props) => {
                         ))}
                     </Grid>
                 </Grid>
-
-                <div style={{ width: '100%' }}>
-                    <div className={classes.fileChooseBox}>
-                        <Typography variant="h6">Обычное фото</Typography>
-                        <div className={classes.fileChooseContent}>
-                            <TextField
-                                size="small"
-                                variant="outlined"
-                                fullWidth
-                                type='file'
-                                accept=".png, .jpg"
-                                onChange={(event) => {
-                                    fileSelectHandler(event)
-                                }}
-                            />
-                            <div className={classes.boxButton}>
-                                <ButtonCustom text="Закачать" onClick={() => { sendPhoto() }} />
-                            </div>
-                        </div>
-                        <div style={{ width: '100%' }}>
-                            <Typography variant="h6">Главное фото</Typography>
+                {props.statusUser == 'whore' ?
+                    <div style={{ width: '100%' }}>
+                        <div className={classes.fileChooseBox}>
+                            <Typography variant="h6">Обычное фото</Typography>
                             <div className={classes.fileChooseContent}>
                                 <TextField
                                     size="small"
@@ -221,12 +204,30 @@ const MainInfo = (props) => {
                                     }}
                                 />
                                 <div className={classes.boxButton}>
-                                    <ButtonCustom text="Закачать" onClick={() => { sendPhoto('mainPhoto') }} />
+                                    <ButtonCustom text="Закачать" onClick={() => { sendPhoto() }} />
+                                </div>
+                            </div>
+                            <div style={{ width: '100%' }}>
+                                <Typography variant="h6">Главное фото</Typography>
+                                <div className={classes.fileChooseContent}>
+                                    <TextField
+                                        size="small"
+                                        variant="outlined"
+                                        fullWidth
+                                        type='file'
+                                        accept=".png, .jpg"
+                                        onChange={(event) => {
+                                            fileSelectHandler(event)
+                                        }}
+                                    />
+                                    <div className={classes.boxButton}>
+                                        <ButtonCustom text="Закачать" onClick={() => { sendPhoto('mainPhoto') }} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    : ''}
 
             </Grid>
         </div>

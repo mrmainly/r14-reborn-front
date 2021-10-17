@@ -15,8 +15,7 @@ export const defaultStore = {
         type: '',
     },
     search: {
-        mode: '',
-        length: ''
+        mode: 'woman',
     },
     cardsId: {
         id: '',

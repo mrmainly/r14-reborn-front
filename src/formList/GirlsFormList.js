@@ -36,8 +36,6 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                     type: 'input',
                     must: true,
                     fetchLabel: 'breast_size',
-                    checkBoxType: 'notCheckbox',
-                    manyType: 'notMoney',
                     typeInput: 'number'
                 },
                 {

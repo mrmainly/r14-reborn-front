@@ -3,12 +3,11 @@ import { Box, Typography, Grid, Card, CardActionArea, CardMedia } from '@materia
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import DeleteIcon from '@material-ui/icons/Delete'
-import axios from 'axios'
 
 import { DispatchContext } from '../../store';
 import themeMain from '../../theme'
 import ButtonCustom from '../customElements/ButtonCustom'
-
+import API from '../../utils/api'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -131,11 +130,7 @@ export default function CardCastom(props) {
         }
     }
     const deleteSurvey = () => {
-        axios.post('/api/surveys/deleteSurvey', {
-            survey: props.id
-        }).then((res) => {
-
-        })
+        API.deleteSurvey(props.gender, props.id)
     }
     return (
         <Card className={classes.root}>
@@ -155,7 +150,7 @@ export default function CardCastom(props) {
                 </Box>
             </Box>
             <CardActionArea className={classes.fullCard} onClick={() => router.push(`/viewingPage/${props.id}`,
-                { id: props.id, statusUser: props.statusUser, type: props.type, gender: props.gender },
+                { id: props.id, statusUser: props.statusUser, gender: props.gender },
             )}>
                 <Grid container>
                     <Grid item lg={5} sm={12} md={5} xl={5} xs={12}>

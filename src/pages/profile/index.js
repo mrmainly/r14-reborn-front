@@ -6,7 +6,7 @@ import MainContentCard from '../../constructor/MainContentCard'
 import ModalProfile from '../../components/modal/ModalProfile'
 import DisableRewiewsModal from '../../components/modal/DisableReviewsModal'
 import { StateContext } from '../../store'
-import api from '../../utils/api'
+import API from '../../utils/api'
 import Layout from '../../components/layout/Layout'
 
 const useStyles = makeStyles((theme) => ({
@@ -25,18 +25,25 @@ const Profile = () => {
     const [showModal, setShowModal] = useState(false)
     const [showModalRewiews, setShowModalRewiews] = useState(false)
     const [stateList, setStateList] = useState([])
+    const [gender, setGender] = useState()
     const state = useContext(StateContext)
     useEffect(() => {
-        // api(`api/v1/survey/my/${state.search.mode == '' ? '' : `?mode=${state.search.mode}`}`).get(null).then((res) => {
-        //     setStateList(res.data)
-        // }).catch((error) => {
-        //     console.log('error', error)
-        // })
-    }, [])
+        API.getSurveysMe().then(res => {
+            switch (state.search.mode) {
+                case 'woman': setStateList(res.data.womans);
+                    break;
+                case 'man': setStateList(res.data.mans)
+                    break;
+                case 'organisation': setStateList(res.data.organisations)
+                    break;
+                default: setStateList(res.data.womans)
+            }
+        })
+    }, [state.search.mode])
     return (
         <Layout>
             <Box className={classes.profile_content}>
-                <MainContentCard cardsContent={stateList} setShowModal={setShowModal} setShowModalRewiews={setShowModalRewiews} showUnderButton={true} lg={12} xl={12} md={12} statusUser='whore' type={state.search.mode} />
+                <MainContentCard cardsContent={stateList} setShowModal={setShowModal} setShowModalRewiews={setShowModalRewiews} showUnderButton={true} lg={12} xl={12} md={12} statusUser='whore' gender={state.search.mode} />
                 <ModalProfile showModal={showModal} setShowModal={setShowModal} />
                 <DisableRewiewsModal showModal={showModalRewiews} setShowModal={setShowModalRewiews} />
             </Box>

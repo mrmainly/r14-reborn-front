@@ -114,11 +114,6 @@ const SidePanel = (props) => {
             title: 'Мои анкеты',
             allLinks: [
                 {
-                    text: `Все анкеты`,
-                    value: '',
-                    type: 'button'
-                },
-                {
                     text: `Анкеты девушки`,
                     value: 'woman',
                     type: 'button'

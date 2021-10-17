@@ -20,24 +20,14 @@ export default function Home() {
   const state = useContext(StateContext)
   const classes = useStyles()
   const [stateList, setStateList] = useState([])
-  // const getListGirls = (params) => {
-  //   api('api/v1/surveys/list?mode=woman&order=-status__name&' + params).get(null).then((res) => {
-  //     setStateList(res.data)
-  //   }).catch((error) => {
-  //     console.log('error', error)
-  //   })
-  // }
-  // useEffect(() => {
-  //   getListGirls(state.slogo.params)
-  // }, [state.slogo.params])
-  const getListGirls = () => {
-    API.getSurveys('woman').then((res) => {
+  const getListGirls = (params) => {
+    API.getSurveys('woman', params).then((res) => {
       setStateList(res.data)
     })
   }
   useEffect(() => {
-    getListGirls()
-  }, [])
+    getListGirls(state.slogo.params)
+  }, [state.slogo.params])
   return (
     <Layout>
       <Grid container className={classes.contentProfileActive}>

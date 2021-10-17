@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setShowModal, showUnderButton, xl, md, lg, type, statusUser, gender }) => {
+const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setShowModal, showUnderButton, xl, md, lg, statusUser, gender }) => {
     const classes = useStyles()
     return (
         <Grid container className={classes.container_card}>
@@ -31,7 +31,6 @@ const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setSho
                         firmsLever={firmsLever}
                         showUnderButton={showUnderButton}
                         setShowModal={setShowModal}
-                        type={type}
                         statusUser={statusUser}
                         setShowModalRewiews={setShowModalRewiews}
                         gender={gender}

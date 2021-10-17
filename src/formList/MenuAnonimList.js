@@ -205,13 +205,18 @@ const MenuAnonimList = [
             },
             {
                 label: 'Славяны',
-                value: 'nationality=Славяны',
+                value: 'nationality=Славянская',
+                width: '48',
+            },
+            {
+                label: 'Кавказская',
+                value: 'nationality=Кавказская',
                 width: '48',
             },
             {
                 label: 'Другое',
                 value: 'nationality=Другое',
-                width: '100',
+                width: '48',
             },
         ]
     },

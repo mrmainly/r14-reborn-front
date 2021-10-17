@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SexualPreferenceList = (props) => {
     const classes = useStyles()
+    console.log(props)
     const arrayRate = [
         {
             title: 'Основные:',
@@ -63,6 +64,14 @@ const SexualPreferenceList = (props) => {
                 {
                     elementName: 'Куннилингус',
                     elementValue: props.cunnilingus
+                },
+                {
+                    elementName: 'Глубокий минет',
+                    elementValue: props.deep_blowjob
+                },
+                {
+                    elementName: 'минет без презерватива',
+                    elementValue: props.blowjob_without_an_elastic_band
                 },
                 {
                     elementName: 'Секс в позе 69',

@@ -46,8 +46,12 @@ class API {
             dispatch({ type: 'notification', payload: { text: 'смс был отпрален', status: 'success', active: true } })
         }).catch(() => { dispatch({ type: 'notification', payload: { text: 'вы не правильно заполнили поле телефона или такой пользователь уже существует', status: 'error', active: true } }) })
     }
-    async getSurveys(gender) {
-        let result = await api(`api/surveys/${gender}/`).get(null)
+    async getSurveys(gender, params) {
+        let result = await api(`api/surveys/${gender}/?` + params).get(null)
+        return result
+    }
+    async getSurveysMe() {
+        let result = await api(`api/users/me/`).get(null)
         return result
     }
     async getSurveyDetail(gender, id) {
