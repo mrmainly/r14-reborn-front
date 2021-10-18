@@ -40,6 +40,7 @@ export default function ImgModal({ open, setOpen, statusUser }) {
     const setMain = () => {
         API.setMainPhoto(state.photo.id, state.photo.gender)
     }
+    console.log('for', state.photo)
     return (
         <Dialog
             open={open}
@@ -48,9 +49,13 @@ export default function ImgModal({ open, setOpen, statusUser }) {
             <div className={classes.Box}>
                 <img src={state.photo.name} className={classes.img} />
                 {statusUser == 'whore' ?
-                    <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                        <Button variant="contained" onClick={() => { removePhoto() }}>Удалить фото</Button>
-                        <Button variant="contained" onClick={() => { setMain() }}>Сделать его основным</Button>
+                    <Box>
+                        {state.photo.name == '/image/XVP.jpg' ? '' :
+                            <Box style={{ display: 'flex', flexDirection: 'column' }}>
+                                <Button variant="contained" onClick={() => { removePhoto() }}>Удалить фото</Button>
+                                {state.photo.type == 'main' ? '' : <Button variant="contained" onClick={() => { setMain() }}>Сделать его основным</Button>}
+                            </Box>
+                        }
                     </Box>
                     : ''}
             </div>

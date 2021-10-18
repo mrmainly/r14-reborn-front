@@ -151,6 +151,10 @@ const SidePanel = (props) => {
                 text: 'История операций',
                 value: '/operation-history-profile'
             },
+            {
+                text: 'Изменить пароль',
+                value: '/custom-profile'
+            },
             ]
         },
         {

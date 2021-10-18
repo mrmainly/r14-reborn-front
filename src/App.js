@@ -23,6 +23,7 @@ import ServiceCost from './pages/profile/service-cost'
 import TechSupport from './pages/profile/tech-support'
 import VerificationPhoto from './pages/profile/verification-photo';
 import Faq from './pages/profile/faq'
+import CustomProfile from './pages/profile/custom-profile'
 
 import Added from './pages/questionary/added'
 import CreatingFormFirms from './pages/questionary/creating/creating-form-firms';
@@ -59,6 +60,7 @@ const App = () => {
             <Route path="/tech-support-profile" component={TechSupport} />
             <Route path="/verification-photo-profile" component={VerificationPhoto} />
             <Route path="/faq-profile" component={Faq} />
+            <Route path="/custom-profile" component={CustomProfile} />
 
             <Route path="/questionary/added" component={Added} />
             <Route path="/questionary/creating/creating-form-firms" component={CreatingFormFirms} />

@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '5px 15px 5px 15px',
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+
     },
     buttonBox: {
         display: 'flex',
@@ -132,11 +132,11 @@ export default function CardCastom(props) {
             case 1:
                 return 'common'
             default:
-                return 'Нет активности'
+                return 'Не активен'
         }
     }
     const deleteSurvey = () => {
-        API.deleteSurvey(props.gender, props.id)
+        API.surveyDelete(props.gender, props.id)
     }
     return (
         <Card className={classes.root}>
@@ -144,9 +144,9 @@ export default function CardCastom(props) {
                 <Typography variant="body1">
                     {props.name ? props.name : props.organisation}
                 </Typography>
-                <Box style={{ display: 'flex' }}>
+                <Box style={{ display: 'flex', alignItems: 'certer' }}>
                     <Typography variant="body1" style={{ textTransform: 'uppercase' }}>
-                        {statusName(props.status ? props.status.name : 'Нет активности')}
+                        {statusName(props.status ? props.status.name : 'Не активен')}
                     </Typography>
                     {props.showUnderButton ?
                         <Box style={{ marginLeft: 10, cursor: 'pointer' }} onClick={() => { deleteSurvey() }}>

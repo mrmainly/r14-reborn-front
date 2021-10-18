@@ -60,7 +60,7 @@ class API {
     }
     surveyDelete(gender, id) {
         api(`api/surveys/${gender}/${id}`).delete().then(res => {
-            console.log(res)
+            window.location.reload()
         }).catch(error => {
             console.log(error)
         })
@@ -98,6 +98,13 @@ class API {
         }).catch(error => {
             console.log(error)
             dispatch({ type: 'notification', payload: { status: 'error', active: true, text: 'ошибка в анкете' } })
+        })
+    }
+    changePassword(dispatch, data) {
+        api('api/users/change-password/').post(null, { ...data }).then(res => {
+            dispatch({ type: 'notification', payload: { status: 'success', active: true, text: 'пароль изменен' } })
+        }).catch(e => {
+            dispatch({ type: 'notification', payload: { status: 'error', active: true, text: 'текущий пароль не правильный' } })
         })
     }
 }

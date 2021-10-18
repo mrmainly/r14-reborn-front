@@ -75,7 +75,6 @@ const useStyles = makeStyles((theme) => ({
         marginTop: 16,
         display: 'flex',
         flexDirection: 'row',
-        flexWrap: 'wrap',
         width: '100%',
         [theme.breakpoints.down('xs')]: {
             margin: '0 auto',
@@ -83,14 +82,8 @@ const useStyles = makeStyles((theme) => ({
             alignItems: 'center',
         },
     },
-    soImgBox: {
-        [theme.breakpoints.down('xs')]: {
-            marginLeft: 3,
-            marginRight: 3
-        },
-    },
     soImg: {
-        width: '90%',
+        width: '96%',
         height: 230,
         cursor: 'pointer',
         objectFit: 'cover',
@@ -98,7 +91,8 @@ const useStyles = makeStyles((theme) => ({
             height: 190
         },
         [theme.breakpoints.down('xs')]: {
-            height: 150
+            height: 160,
+            width: '95%',
         },
 
     }
@@ -167,7 +161,7 @@ const MainInfo = (props) => {
                             dispatch({ type: 'photo', payload: { name: MainPhoto, id: props.photos.filter(e => e.is_main == true)[0].id, type: 'main', gender: props.gender } })
                         }
                         else {
-                            dispatch({ type: 'photo', payload: { name: '/image/XVP.jpg' } })
+                            dispatch({ type: 'photo', payload: { name: '/image/XVP.jpg', type: 'main', gender: props.gender } })
                         }
                     }} />
                 </Grid>
@@ -190,7 +184,7 @@ const MainInfo = (props) => {
             </Grid>
             <Grid container className={classes.imgContainer}>
                 {props.photos.map((itemImage, index) => (
-                    <Grid item key={index} lg={3} sm={3} md={3} xl={3} xs={5} className={classes.soImgBox} style={{ display: itemImage.is_main ? 'none' : 'block' }}>
+                    <Grid item key={index} lg={3} sm={3} md={3} xl={3} xs={6} style={{ display: itemImage.is_main ? 'none' : 'block' }}>
                         <img src={itemImage.image} className={classes.soImg} onClick={() => {
                             setOpen(true)
                             dispatch({ type: 'photo', payload: { name: itemImage.image, id: itemImage.id, type: 'common', gender: props.gender } })
