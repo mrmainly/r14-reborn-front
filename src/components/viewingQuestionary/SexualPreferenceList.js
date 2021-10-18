@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SexualPreferenceList = (props) => {
     const classes = useStyles()
-    console.log(props)
     const arrayRate = [
         {
             title: 'Основные:',

@@ -11,9 +11,7 @@ import Layout from '../../components/layout/Layout'
 
 const useStyles = makeStyles((theme) => ({
     profile_content: {
-        [theme.breakpoints.down('md')]: {
-            paddingLeft: 20
-        },
+
         [theme.breakpoints.down('sm')]: {
             paddingLeft: 0
         },

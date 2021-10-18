@@ -33,14 +33,12 @@ export default function ImgModal({ open, setOpen, statusUser }) {
     const handleClose = () => {
         setOpen(false);
     };
-    console.log('id', state.photo.id)
     const removePhoto = () => {
         API.deletePhoto(state.photo.gender, state.photo.id)
     }
     const setMain = () => {
         API.setMainPhoto(state.photo.id, state.photo.gender)
     }
-    console.log('for', state.photo)
     return (
         <Dialog
             open={open}

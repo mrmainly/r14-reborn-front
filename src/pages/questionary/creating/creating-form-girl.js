@@ -143,11 +143,6 @@ const CreatingFormGirl = () => {
     const router = useHistory()
     const classes = useStyles()
     const onSubmit = (data) => {
-        Object.keys(data).forEach(el => {
-            if (data[el] === '') {
-                data[el] = null
-            }
-        })
         API.sendSurveys('woman', router, data, dispatchNoti)
         console.log(data)
     }

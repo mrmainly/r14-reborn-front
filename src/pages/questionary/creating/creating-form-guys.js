@@ -126,6 +126,7 @@ const CreatingFormGuys = () => {
         mode: "onBlur",
     })
     const onSubmit = (data) => {
+
         API.sendSurveys('man', router, data, dispatchNoti)
     }
     return (

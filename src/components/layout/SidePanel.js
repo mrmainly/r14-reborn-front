@@ -19,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'start',
         minHeight: 500,
         boxShadow: '0 0 10px rgba(0,0,0,0.5)',
-        width: 250,
         flexDirection: 'column',
         padding: 10,
+        width: '90%',
         marginLeft: 10,
         marginTop: 20,
         [theme.breakpoints.down('sm')]: {
@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: 'white',
             top: 500,
             right: 40,
-            zIndex: 1
+            zIndex: 1,
+            width: 250
         },
         [theme.breakpoints.down('xs')]: {
             top: 615,
@@ -38,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
     },
     link_style: {
         color: themeMain.palette.linkStyle.pink,
+        [theme.breakpoints.down('md')]: {
+            fontSize: 14
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 16
+        },
     },
     title_style: {
         marginLeft: 15,
@@ -82,7 +89,13 @@ const useStyles = makeStyles((theme) => ({
     },
     btn: {
         paddingLeft: 15,
-        color: themeMain.palette.linkStyle.pink
+        color: themeMain.palette.linkStyle.pink,
+        [theme.breakpoints.down('md')]: {
+            fontSize: 12
+        },
+        [theme.breakpoints.down('sm')]: {
+            fontSize: 14
+        },
     }
 }))
 

@@ -78,25 +78,27 @@ const useStales = makeStyles((theme) => ({
 
 const SelectionGirls = () => {
     const classes = useStales()
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const [stateList, setStateList] = useState([])
+    const { register, handleSubmit } = useForm({
         mode: "onBlur",
     })
     const onSubmit = (data) => {
-        // let params = ""
-        // console.log(params)
-        // for (var key in formState) {
-        //     if (params != "") {
-        //         params += "&";
-        //     }
-        //     params += key + "=" + encodeURIComponent(formState[key]);
-        // }
-        // console.log(params)
-        // api('api/v1/surveys/list?mode=woman&' + params, null).get(null).then((res) => {
-        //     setData(res.data)
-        // }).catch((error) => {
-        //     console.log('error', error)
-        // })
-        console.log('data', data)
+        let params = ""
+        Object.keys(data).forEach(el => {
+            if (data[el] == '') {
+                delete data[el]
+            }
+        })
+        for (var key in data) {
+            if (params != "") {
+                params += "&";
+            }
+            params += key + "=" + data[key];
+        }
+        console.log(params)
+        API.getSurveys('woman', params).then((res) => {
+            setStateList(res.data)
+        })
     }
     return (
         <Layout>
@@ -188,12 +190,8 @@ const SelectionGirls = () => {
                                                             <Select
                                                                 labelId="demo-simple-select-label"
                                                                 id="demo-simple-select"
-                                                                aria-invalid={errors[itemForm.fetchLabel] ? "true" : "false"}
                                                                 name={itemForm.fetchLabel}
-                                                                defaultValue={itemForm.default}
-                                                                {...register(itemForm.fetchLabel, { required: itemForm.must == true ? true : false })}
-                                                                helperText={errors[itemForm.fetchLabel] && errors[itemForm.fetchLabel].type == 'required' ? 'обязательное поле' : ''}
-                                                                error={!!errors[itemForm.fetchLabel]}
+                                                                {...register(itemForm.fetchLabel)}
                                                             >
                                                                 {
                                                                     itemForm.selectArrey ? itemForm.selectArrey.map((itemOptions, index) => (
@@ -214,12 +212,12 @@ const SelectionGirls = () => {
                     <ButtonCustom text={'Подобрать девушку'} />
                 </Box>
             </Form>
-            {/* {data.length > 0 ?
+            {stateList.length > 0 ?
                 <Box style={{ padding: 20 }}>
-                    <Typography variant="h6">По вашим указанным параметрам найдено анкет {data.length}</Typography>
+                    <Typography variant="h6">По вашим указанным параметрам найдено анкет {stateList.length}</Typography>
                 </Box>
                 : ''}
-            <MainContentCard cardsContent={data} showUnderButton={false} lg={6} xl={6} md={6} CardsIfNo={''} statusUser="anonim" /> */}
+            <MainContentCard cardsContent={stateList} gender={'woman'} showUnderButton={false} lg={6} xl={6} md={6} CardsIfNo={''} statusUser="anonim" />
         </Layout>
     )
 }

@@ -33,7 +33,6 @@ const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
             setData(res.data)
         })
     }, [])
-    console.log('gender', gender)
     return (
         <Layout>
             {data ?

@@ -51,10 +51,10 @@ const Layout = ({ children }) => {
                         <div className={classes.main_content}>
                             {changeShowSideBar(router.location.pathname) ?
                                 <Grid container className={classes.contentProfileActive}>
-                                    <Grid item lg={3} sm={12} md={4} xl={3} xs={12} >
+                                    <Grid item lg={3} sm={12} md={3} xl={3} xs={12} >
                                         <SidePanel />
                                     </Grid>
-                                    <Grid item lg={9} sm={12} md={8} xl={9} xs={12}>
+                                    <Grid item lg={9} sm={12} md={9} xl={9} xs={12}>
                                         {children}
                                     </Grid>
                                 </Grid>

@@ -59,7 +59,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                         },
                         {
                             optionText: 'Другая',
-                            optionValue: 'Другая'
+                            optionValue: 'Другое'
                         },
                     ]
                 },

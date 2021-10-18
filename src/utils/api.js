@@ -91,6 +91,11 @@ class API {
         return result
     }
     async sendSurveys(gender, router, data, dispatch) {
+        Object.keys(data).forEach(el => {
+            if (data[el] === '') {
+                data[el] = null
+            }
+        })
         api(`api/surveys/${gender}/`).post(null, { ...data }).then(res => {
             console.log('surveyPostResult', res)
             dispatch({ type: 'notification', payload: { status: 'success', active: true, text: 'анкета создана' } })
