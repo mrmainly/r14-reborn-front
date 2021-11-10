@@ -43,41 +43,51 @@ const useStyles = makeStyles((theme) => ({
 
 const Conditions = (props) => {
     const classes = useStyles()
-
+    let array = Object.values(props)
+    const checkExistElements = (elements) => {
+        let status = elements.some((item) => {
+            return item !== false
+        })
+        return status
+    }
     return (
         <div className={classes.container}>
-            <Typography variant="h6">Условия:</Typography>
-            <Grid container className={classes.RateBox}>
-                <Grid item lg={7} sm={12} md={9} xl={9} xs={12} className={classes.RateBox__title}>
-                    <Box className={classes.RateBox__box} >
-                        <Typography variant="body2">
-                            Выезжаю:
-                        </Typography>
-                        <div className={classes.RateBox__item}>
-                            {props.check_out_apartment &&
-                                <Typography variant="body2" >
-                                    На квартиру,&nbsp;
+            {checkExistElements(array) ?
+                <div style={{ width: '100%' }}>
+                    <Typography variant="h6">Условия:</Typography>
+                    <Grid container className={classes.RateBox}>
+                        <Grid item lg={7} sm={12} md={9} xl={9} xs={12} className={classes.RateBox__title}>
+                            <Box className={classes.RateBox__box} >
+                                <Typography variant="body2">
+                                    Выезжаю:
                                 </Typography>
-                            }
-                            {props.check_out_hotel &&
-                                <Typography variant="body2" >
-                                    в гостиницу,&nbsp;
-                                </Typography>
-                            }
-                            {props.check_out_house &&
-                                <Typography variant="body2" >
-                                    в загородный дом,&nbsp;
-                                </Typography>
-                            }
-                            {props.check_out_office &&
-                                <Typography variant="body2" >
-                                    в сауну&nbsp;
-                                </Typography>
-                            }
-                        </div>
-                    </Box>
-                </Grid>
-            </Grid>
+                                <div className={classes.RateBox__item}>
+                                    {props.check_out_apartment &&
+                                        <Typography variant="body2" >
+                                            На квартиру,&nbsp;
+                                        </Typography>
+                                    }
+                                    {props.check_out_hotel &&
+                                        <Typography variant="body2" >
+                                            в гостиницу,&nbsp;
+                                        </Typography>
+                                    }
+                                    {props.check_out_house &&
+                                        <Typography variant="body2" >
+                                            в загородный дом,&nbsp;
+                                        </Typography>
+                                    }
+                                    {props.check_out_office &&
+                                        <Typography variant="body2" >
+                                            в сауну&nbsp;
+                                        </Typography>
+                                    }
+                                </div>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                </div>
+                : ''}
         </div>
     )
 }
