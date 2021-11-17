@@ -83,10 +83,10 @@ export default function Login() {
                     <Form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <Input {...register('phone')} id="phone" type="tel" label="Телефон" error={!!errors.phone} helperText={errors?.phone?.message} />
+                                <Input {...register('phone')} id="phone" type="tel" label="Телефон" required />
                             </Grid>
                             <Grid item xs={12}>
-                                <Input {...register('password')} id="password" type="password" label="Пароль" error={!!errors.password} helperText={errors?.password?.message} />
+                                <Input {...register('password')} required id="password" type="password" label="Пароль" />
                             </Grid>
                         </Grid>
                         <Box style={{ marginTop: 10 }}>

@@ -70,17 +70,17 @@ export default function Register() {
                     <Form className={classes.form} onSubmit={handleSubmit(onSubmit)} className={classes.form}>
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
-                                <Input {...register('phone')} id="phone" type="number" label="Телефон" />
+                                <Input {...register('phone')} id="phone" type="number" label="Телефон" required />
                             </Grid>
                             <Grid item xs={12}>
-                                <Input {...register('password')} id="password" type="password" label="Пароль" />
+                                <Input {...register('password')} id="password" type="password" label="Пароль" required />
                             </Grid>
                             <Grid item xs={12}>
-                                <Input {...register('verPassword')} id="verPassword" type="password" label="Проверка пароля" />
+                                <Input {...register('verPassword')} id="verPassword" type="password" label="Проверка пароля" required />
                             </Grid>
                         </Grid>
                         <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: 20 }}>
-                            <ButtonCustom text="Зарегестрироваться" />
+                            <ButtonCustom text="Зарегистрироваться" />
                         </Box>
                     </Form>
                 </div>

@@ -99,7 +99,8 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     linkStyle: {
-        textDecoration: 'none'
+        textDecoration: 'none',
+        marginRight: 10
     },
     down_block: {
         display: 'flex',
@@ -117,6 +118,7 @@ const useStyles = makeStyles((theme) => ({
     },
     linkBlock: {
         display: 'flex',
+        marginRight: 10,
         [theme.breakpoints.down('sm')]: {
             marginLeft: '-5px',
         },
