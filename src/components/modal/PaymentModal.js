@@ -1,21 +1,21 @@
-import React from 'react';
-import { Dialog, FormControlLabel, Checkbox, InputAdornment, Box, Typography, MenuItem } from '@material-ui/core'
+import React, { useContext } from 'react';
+import { Dialog, InputAdornment, Box, Typography, MenuItem, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { Form } from '../customElements/Form'
 import { Input } from '../customElements/Input'
 
 import { useForm } from 'react-hook-form'
 import ButtonCustom from '../customElements/ButtonCustom';
+import { StateContext } from '../../store';
+import API from '../../utils/api'
 
 const useStyles = makeStyles((theme) => ({
     Box: {
-        height: 350,
+        height: '100%',
         width: 350,
         display: 'flex',
         flexDirection: 'column',
-        paddingLeft: 10,
-        paddingRight: 10,
-        paddingTop: 10,
+        padding: 10,
         margin: 0,
         [theme.breakpoints.down('xs')]: {
             width: 250,
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     form: {
         display: 'flex',
         flexDirection: 'column',
-        marginTop: 30
+        marginTop: 20
     },
     titleBox: {
         display: 'flex',
@@ -36,14 +36,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PaymentModal({ open, setOpen }) {
     const classes = useStyles()
+    const state = useContext(StateContext)
     const handleClose = () => {
         setOpen(false);
     };
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit } = useForm({
         mode: "onBlur",
     })
     const onSubmit = (data) => {
         console.log(data)
+        API.sendBalance({ ...data, owner: state.userId.id })
     }
     return (
         <Dialog
@@ -57,10 +59,11 @@ export default function PaymentModal({ open, setOpen }) {
                 </Box>
                 <Form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
                     <Input
-                        {...register('cost')}
-                        id="cost"
+                        {...register('amount')}
+                        id="amount"
                         type="number"
                         label="Сколько закинем?"
+                        required
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
@@ -68,14 +71,22 @@ export default function PaymentModal({ open, setOpen }) {
                                 </InputAdornment>),
                         }}
                     />
-                    <FormControlLabel
-                        style={{ marginTop: 10, marginBottom: 10 }}
-                        control={<Checkbox />}
-                        label={'Банковская карта'}
-                        name={'BankCard'}
-                        {...register('BankCard')}
+                    <TextField
+                        id="outlined-multiline-static"
+                        multiline
+                        fullWidth
+                        variant="outlined"
+                        color='primary'
+                        aria-label="maximum height"
+                        minRows={5}
+                        placeholder="Ваше сообщение"
+                        id="comment"
+                        name={'comment'}
+                        {...register('comment')}
+                        required
+                        style={{ marginTop: 10 }}
                     />
-                    <Box>
+                    <Box style={{ marginTop: 10 }}>
                         <ButtonCustom text="Пополнить" />
                     </Box>
                 </Form>

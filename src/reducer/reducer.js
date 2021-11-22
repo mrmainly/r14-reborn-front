@@ -18,6 +18,8 @@ export const stateReducer = (state, action) => {
             return { ...state, data: action.payload }
         case 'paymentChange':
             return { ...state, open: action.payload }
+        case 'changeUserId':
+            return { ...state, userId: action.payload }
         default:
             throw new Error();
     }

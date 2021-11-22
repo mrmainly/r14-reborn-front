@@ -29,6 +29,9 @@ export const defaultStore = {
     },
     paymentChange: {
         open: false
+    },
+    userId: {
+        id: ''
     }
 };
 

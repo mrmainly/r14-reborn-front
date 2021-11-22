@@ -90,6 +90,13 @@ class API {
         let result = api('api/payment/balance/').get()
         return result
     }
+    sendBalance(data) {
+        api('api/payment/payment/create').post(null, { ...data }).then((res) => {
+            window.location.href = res.data[0]
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
     async sendSurveys(gender, router, data, dispatch) {
         Object.keys(data).forEach(el => {
             if (data[el] === '') {

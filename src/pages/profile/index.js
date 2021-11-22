@@ -5,7 +5,7 @@ import { Box } from '@material-ui/core'
 import MainContentCard from '../../constructor/MainContentCard'
 import ModalProfile from '../../components/modal/ModalProfile'
 import DisableRewiewsModal from '../../components/modal/DisableReviewsModal'
-import { StateContext } from '../../store'
+import { StateContext, DispatchContext } from '../../store'
 import API from '../../utils/api'
 import Layout from '../../components/layout/Layout'
 
@@ -24,8 +24,10 @@ const Profile = () => {
     const [showModalRewiews, setShowModalRewiews] = useState(false)
     const [stateList, setStateList] = useState([])
     const state = useContext(StateContext)
+    const dispatch = useContext(DispatchContext)
     useEffect(() => {
         API.getSurveysMe().then(res => {
+            dispatch({ type: 'changeUserId', payload: { id: res.data.id } })
             switch (state.search.mode) {
                 case 'woman': setStateList(res.data.womans);
                     break;
@@ -35,7 +37,6 @@ const Profile = () => {
             }
         })
     }, [state.search.mode])
-    console.log(stateList)
     return (
         <Layout>
             <Box className={classes.profile_content}>
