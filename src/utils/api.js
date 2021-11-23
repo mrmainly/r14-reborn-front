@@ -8,7 +8,7 @@ const api = (url) => {
     const token = cookie.get('jwttoken')
     if (token) {
         const instance = axios.create({
-            baseURL: publicURL + url,
+            baseURL: testURL + url,
             headers: {
                 'Authorization': "Token " + token,
                 'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ const api = (url) => {
         return instance
     } else {
         const instance = axios.create({
-            baseURL: publicURL + url,
+            baseURL: testURL + url,
             headers: {
                 'Content-Type': 'application/json'
             },

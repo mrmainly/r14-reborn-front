@@ -5,6 +5,7 @@ import { useHistory, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+import InputMask from 'react-input-mask'
 
 import ButtonCustom from '../../components/customElements/ButtonCustom';
 import { DispatchContext } from '../../store';
@@ -83,7 +84,14 @@ export default function Login() {
                     <Form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <Input {...register('phone')} id="phone" type="tel" label="Телефон" required />
+                                <InputMask
+                                    mask="89999999999"
+                                    disabled={false}
+                                    maskChar=""
+                                    {...register('phone')}
+                                >
+                                    {() => <Input {...register('phone')} id="phone" label="Телефон" required />}
+                                </InputMask>
                             </Grid>
                             <Grid item xs={12}>
                                 <Input {...register('password')} required id="password" type="password" label="Пароль" />

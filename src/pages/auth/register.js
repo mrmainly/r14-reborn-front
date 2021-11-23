@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonCustom from '../../components/customElements/ButtonCustom';
 import { Box, Typography, Grid } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import InputMask from 'react-input-mask'
 
 import { DispatchContext } from '../../store';
 import Layout from '../../components/layout/Layout';
@@ -70,7 +71,14 @@ export default function Register() {
                     <Form className={classes.form} onSubmit={handleSubmit(onSubmit)} className={classes.form}>
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
-                                <Input {...register('phone')} id="phone" type="number" label="Телефон" required />
+                                <InputMask
+                                    mask="89999999999"
+                                    disabled={false}
+                                    maskChar=""
+                                    {...register('phone')}
+                                >
+                                    {() => <Input {...register('phone')} id="phone" label="Телефон" required />}
+                                </InputMask>
                             </Grid>
                             <Grid item xs={12}>
                                 <Input {...register('password')} id="password" type="password" label="Пароль" required />
