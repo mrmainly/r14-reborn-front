@@ -51,10 +51,10 @@ export default function Register() {
     })
     const onSubmit = ({ password, verPassword, phone }) => {
         if (verPassword == password) {
-            if (password.length >= 8) {
+            if (password.length >= 4) {
                 API.register({ phone, password }, dispatch, router)
             } else {
-                dispatch({ type: 'notification', payload: { status: 'error', active: true, text: 'пароль должен состоять минимум из 8 символов' } })
+                dispatch({ type: 'notification', payload: { status: 'error', active: true, text: 'пароль должен состоять минимум из 4 символов' } })
             }
         } else {
             dispatch({ type: 'notification', payload: { text: 'пароли не совподают', status: 'error', active: true } })

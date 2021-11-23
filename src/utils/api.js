@@ -9,7 +9,7 @@ const api = (url) => {
     const token = cookie.get('jwttoken')
     if (token) {
         const instance = axios.create({
-            baseURL: testURL + url,
+            baseURL: publicURL + url,
             headers: {
                 'Authorization': "Token " + token,
                 'Content-Type': 'application/json'
@@ -43,6 +43,7 @@ class API {
             password: password
         }).then(res => {
             router.push('/auth/Login')
+            console.log(res)
             dispatch({ type: 'notification', payload: { text: 'смс был отпрален', status: 'success', active: true } })
         }).catch(() => { dispatch({ type: 'notification', payload: { text: 'вы не правильно заполнили поле телефона или такой пользователь уже существует', status: 'error', active: true } }) })
     }
