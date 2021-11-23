@@ -4,7 +4,6 @@ import cookie from 'js-cookie'
 const testURL = 'http://127.0.0.1:8000/'
 const publicURL = 'http://backend:8000/'
 
-
 const api = (url) => {
     const token = cookie.get('jwttoken')
     if (token) {
@@ -18,7 +17,7 @@ const api = (url) => {
         return instance
     } else {
         const instance = axios.create({
-            baseURL: testURL + url,
+            baseURL: publicURL + url,
             headers: {
                 'Content-Type': 'application/json'
             },
