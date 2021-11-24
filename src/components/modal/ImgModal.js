@@ -34,7 +34,7 @@ export default function ImgModal({ open, setOpen, statusUser, idSurvey }) {
         setOpen(false);
     };
     const removePhoto = () => {
-        API.deletePhoto(state.photo.gender, idSurvey, state.photo.id)
+        API.deletePhoto(state.photo.gender, state.photo.id, idSurvey)
     }
     const setMain = () => {
         API.setMainPhoto(state.photo.id, state.photo.gender)
