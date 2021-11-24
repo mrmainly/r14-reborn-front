@@ -2,7 +2,7 @@ import axios from 'axios';
 import cookie from 'js-cookie'
 
 const testURL = 'http://127.0.0.1:8000/'
-const publicURL = 'http://backend:8000/'
+const publicURL = 'https://rabbit14.site/'
 
 const api = (url) => {
     const token = cookie.get('jwttoken')
