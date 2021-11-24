@@ -65,8 +65,8 @@ class API {
             console.log(error)
         })
     }
-    deletePhoto(gender, id) {
-        api(`api/surveys/${gender}/${id}/photos/delete_photo/`).delete().then(res => {
+    deletePhoto(gender, id, survey_id) {
+        api(`api/surveys/${gender}/${survey_id}/photos/${id}/delete`).delete().then(res => {
             window.location.reload()
         }).catch(e => console.log(e))
     }

@@ -43,7 +43,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                     type: 'select',
                     must: true,
                     fetchLabel: 'nationality',
-                    default: 'Другая',
+                    default: 'Другое',
                     selectArrey: [
                         {
                             optionText: 'Саха',
@@ -58,7 +58,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                             optionValue: 'Кавказская'
                         },
                         {
-                            optionText: 'Другая',
+                            optionText: 'Другое',
                             optionValue: 'Другое'
                         },
                     ]

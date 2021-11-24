@@ -27,14 +27,14 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default function ImgModal({ open, setOpen, statusUser }) {
+export default function ImgModal({ open, setOpen, statusUser, idSurvey }) {
     const classes = useStyles()
     const state = useContext(StateContext)
     const handleClose = () => {
         setOpen(false);
     };
     const removePhoto = () => {
-        API.deletePhoto(state.photo.gender, state.photo.id)
+        API.deletePhoto(state.photo.gender, idSurvey, state.photo.id)
     }
     const setMain = () => {
         API.setMainPhoto(state.photo.id, state.photo.gender)

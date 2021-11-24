@@ -149,7 +149,7 @@ const MainInfo = (props) => {
     }
     return (
         <div className={classes.container}>
-            <ImgModal setOpen={setOpen} open={open} statusUser={props.statusUser} />
+            <ImgModal setOpen={setOpen} open={open} statusUser={props.statusUser} idSurvey={props.id} />
             <Box className={classes.statusBox} style={{ background: `${statusBlogBackground(props.status ? props.status.name : 4)}` }}>
                 <Typography variant="h6">{statusName(props.status ? props.status.name : 'Нет активности')}</Typography>
             </Box>
