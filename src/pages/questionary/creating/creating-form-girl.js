@@ -42,6 +42,10 @@ const useStyles = makeStyles((theme) => ({
     },
     TextFieldStyle: {
         width: '50%',
+        "& input::-webkit-clear-button, & input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+            display: "none",
+            margin: 80
+        },
         [theme.breakpoints.down('xs')]: {
             width: '100%',
         },
@@ -129,7 +133,8 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             display: 'none'
         },
-    }
+    },
+
 }))
 
 const CreatingFormGirl = () => {

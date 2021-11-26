@@ -8,7 +8,6 @@ const useStyles = makeStyles((theme) => ({
     container_card: {
         display: 'flex',
         paddingBottom: 20,
-
     },
     inside_box: {
         paddingLeft: 10,
@@ -26,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setShowModal, showUnderButton, xl, md, lg, statusUser, gender }) => {
+const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setShowModal, showUnderButton, xl, md, lg, statusUser, gender, loading }) => {
     const classes = useStyles()
     return (
         <Box>
@@ -43,7 +42,7 @@ const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setSho
                             gender={gender}
                         />
                     </Grid>
-                )) : <div style={{ marginLeft: 20, marginTop: 20 }}><Typography variant="h6">Нету анкет</Typography></div>}
+                )) : loading ? <CircularProgress style={{ marginTop: 10, marginLeft: 10 }} /> : <div style={{ marginLeft: 20, marginTop: 20 }}><Typography variant="h6">Нету анкет</Typography></div>}
             </Grid>
         </Box>
     )

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box } from '@material-ui/core'
+import { Box, CircularProgress } from '@material-ui/core'
 
 import MainContentCard from '../../constructor/MainContentCard'
 import ModalProfile from '../../components/modal/ModalProfile'
@@ -23,6 +23,7 @@ const Profile = () => {
     const [showModal, setShowModal] = useState(false)
     const [showModalRewiews, setShowModalRewiews] = useState(false)
     const [stateList, setStateList] = useState([])
+    const [loading, setLoading] = useState(true)
     const state = useContext(StateContext)
     const dispatch = useContext(DispatchContext)
     useEffect(() => {
@@ -35,12 +36,13 @@ const Profile = () => {
                     break;
                 case 'organisation': setStateList(res.data.organisations)
             }
+            setLoading(false)
         })
     }, [state.search.mode])
     return (
         <Layout>
             <Box className={classes.profile_content}>
-                <MainContentCard cardsContent={stateList} setShowModal={setShowModal} setShowModalRewiews={setShowModalRewiews} showUnderButton={true} lg={12} xl={12} md={12} statusUser='whore' gender={state.search.mode} />
+                <MainContentCard cardsContent={stateList} setShowModal={setShowModal} setShowModalRewiews={setShowModalRewiews} showUnderButton={true} lg={12} xl={12} md={12} statusUser='whore' gender={state.search.mode} loading={loading} />
                 <ModalProfile showModal={showModal} setShowModal={setShowModal} />
                 <DisableRewiewsModal showModal={showModalRewiews} setShowModal={setShowModalRewiews} />
             </Box>

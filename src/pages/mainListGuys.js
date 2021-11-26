@@ -5,7 +5,7 @@ import API from '../utils/api'
 import { StateContext } from '../store'
 import Layout from '../components/layout/Layout'
 
-import { Grid } from '@material-ui/core'
+import { Grid, CircularProgress } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(() => ({
@@ -20,6 +20,7 @@ export default function MainListGuys() {
     const classes = useStyles()
     const state = useContext(StateContext)
     const [stateList, setStateList] = useState([])
+    const [loading, setLoading] = useState(true)
     // const getListMan = (params) => {
     //     api('api/v1/surveys/list?mode=man&order=-status__name&' + params, null).get(null).then((res) => {
     //         setStateList(res.data)
@@ -33,13 +34,14 @@ export default function MainListGuys() {
     useEffect(() => {
         API.getSurveys('man').then((res) => {
             setStateList(res.data)
+            setLoading(false)
         })
     }, [])
     return (
         <Layout>
             <Grid container className={classes.contentProfileActive}>
                 <Grid item lg={12} sm={12} md={12} xl={12} xs={12}>
-                    <MainContentCard gender="man" cardsContent={stateList} showUnderButton={false} lg={6} xl={6} md={6} statusUser="anonim" />
+                    <MainContentCard gender="man" cardsContent={stateList} showUnderButton={false} lg={6} xl={6} md={6} statusUser="anonim" loading={loading} />
                 </Grid>
             </Grid>
         </Layout>

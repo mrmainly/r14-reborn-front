@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Box, } from '@material-ui/core'
+import { Box, LinearProgress } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 
 import Layout from '../../components/layout/Layout'
@@ -27,10 +27,12 @@ const useStyles = makeStyles((theme) => ({
 
 const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
     const [data, setData] = useState()
+    const [loading, setLoading] = useState(true)
     const classes = useStyles()
     useEffect(() => {
         API.getSurveyDetail(gender, id).then((res) => {
             setData(res.data)
+            setLoading(false)
         })
     }, [])
     return (
@@ -82,7 +84,7 @@ const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
                         : ''}
                     {/* <Reviews id={data.id} reviews={data.reviews} statusUser={statusUser} /> */}
                 </Box >
-                : ''}
+                : <LinearProgress style={{ height: 5 }} />}
         </Layout>
     )
 }

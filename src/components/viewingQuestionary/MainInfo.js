@@ -145,6 +145,7 @@ const MainInfo = (props) => {
             })
     }
     const fileSelectHandler = (e) => {
+        console.log(e.target.files[0])
         setPhoto(e.target.files[0])
     }
     return (
