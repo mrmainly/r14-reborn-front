@@ -36,7 +36,7 @@ const headersData = [
     },
     {
         link: '/selectionGirls',
-        title: 'Подбор девушек',
+        title: 'Подбор анкеты',
     },
 ];
 

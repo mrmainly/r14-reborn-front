@@ -102,13 +102,9 @@ const UnderHeader = () => {
         },
         {
             link: 'express=true',
-            title: 'Экспресс(30 мин)'
-        },
-        {
-            link: 'check_out_per_hour_bool=true&check_out_per_two_hours_bool=true&check_out_per_night_bool=true',
-            title: 'По вызову',
+            title: 'Экспресс(30 мин)',
             showLine: true
-        }
+        },
     ];
 
     const classes = useStyles()
@@ -124,7 +120,7 @@ const UnderHeader = () => {
                             ЛУЧШИЕ. СЕЙЧАС.
                         </Typography>
                         <Typography variant="body2" className={classes.textStlye}>
-                            Секс знакомства в Якутске
+                            Знакомства в Якутске
                         </Typography>
                     </Box>
                     <Box className={classes.up_block__logoBox}>

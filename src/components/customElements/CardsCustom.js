@@ -130,7 +130,7 @@ export default function CardCastom(props) {
             case 2:
                 return 'vip'
             case 1:
-                return 'common'
+                return 'СТАНДАРТ'
             default:
                 return 'Не активен'
         }

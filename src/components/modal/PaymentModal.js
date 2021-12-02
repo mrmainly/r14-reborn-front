@@ -67,7 +67,7 @@ export default function PaymentModal({ open, setOpen }) {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <img src={'/image/currency.png'} style={{ width: 20 }} />
+                                    <img src={'/image/Frame3281.png'} style={{ width: 20 }} />
                                 </InputAdornment>),
                         }}
                     />

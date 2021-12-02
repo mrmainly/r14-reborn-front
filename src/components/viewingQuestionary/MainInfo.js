@@ -123,7 +123,7 @@ const MainInfo = (props) => {
             case 2:
                 return 'VIP'
             case 1:
-                return 'COMMON'
+                return 'СТАНДАРТ'
             default:
                 return 'Нет активности'
         }
@@ -145,7 +145,6 @@ const MainInfo = (props) => {
             })
     }
     const fileSelectHandler = (e) => {
-        console.log(e.target.files[0])
         setPhoto(e.target.files[0])
     }
     return (

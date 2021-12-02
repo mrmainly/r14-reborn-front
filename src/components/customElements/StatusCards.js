@@ -64,7 +64,7 @@ const StatusCards = ({ status, price }) => {
             case '2':
                 return 'vip'
             case '1':
-                return 'common'
+                return 'СТАНДАРТ'
             default:
                 return 'Нету статуса'
         }

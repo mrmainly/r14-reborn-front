@@ -106,7 +106,7 @@ const SelectionGirls = () => {
                 <Typography style={{ fontWeight: 'bold' }} variant="h5">Подбор анкет</Typography>
                 <Box className={classes.inputBox}>
                     <Box className={classes.textFieldBox_labelBox}>
-                        <Typography>Имя девушки:</Typography>
+                        <Typography>Имя:</Typography>
                     </Box>
                     <Input
                         style={{ width: '50%' }}
