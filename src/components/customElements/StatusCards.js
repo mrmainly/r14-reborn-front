@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { Box, Typography, Card, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios'
-import { StateContext } from '../../store';
+import { StateContext } from '../../store/index';
+import API from '../../utils/api'
 
 import themeMain from '../../theme'
 
@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const StatusCards = ({ status, price }) => {
     const classes = useStyles()
     const state = useContext(StateContext)
+    console.log(state)
     const statusBlogBackground = () => {
         switch (status) {
             case '3':
@@ -70,14 +71,7 @@ const StatusCards = ({ status, price }) => {
         }
     }
     const sendStatus = () => {
-        axios.post('/api/sendStatus', {
-            survey: state.cardsId.id,
-            name: status
-        }).then((res) => {
-            // location.reload()
-        }).catch((error) => {
-            console.log(error)
-        })
+        API.patchSurvay(state.search.mode, status, state.cardsId.id)
     }
     return (
         <Card className={classes.root}>

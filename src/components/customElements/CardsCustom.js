@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Box, Typography, Grid, Card, CardActionArea, CardMedia } from '@material-ui/core'
+import { Box, Typography, Grid, Card, CardActionArea, CardMedia, IconButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom'
 import DeleteIcon from '@material-ui/icons/Delete'
@@ -78,6 +78,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '5px 15px 5px 15px',
         display: 'flex',
         justifyContent: 'space-between',
+        alignItems: 'center'
 
     },
     buttonBox: {
@@ -116,6 +117,17 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             marginTop: 10
         },
+    },
+    basket: {
+        cursor: 'pointer',
+        marginLeft: 5,
+        '&:hover': {
+            background: "#d5d5d5",
+        },
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 2
     }
 }));
 
@@ -152,16 +164,16 @@ export default function CardCastom(props) {
     }
     return (
         <Card className={classes.root}>
-            <Box className={classes.statusBlog} id="statusBlogId" style={{ background: `${statusBlogBackground(props.status ? props.status.name : 'Нету статуса')}` }}>
+            <Box className={classes.statusBlog} id="statusBlogId" style={{ background: `${statusBlogBackground(props.priority)}` }}>
                 <Typography variant="body1">
                     {props.name ? props.name : props.organisation}
                 </Typography>
-                <Box style={{ display: 'flex', alignItems: 'certer' }}>
+                <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <Typography variant="body1" style={{ textTransform: 'uppercase' }}>
-                        {statusName(props.status ? props.status.name : 'Не активен')}
+                        {statusName(props.priority)}
                     </Typography>
                     {props.showUnderButton ?
-                        <Box style={{ marginLeft: 10, cursor: 'pointer' }} onClick={() => { deleteSurvey() }}>
+                        <Box className={classes.basket} onClick={() => { deleteSurvey() }}>
                             <DeleteIcon />
                         </Box>
                         : ''}
@@ -231,16 +243,23 @@ export default function CardCastom(props) {
                 props.showUnderButton ?
                     <Box className={classes.buttonBox}>
                         <Box className={classes.buttonBox_two}>
-                            <ButtonCustom text="Активировать анкету" onClick={() => {
-                                props.setShowModal(true)
-                                dispatch({ type: 'cardsId', payload: { id: props.id } })
-                            }} />
-                            <Box className={classes.button1}>
-                                <ButtonCustom text="поднять анкету" onClick={() => {
+                            {props.priority == 0 ?
+                                <ButtonCustom text="Активировать анкету" onClick={() => {
                                     props.setShowModal(true)
                                     dispatch({ type: 'cardsId', payload: { id: props.id } })
                                 }} />
-                            </Box>
+                                : <ButtonCustom text="Отключить анкету" onClick={() => {
+                                    API.patchSurvay(props.gender, 0, props.id)
+                                }} />
+                            }
+                            {props.priority == 0 ? '' :
+                                <Box className={classes.button1}>
+                                    <ButtonCustom text="поднять анкету" onClick={() => {
+                                        props.setShowModal(true)
+                                        dispatch({ type: 'cardsId', payload: { id: props.id } })
+                                    }} />
+                                </Box>
+                            }
                         </Box>
                         <Box className={classes.secondCard}>
                             <ButtonCustom text="Отключить комментарии" onClick={() => {

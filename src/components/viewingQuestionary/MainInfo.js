@@ -147,11 +147,12 @@ const MainInfo = (props) => {
     const fileSelectHandler = (e) => {
         setPhoto(e.target.files[0])
     }
+    console.log(props)
     return (
         <div className={classes.container}>
             <ImgModal setOpen={setOpen} open={open} statusUser={props.statusUser} idSurvey={props.id} />
-            <Box className={classes.statusBox} style={{ background: `${statusBlogBackground(props.status ? props.status.name : 4)}` }}>
-                <Typography variant="h6">{statusName(props.status ? props.status.name : 'Нет активности')}</Typography>
+            <Box className={classes.statusBox} style={{ background: `${statusBlogBackground(props.priority)}` }}>
+                <Typography variant="h6">{statusName(props.priority)}</Typography>
             </Box>
             <Grid container>
                 <Grid item lg={4} sm={6} md={4} xl={4} xs={12}>
@@ -169,7 +170,7 @@ const MainInfo = (props) => {
                     <Typography variant="h6">{props.name}</Typography>
                     <Box className={classes.phoneAndIdBlock}>
                         <Typography variant="body1" style={{ color: '#302DD2' }}>
-                            {props.status ? props.phone : 'Не активен'}
+                            {props.priority ? props.phone : 'Не активен'}
                         </Typography>
                         <Typography variant="body2">
                             ID: {props.id}

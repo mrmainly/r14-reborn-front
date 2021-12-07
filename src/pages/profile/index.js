@@ -39,6 +39,7 @@ const Profile = () => {
             setLoading(false)
         })
     }, [state.search.mode])
+    console.log(stateList)
     return (
         <Layout>
             <Box className={classes.profile_content}>

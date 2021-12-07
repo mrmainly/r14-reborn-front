@@ -50,6 +50,16 @@ class API {
         let result = await api(`api/surveys/${gender}/?` + params).get(null)
         return result
     }
+    async patchSurvay(gender, status, id) {
+        let result = await api(`api/surveys/${gender}/${id}/`).patch(null, {
+            priority: status
+        }).then((res) => {
+            window.location.reload()
+        }).catch((error) => {
+            console.log(error)
+        })
+        return result
+    }
     async getSurveysMe() {
         let result = await api(`api/users/me/`).get(null)
         return result
