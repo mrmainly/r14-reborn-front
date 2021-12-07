@@ -53,7 +53,7 @@ const GuysFormListFunction = (formState, manState) => {
                     default: 'Другая',
                     selectArrey: [
                         {
-                            optionText: 'Саха',
+                            optionText: 'Азиатская',
                             optionValue: 'Саха'
                         },
                         {
@@ -119,14 +119,14 @@ const GuysFormListFunction = (formState, manState) => {
                 {
                     label: 'Вес, кг',
                     type: 'input',
-                    must: true,
+                    must: false,
                     fetchLabel: 'weight',
                     typeInput: 'number'
                 },
                 {
                     label: 'Длина члена, см',
                     type: 'input',
-                    must: true,
+                    must: false,
                     fetchLabel: 'penis_length',
                     typeInput: 'number'
                 },

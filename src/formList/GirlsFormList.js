@@ -27,7 +27,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                 {
                     label: 'Вес, кг',
                     type: 'input',
-                    must: true,
+                    must: false,
                     fetchLabel: 'weight',
                     typeInput: 'number'
                 },
@@ -46,7 +46,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                     default: 'Другое',
                     selectArrey: [
                         {
-                            optionText: 'Саха',
+                            optionText: 'Азиатская',
                             optionValue: 'Саха'
                         },
                         {

@@ -93,6 +93,12 @@ const useStyles = makeStyles((theme) => ({
 
         },
     },
+    buttonBox_two: {
+        display: 'flex',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column'
+        },
+    },
     secondCard: {
         [theme.breakpoints.down('sm')]: {
             marginTop: 10,
@@ -104,6 +110,12 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         justifyContent: 'center',
         height: '100%'
+    },
+    button1: {
+        marginLeft: 15,
+        [theme.breakpoints.down('sm')]: {
+            marginTop: 10
+        },
     }
 }));
 
@@ -218,11 +230,17 @@ export default function CardCastom(props) {
             {
                 props.showUnderButton ?
                     <Box className={classes.buttonBox}>
-                        <Box >
+                        <Box className={classes.buttonBox_two}>
                             <ButtonCustom text="Активировать анкету" onClick={() => {
                                 props.setShowModal(true)
                                 dispatch({ type: 'cardsId', payload: { id: props.id } })
                             }} />
+                            <Box className={classes.button1}>
+                                <ButtonCustom text="поднять анкету" onClick={() => {
+                                    props.setShowModal(true)
+                                    dispatch({ type: 'cardsId', payload: { id: props.id } })
+                                }} />
+                            </Box>
                         </Box>
                         <Box className={classes.secondCard}>
                             <ButtonCustom text="Отключить комментарии" onClick={() => {
