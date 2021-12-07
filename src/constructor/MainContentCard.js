@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setShowModal, showUnderButton, xl, md, lg, statusUser, gender, loading }) => {
     const classes = useStyles()
+    console.log(cardsContent)
     return (
         <Box>
             <Grid container className={classes.container_card}>
