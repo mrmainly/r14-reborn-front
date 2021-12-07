@@ -96,9 +96,15 @@ const SelectionGirls = () => {
             params += key + "=" + data[key];
         }
         console.log(params)
-        API.getSurveys('woman', params).then((res) => {
-            setStateList(res.data)
-        })
+        if (data.penis_length_max) {
+            API.getSurveys('man', params).then((res) => {
+                setStateList(res.data)
+            })
+        } else {
+            API.getSurveys('woman', params).then((res) => {
+                setStateList(res.data)
+            })
+        }
     }
     return (
         <Layout>
@@ -209,7 +215,7 @@ const SelectionGirls = () => {
                     </Grid>
                 </Grid>
                 <Box style={{ marginTop: 25 }}>
-                    <ButtonCustom text={'Подобрать девушку'} />
+                    <ButtonCustom text={'Подобрать анкету'} />
                 </Box>
             </Form>
             {stateList.length > 0 ?
