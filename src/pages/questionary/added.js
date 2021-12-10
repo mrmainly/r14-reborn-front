@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
 import { useHistory, Link } from 'react-router-dom'
 
-import ButtonCustom from '../../components/customElements/ButtonCustom'
+import { ButtonCustom, Layout } from '../../components'
 import themeMain from '../../theme'
-import Layout from '../../components/layout/Layout'
 
 const useStyles = makeStyles(theme => ({
     container: {

@@ -5,12 +5,9 @@ import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
 import FirmsFormListFunction from '../../../formList/FirmsFormList'
-import ButtonCustom from '../../../components/customElements/ButtonCustom'
 import { DispatchContext } from '../../../store'
-import Layout from '../../../components/layout/Layout'
 import API from '../../../utils/api'
-import { Form } from '../../../components/customElements/Form'
-import { Input } from '../../../components/customElements/Input'
+import { Form, Input, ButtonCustom, Layout } from '../../../components'
 
 const useStyles = makeStyles((theme) => ({
     container: {

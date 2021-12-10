@@ -5,8 +5,7 @@ import axios from 'axios'
 
 import { DispatchContext } from '../../store'
 import themeMain from '../../theme'
-import ButtonCustom from '../customElements/ButtonCustom'
-import ImgModal from '../modal/ImgModal'
+import { ButtonCustom, ImgModal } from '../../components'
 
 const useStyles = makeStyles((theme) => ({
     container: {

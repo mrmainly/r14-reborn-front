@@ -3,10 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
 import { useForm } from 'react-hook-form'
 
-import { Form } from '../../components/customElements/Form'
-import { Input } from '../../components/customElements/Input'
-import ButtonCustom from '../../components/customElements/ButtonCustom'
-import Layout from '../../components/layout/Layout'
+import { ButtonCustom, Layout, Form, Input } from '../../components'
 import API from '../../utils/api'
 import { DispatchContext } from '../../store'
 

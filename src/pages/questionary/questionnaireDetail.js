@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Box, LinearProgress } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 
-import Layout from '../../components/layout/Layout'
+import Layout from '../../components/layout'
 import MainInfo from '../../components/viewingQuestionary/MainInfo'
 import RateInfo from '../../components/viewingQuestionary/RateInfo'
 import DataInfo from '../../components/viewingQuestionary/DataInfo'
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
+const QuestionnaireDetail = ({ location: { state: { statusUser, id, gender } } }) => {
     const [data, setData] = useState()
     const [loading, setLoading] = useState(true)
     const classes = useStyles()
@@ -89,4 +89,4 @@ const ViewingGirls = ({ location: { state: { statusUser, id, gender } } }) => {
     )
 }
 
-export default ViewingGirls
+export default QuestionnaireDetail

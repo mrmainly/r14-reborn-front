@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Box, Typography, TextareaAutosize, TextField } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 
-import ButtonCustom from '../../components/customElements/ButtonCustom'
+import { ButtonCustom } from '../index'
 import api from '../../utils/api'
 
 const useStyles = makeStyles((theme) => ({

@@ -6,10 +6,7 @@ import { useForm } from 'react-hook-form'
 import MainContentCard from '../../constructor/MainContentCard'
 import API from '../../utils/api'
 import { FiltersListFormFunc, FilterListFormTwoFunc } from '../../formList/FiltersListForm'
-import ButtonCustom from '../../components/customElements/ButtonCustom'
-import Layout from '../../components/layout/Layout'
-import { Input } from '../../components/customElements/Input'
-import { Form } from '../../components/customElements/Form'
+import { ButtonCustom, Layout, Form, Input } from '../../components'
 
 const useStales = makeStyles((theme) => ({
     drawerBox: {

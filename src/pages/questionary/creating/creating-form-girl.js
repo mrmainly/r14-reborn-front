@@ -6,11 +6,8 @@ import { useForm } from 'react-hook-form'
 
 import GirlsFormListFunction from '../../../formList/GirlsFormList'
 import { DispatchContext } from '../../../store'
-import ButtonCustom from '../../../components/customElements/ButtonCustom'
-import Layout from '../../../components/layout/Layout'
 import API from '../../../utils/api'
-import { Form } from '../../../components/customElements/Form'
-import { Input } from '../../../components/customElements/Input'
+import { Form, Input, ButtonCustom, Layout } from '../../../components'
 
 const useStyles = makeStyles((theme) => ({
     container: {

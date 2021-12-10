@@ -5,10 +5,10 @@ import { Container, Grid } from '@material-ui/core'
 import { useHistory } from "react-router-dom";
 
 import themeMain from '../../theme';
-import Header from '../layout/Header'
-import Footer from '../layout/Footer'
-import SidePanel from '../layout/SidePanel'
-import Notification from '../customElements/Notification';
+import Header from './Header'
+import Footer from './Footer'
+import SidePanel from './SidePanel'
+import { Notification } from '../index';
 
 const useStyles = makeStyles((theme) => ({
     main_content: {

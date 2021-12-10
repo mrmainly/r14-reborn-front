@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Box, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, Button } from '@material-ui/core';
 
-import StatusCards from '../customElements/StatusCards'
+import StatusCards from '../cards/StatusCard'
 
 function rand() {
     return Math.round(Math.random() * 20) - 10;

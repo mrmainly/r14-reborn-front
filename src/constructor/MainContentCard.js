@@ -2,7 +2,7 @@ import React from 'react'
 import { Grid, Typography, CircularProgress, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
-import CardsCastom from '../components/customElements/CardsCustom'
+import { MainCard } from '../components'
 
 const useStyles = makeStyles((theme) => ({
     container_card: {
@@ -33,7 +33,7 @@ const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setSho
             <Grid container className={classes.container_card}>
                 {cardsContent.length >= 1 ? cardsContent.map((item, index) => (
                     <Grid item lg={lg} sm={6} md={md} xl={xl} xs={12} key={index} className={classes.inside_box}>
-                        <CardsCastom
+                        <MainCard
                             {...item}
                             firmsLever={firmsLever}
                             showUnderButton={showUnderButton}

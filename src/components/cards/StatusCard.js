@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-const StatusCards = ({ status, price }) => {
+const StatusCard = ({ status, price }) => {
     const classes = useStyles()
     const state = useContext(StateContext)
     console.log(state)
@@ -94,4 +94,4 @@ const StatusCards = ({ status, price }) => {
     )
 }
 
-export default StatusCards
+export default StatusCard

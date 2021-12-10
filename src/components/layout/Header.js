@@ -14,7 +14,7 @@ import { useHistory, Link } from 'react-router-dom'
 import cookie from 'js-cookie'
 
 import themeMain from '../../theme'
-import ButtonCustom from '../customElements/ButtonCustom'
+import { ButtonCustom } from '../index'
 import UnderHeader from './UnderHeader'
 
 const headersData = [
@@ -35,7 +35,7 @@ const headersData = [
         title: 'Отзывы',
     },
     {
-        link: '/selectionGirls',
+        link: '/SelectionQuestionnary',
         title: 'Подбор анкеты',
     },
 ];

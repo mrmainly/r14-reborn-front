@@ -92,7 +92,9 @@ const SideBarAnonim = ({ getListGirls }) => {
                         <Box className={classes.buttonBox}>
                             {item.row.map((itemRow, index) => (
                                 <Box style={{ width: `${itemRow.width}%` }} key={index}>
-                                    <Button className={classes.btn} onClick={() => { getListGirls(itemRow.value) }}>{itemRow.label}</Button>
+                                    <Button className={classes.btn} onClick={() => {
+                                        getListGirls(itemRow.value)
+                                    }}>{itemRow.label}</Button>
                                 </Box>
                             ))}
                         </Box>

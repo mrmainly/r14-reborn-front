@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Typography, Box } from '@material-ui/core'
 
 import FaqContent from '../../arraysObjects/FaqContent'
-import Layout from '../../components/layout/Layout'
+import Layout from '../../components/layout'
 
 const useStyles = makeStyles(() => ({
     container: {

@@ -2,9 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, Typography, Grid, TextareaAutosize } from '@material-ui/core'
 
-import Layout from '../components/layout/Layout'
-
-import api from '../utils/api'
+import Layout from '../../components/layout'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -54,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const Rewiews = ({ data }) => {
+const Reviews = ({ data }) => {
     const classes = useStyles()
     return (
         <Layout>
@@ -79,15 +77,4 @@ const Rewiews = ({ data }) => {
     )
 }
 
-// export async function getServerSideProps({ req, res }) {
-//     if (req.method === "POST") {
-//         res.statusCode = 405;
-//     } else {
-//         res.statusCode = 200;
-//         let response = await api('api/v1/surveys/review/list', null).get(null);
-//         let data = await response.data;
-//         return { props: { data } }
-//     }
-// }
-
-export default Rewiews
+export default Reviews

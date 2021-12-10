@@ -1,16 +1,13 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ButtonCustom from '../../components/customElements/ButtonCustom';
 import { Box, Typography, Grid } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import InputMask from 'react-input-mask'
 
 import { DispatchContext } from '../../store';
-import Layout from '../../components/layout/Layout';
 import API from '../../utils/api'
-import { Form } from '../../components/customElements/Form'
-import { Input } from '../../components/customElements/Input'
+import { Form, Input, ButtonCustom, Layout } from '../../components'
 
 const useStyles = makeStyles((theme) => ({
     form: {

@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import ButtonCustom from '../../components/customElements/ButtonCustom';
 import { Box } from '@material-ui/core'
 
-import Layout from '../../components/layout/Layout';
+import { Layout, ButtonCustom } from '../../components'
 
 const useStyles = makeStyles((theme) => ({
     form: {

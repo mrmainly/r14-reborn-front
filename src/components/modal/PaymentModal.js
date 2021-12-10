@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import { Dialog, InputAdornment, Box, Typography, MenuItem, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import { Form } from '../customElements/Form'
-import { Input } from '../customElements/Input'
-
 import { useForm } from 'react-hook-form'
-import ButtonCustom from '../customElements/ButtonCustom';
+
+import { ButtonCustom, Form, Input } from '../index';
 import { StateContext } from '../../store';
 import API from '../../utils/api'
 

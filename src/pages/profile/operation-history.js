@@ -2,9 +2,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
 
-import TableTransaction from '../../components/customElements/TableTransaction'
+import TableTransaction from '../../components/table/TableTransaction'
 import TransactionTableData from '../../formList/TransactionTableData'
-import Layout from '../../components/layout/Layout'
+import Layout from '../../components/layout'
 
 const useStyles = makeStyles(() => ({
     container: {

@@ -6,8 +6,8 @@ import DeleteIcon from '@material-ui/icons/Delete'
 
 import { DispatchContext } from '../../store';
 import themeMain from '../../theme'
-import ButtonCustom from '../customElements/ButtonCustom'
 import API from '../../utils/api'
+import { ButtonCustom } from '../index';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -131,7 +131,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function CardCastom(props) {
+export default function MainCard(props) {
     const classes = useStyles();
     const router = useHistory()
     const dispatch = useContext(DispatchContext)

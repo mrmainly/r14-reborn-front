@@ -6,10 +6,9 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { useHistory, Link } from 'react-router-dom'
 
 import themeMain from '../../theme'
-import ButtonCustom from '../customElements/ButtonCustom'
+import { ButtonCustom, PaymentModal } from '../index'
 import { DispatchContext } from '../../store';
 import API from '../../utils/api'
-import PaymentModal from '../modal/PaymentModal';
 
 
 const useStyles = makeStyles((theme) => ({

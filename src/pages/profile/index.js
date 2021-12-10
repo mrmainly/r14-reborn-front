@@ -7,7 +7,7 @@ import ModalProfile from '../../components/modal/ModalProfile'
 import DisableRewiewsModal from '../../components/modal/DisableReviewsModal'
 import { StateContext, DispatchContext } from '../../store'
 import API from '../../utils/api'
-import Layout from '../../components/layout/Layout'
+import Layout from '../../components/layout'
 
 const useStyles = makeStyles((theme) => ({
     profile_content: {
