@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Box, Container, Typography } from "@material-ui/core";
+import { Box, Container, MenuItem, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles'
 import { DispatchContext } from '../../store';
 
@@ -13,13 +13,10 @@ const useStyles = makeStyles((theme) => ({
             height: 50,
             fontSize: 12,
         },
-        borderLeft: '2px solid  #FFEAF4',
         height: 35,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingLeft: 8,
-        paddingRight: 8,
         width: 150,
         [theme.breakpoints.down('sm')]: {
             width: '100%'
@@ -52,7 +49,9 @@ const useStyles = makeStyles((theme) => ({
     link_box: {
         display: 'flex',
         flexDirection: 'row',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        height: 35,
+        borderLeft: '2px solid #FFEAF4',
     },
     up_block__logo: {
         marginBottom: '-5px'
@@ -103,7 +102,7 @@ const UnderHeader = () => {
         {
             link: 'express=true',
             title: 'Экспресс(30 мин)',
-            showLine: true
+            borderRight: true
         },
     ];
 
@@ -132,17 +131,13 @@ const UnderHeader = () => {
                 <Container>
                     <Box className={classes.down_block}>
                         {headersData.map((item, index) => (
-                            <div className={classes.link_box} key={index} onClick={() => {
+                            <MenuItem style={{ borderRight: `${item.borderRight ? '2px solid #FFEAF4' : ''}` }} className={classes.link_box} key={index} onClick={() => {
                                 dispatch({ type: 'slogoDispatch', payload: { params: item.link } })
                             }}>
                                 <div className={classes.link_Style} >
                                     {item.title}
                                 </div>
-                                {item.showLine &&
-                                    <div className={classes.line_box}>
-                                    </div>
-                                }
-                            </div>
+                            </MenuItem>
                         ))}
                     </Box>
                 </Container>
