@@ -8,7 +8,7 @@ const api = (url) => {
     const token = cookie.get('jwttoken')
     if (token) {
         const instance = axios.create({
-            baseURL: publicURL + url,
+            baseURL: testURL + url,
             headers: {
                 'Authorization': "Token " + token,
                 'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ const api = (url) => {
         return instance
     } else {
         const instance = axios.create({
-            baseURL: publicURL + url,
+            baseURL: testURL + url,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -44,19 +44,19 @@ class API {
             router.push('/auth/Login')
             console.log(res)
             dispatch({ type: 'notification', payload: { text: 'смс был отпрален', status: 'success', active: true } })
-        }).catch(() => { dispatch({ type: 'notification', payload: { text: 'вы не правильно заполнили поле телефона или такой пользователь уже существует', status: 'error', active: true } }) })
+        }).catch(() => dispatch({ type: 'notification', payload: { text: 'вы не правильно заполнили поле телефона или такой пользователь уже существует', status: 'error', active: true } }))
     }
     async getSurveys(gender, params) {
         let result = await api(`api/surveys/${gender}/?` + params).get(null)
         return result
     }
-    async patchSurvay(gender, status, id) {
-        let result = await api(`api/surveys/${gender}/${id}/`).patch(null, {
+    async patchSurvay(gender, status, id, dispatch) {
+        let result = await api(`api/surveys/${gender}/${id}/change_prioirty`).patch(null, {
             priority: status
         }).then((res) => {
             window.location.reload()
         }).catch((error) => {
-            console.log(error)
+            dispatch({ type: 'notification', payload: { text: 'Недостаточная сумма на балансе', status: 'error', active: true } })
         })
         return result
     }

@@ -114,7 +114,6 @@ const SideBarAnonim = ({ getListGirls }) => {
                 onClose: () => setDrawerOpen(false),
             }}>{body()}</Drawer> : body()}
         </div >
-
     )
 }
 

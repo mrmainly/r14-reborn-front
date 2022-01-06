@@ -173,9 +173,9 @@ export default function MainCard(props) {
                         {statusName(props.priority)}
                     </Typography>
                     {props.showUnderButton ?
-                        <Box className={classes.basket} onClick={() => { deleteSurvey() }}>
+                        <IconButton size="small" style={{ marginLeft: 5 }} onClick={() => { deleteSurvey() }}>
                             <DeleteIcon />
-                        </Box>
+                        </IconButton>
                         : ''}
                 </Box>
             </Box>

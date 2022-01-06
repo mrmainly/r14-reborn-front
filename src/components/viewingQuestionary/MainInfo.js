@@ -133,7 +133,7 @@ const MainInfo = (props) => {
         formData.append('is_main', false)
         formData.append('is_verify', true)
         formData.append('survey', props.id)
-        axios.post(`https://rabbit14.site/api/surveys/${props.gender}/photos/load_photo/`, formData, {
+        axios.post(`http://127.0.0.1:8000/api/surveys/${props.gender}/photos/load_photo/`, formData, {
             headers: { 'Content-Type': 'multipart/form-data' }
         })
             .then((res) => {

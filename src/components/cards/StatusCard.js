@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Box, Typography, Card, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import { StateContext } from '../../store/index';
+import { StateContext, DispatchContext } from '../../store/index';
 import API from '../../utils/api'
 
 import themeMain from '../../theme'
@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
 const StatusCard = ({ status, price }) => {
     const classes = useStyles()
     const state = useContext(StateContext)
+    const dispatch = useContext(DispatchContext)
     console.log(state)
     const statusBlogBackground = () => {
         switch (status) {
@@ -71,7 +72,7 @@ const StatusCard = ({ status, price }) => {
         }
     }
     const sendStatus = () => {
-        API.patchSurvay(state.search.mode, status, state.cardsId.id)
+        API.patchSurvay(state.search.mode, status, state.cardsId.id, dispatch)
     }
     return (
         <Card className={classes.root}>

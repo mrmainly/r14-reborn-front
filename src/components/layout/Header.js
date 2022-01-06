@@ -54,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
         padding: "20px 30px",
         color: 'white',
         height: '100%',
-        background: '#FFEAF4',
         color: 'white',
         [theme.breakpoints.down('sm')]: {
             color: 'black'
@@ -100,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
     },
     linkStyle: {
         textDecoration: 'none',
+        color: 'black',
         marginRight: 10
     },
     down_block: {
@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 4,
         marginTop: 10,
         backgroundColor: 'white',
-        boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.25)'
+        boxShadow: '0px 1px 4px rgba(0, 0, 0, 0.25)',
     },
     linkBlock: {
         display: 'flex',
@@ -228,7 +228,7 @@ export default function Header() {
                 }}>{logo()}</div>
                 <Drawer
                     {...{
-                        anchor: "top",
+                        anchor: "left",
                         open: drawerOpen,
                         onClose: handleDrawerClose,
                     }}
@@ -245,7 +245,7 @@ export default function Header() {
                 {headersData.map((item, index) => {
                     return (
                         <Link
-                            href={item.link}
+                            to={item.link}
                             key={index}
                             className={classes.linkStyle}
                         >
