@@ -42,7 +42,6 @@ export default function PaymentModal({ open, setOpen }) {
         mode: "onBlur",
     })
     const onSubmit = (data) => {
-        console.log(data)
         API.sendBalance({ ...data, owner: state.userId.id })
     }
     return (

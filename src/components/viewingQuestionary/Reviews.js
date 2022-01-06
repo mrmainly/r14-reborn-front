@@ -58,7 +58,6 @@ const RateInfo = ({ id, reviews, statusUser }) => {
             console.log(error)
         })
     }
-    console.log('reviews', id)
     return (
         <div className={classes.container}>
             {reviews.reviews1.length >= 1 ? <Typography variant="h6">Отзывы и комментарии</Typography> : ''}

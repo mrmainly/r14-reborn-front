@@ -146,7 +146,6 @@ const MainInfo = (props) => {
     const fileSelectHandler = (e) => {
         setPhoto(e.target.files[0])
     }
-    console.log(props)
     return (
         <div className={classes.container}>
             <ImgModal setOpen={setOpen} open={open} statusUser={props.statusUser} idSurvey={props.id} />

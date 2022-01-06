@@ -27,11 +27,10 @@ const useStyles = makeStyles((theme) => ({
 
 const MainContentCard = ({ setShowModalRewiews, cardsContent, firmsLever, setShowModal, showUnderButton, xl, md, lg, statusUser, gender, loading }) => {
     const classes = useStyles()
-    console.log(cardsContent)
     return (
         <Box>
             <Grid container className={classes.container_card}>
-                {cardsContent.length >= 1 ? cardsContent.map((item, index) => (
+                {cardsContent.length ? cardsContent.map((item, index) => (
                     <Grid item lg={lg} sm={6} md={md} xl={xl} xs={12} key={index} className={classes.inside_box}>
                         <MainCard
                             {...item}

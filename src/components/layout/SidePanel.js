@@ -117,7 +117,6 @@ const SidePanel = (props) => {
         handleResize()
         window.addEventListener('resize', handleResize)
         API.getBalance().then(res => {
-            console.log('balance', res.data)
             setBalance(res.data.balance)
         })
     }, [])

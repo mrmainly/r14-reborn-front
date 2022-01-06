@@ -42,9 +42,8 @@ class API {
             password: password
         }).then(res => {
             router.push('/auth/Login')
-            console.log(res)
             dispatch({ type: 'notification', payload: { text: 'смс был отпрален', status: 'success', active: true } })
-        }).catch(() => dispatch({ type: 'notification', payload: { text: 'вы не правильно заполнили поле телефона или такой пользователь уже существует', status: 'error', active: true } }))
+        }).catch(() => dispatch({ type: 'notification', payload: { text: 'такой пользователь уже существует', status: 'error', active: true } }))
     }
     async getSurveys(gender, params) {
         let result = await api(`api/surveys/${gender}/?` + params).get(null)
@@ -91,7 +90,7 @@ class API {
         api(`api/surveys/${gender}/${id}`).put(null, {
             ...data
         }).then((res) => {
-            console.log(res)
+
         }).catch(error => {
             throw new Error('error')
         })
@@ -114,7 +113,6 @@ class API {
             }
         })
         api(`api/surveys/${gender}/`).post(null, { ...data }).then(res => {
-            console.log('surveyPostResult', res)
             dispatch({ type: 'notification', payload: { status: 'success', active: true, text: 'анкета создана' } })
             router.push('/profile')
         }).catch(error => {

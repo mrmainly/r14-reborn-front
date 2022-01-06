@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
-import { StateContext, DispatchContext } from '../../../store'
+import { StateContext, DispatchContext } from '../../store'
 import MuiAlert from '@material-ui/lab/Alert';
 import { makeStyles } from '@material-ui/core/styles';
 
