@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, Typography, Grid } from '@material-ui/core'
 
-import { ButtonCustom, Layout } from '../../components'
+import { ButtonCustom, Layout } from '../../../components'
 
 const useStyles = makeStyles(() => ({
     container: {

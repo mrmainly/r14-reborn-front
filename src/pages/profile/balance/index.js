@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, Typography, TextField, Button, Grid, Checkbox } from '@material-ui/core'
 
-import { ButtonCustom, Layout } from '../../components'
+import { ButtonCustom, Layout } from '../../../components'
 
 const useStyles = makeStyles(() => ({
     continer: {

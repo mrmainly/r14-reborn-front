@@ -46,7 +46,6 @@ const StatusCard = ({ status, price }) => {
     const classes = useStyles()
     const state = useContext(StateContext)
     const dispatch = useContext(DispatchContext)
-    console.log(state)
     const statusBlogBackground = () => {
         switch (status) {
             case '3':

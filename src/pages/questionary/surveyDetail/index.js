@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Box, LinearProgress } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
+// import { useHistory } from 'react-router-dom'
 
-import Layout from '../../components/layout'
-import MainInfo from '../../components/viewingQuestionary/MainInfo'
-import RateInfo from '../../components/viewingQuestionary/RateInfo'
-import DataInfo from '../../components/viewingQuestionary/DataInfo'
-import Conditions from '../../components/viewingQuestionary/Conditions'
-import SexualPreferenceList from '../../components/viewingQuestionary/SexualPreferenceList'
-import Reviews from '../../components/viewingQuestionary/Reviews'
-import API from '../../utils/api'
+import Layout from '../../../components/layout'
+import MainInfo from '../../../components/surveysDetailScreen/MainInfo'
+import RateInfo from '../../../components/surveysDetailScreen/RateInfo'
+import DataInfo from '../../../components/surveysDetailScreen/DataInfo'
+import Conditions from '../../../components/surveysDetailScreen/Conditions'
+import SexualPreferenceList from '../../../components/surveysDetailScreen/SexualPreferenceList'
+import Reviews from '../../../components/surveysDetailScreen/Reviews'
+import API from '../../../utils/api'
 
 const useStyles = makeStyles((theme) => ({
     container: {

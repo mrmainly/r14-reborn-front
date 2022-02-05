@@ -7,9 +7,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import InputMask from 'react-input-mask'
 
-import { DispatchContext } from '../../store';
-import API from '../../utils/api'
-import { Form, Input, ButtonCustom, Layout } from '../../components'
+import { DispatchContext } from '../../../store';
+import API from '../../../utils/api'
+import { Form, Input, ButtonCustom, Layout } from '../../../components'
 
 const useStyles = makeStyles((theme) => ({
     form: {

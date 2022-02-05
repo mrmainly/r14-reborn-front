@@ -132,6 +132,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MainCard(props) {
+    console.log(props)
     const classes = useStyles();
     const router = useHistory()
     const dispatch = useContext(DispatchContext)

@@ -7,7 +7,7 @@ import Girls from './pages/girls';
 import Firms from './pages/firms';
 import Guys from './pages/guys';
 import Reviews from './pages/reviews';
-import SelectionQuestionnary from './pages/selectionQuestionnary';
+import SearchSurvey from './pages/searchSurvey';
 
 import Login from './pages/auth/login';
 import ForgotPassword from './pages/auth/forgot-password';
@@ -24,11 +24,11 @@ import VerificationPhoto from './pages/profile/verification-photo';
 import Faq from './pages/profile/faq';
 import CustomProfile from './pages/profile/custom-profile';
 
-import Added from './pages/questionary/added'
+import AddedSurveys from './pages/questionary/addedSurveys'
 import CreatingFormFirms from './pages/questionary/creating/creating-form-firms';
 import CreatingFormGirl from './pages/questionary/creating/creating-form-girl';
 import CreatingFormGuys from './pages/questionary/creating/creating-form-guys';
-import QuestionnaireDetail from './pages/questionary/questionnaireDetail';
+import SurveyDetail from './pages/questionary/surveyDetail';
 
 import Success from './pages/payment/success';
 import Failed from './pages/payment/failed';
@@ -44,7 +44,7 @@ const App = () => {
             <Route path="/mainListFirms" component={Firms} />
             <Route path="/mainListGuys" component={Guys} />
             <Route path="/reviews" component={Reviews} />
-            <Route path="/SelectionQuestionnary" component={SelectionQuestionnary} />
+            <Route path="/SelectionQuestionnary" component={SearchSurvey} />
 
             <Route path="/auth/Login" component={Login} />
             <Route path="/auth/forgot-password" component={ForgotPassword} />
@@ -61,11 +61,11 @@ const App = () => {
             <Route path="/faq-profile" component={Faq} />
             <Route path="/custom-profile" component={CustomProfile} />
 
-            <Route path="/questionary/added" component={Added} />
+            <Route path="/questionary/added" component={AddedSurveys} />
             <Route path="/questionary/creating/creating-form-firms" component={CreatingFormFirms} />
             <Route path="/questionary/creating/creating-form-girl" component={CreatingFormGirl} />
             <Route path="/questionary/creating/creating-form-guys" component={CreatingFormGuys} />
-            <Route path="/viewingPage/:id" component={QuestionnaireDetail} />
+            <Route path="/viewingPage/:id" component={SurveyDetail} />
 
             <Route path="/payment/success" component={Success} />
             <Route path="/payment/failed" component={Failed} />

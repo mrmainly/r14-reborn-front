@@ -2,9 +2,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Grid, Box, Typography } from '@material-ui/core'
 
-import TableCustom from '../../components/table/TableCustom'
-import TableContent from '../../arraysObjects/TableContent'
-import Layout from '../../components/layout'
+import TableCustom from '../../../components/table/TableCustom'
+import TableContent from '../../../arraysObjects/TableContent'
+import Layout from '../../../components/layout'
 
 const useStyles = makeStyles(() => ({
     container: {

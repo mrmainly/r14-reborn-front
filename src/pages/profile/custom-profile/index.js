@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Box, Typography } from '@material-ui/core'
 import { useForm } from 'react-hook-form'
 
-import { ButtonCustom, Layout, Form, Input } from '../../components'
-import API from '../../utils/api'
-import { DispatchContext } from '../../store'
+import { ButtonCustom, Layout, Form, Input } from '../../../components'
+import API from '../../../utils/api'
+import { DispatchContext } from '../../../store'
 
 const useStyles = makeStyles((theme) => ({
     container: {

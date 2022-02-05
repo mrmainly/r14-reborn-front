@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core'
 
-import { Layout, ButtonCustom } from '../../components'
+import { Layout, ButtonCustom } from '../../../components'
 
 const useStyles = makeStyles((theme) => ({
     form: {
