@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import themeMain from '../../theme';
 import Header from './Header'
 import Footer from './Footer'
-import SidePanel from './SidePanel'
+import SidePanel from '../menu/SidePanel'
 import { Notification } from '../index';
 
 const useStyles = makeStyles((theme) => ({

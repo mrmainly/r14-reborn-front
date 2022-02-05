@@ -24,11 +24,11 @@ import VerificationPhoto from './pages/profile/verification-photo';
 import Faq from './pages/profile/faq';
 import CustomProfile from './pages/profile/custom-profile';
 
-import AddedSurveys from './pages/questionary/addedSurveys'
-import CreatingFormFirms from './pages/questionary/creating/creating-form-firms';
-import CreatingFormGirl from './pages/questionary/creating/creating-form-girl';
-import CreatingFormGuys from './pages/questionary/creating/creating-form-guys';
-import SurveyDetail from './pages/questionary/surveyDetail';
+import AddedSurveys from './pages/surveys/addedSurveys'
+import CreatingFormFirms from './pages/surveys/forms/creating-form-firms';
+import CreatingFormGirl from './pages/surveys/forms/creating-form-girl';
+import CreatingFormGuys from './pages/surveys/forms/creating-form-guys';
+import SurveyDetail from './pages/surveys/surveyDetail';
 
 import Success from './pages/payment/success';
 import Failed from './pages/payment/failed';

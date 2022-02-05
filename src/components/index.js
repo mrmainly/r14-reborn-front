@@ -1,4 +1,4 @@
-import ButtonCustom from './UI/buttonCustom'
+import ButtonCustom from './buttonCustom'
 import { Form } from './UI/form'
 import { Input } from './UI/input'
 import Notification from './notification'

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 
 import MainContentCard from '../../constructor/MainContentCard'
 import API from '../../utils/api'
-import SideBarAnonim from '../../components/layout/SideBarAnonim'
+import SideBarAnonim from '../../components/menu/SideBarAnonim'
 import { StateContext } from '../../store'
 import Layout from '../../components/layout'
 
