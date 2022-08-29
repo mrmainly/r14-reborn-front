@@ -27,7 +27,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                 {
                     label: "Вес, кг",
                     type: "input",
-                    must: false,
+                    must: true,
                     fetchLabel: "weight",
                     typeInput: "number",
                 },
@@ -43,22 +43,22 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                     type: "select",
                     must: true,
                     fetchLabel: "nationality",
-                    default: "Другое",
+                    default: "Другая",
                     selectArrey: [
                         {
-                            optionText: "Азиатская",
+                            optionText: "Азиатка",
                             optionValue: "Саха",
                         },
                         {
-                            optionText: "Славянская",
+                            optionText: "Славянка",
                             optionValue: "Славянская",
                         },
                         {
-                            optionText: "Кавказская",
+                            optionText: "Митиска",
                             optionValue: "Кавказская",
                         },
                         {
-                            optionText: "Другое",
+                            optionText: "Другая",
                             optionValue: "Другое",
                         },
                     ],
@@ -75,12 +75,16 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                             optionValue: "Темные",
                         },
                         {
-                            optionText: "Другое",
-                            optionValue: "Другое",
+                            optionText: "Рыжие",
+                            optionValue: "Рыжие",
                         },
                         {
                             optionText: "Светлые",
                             optionValue: "Светлые",
+                        },
+                        {
+                            optionText: "Другие",
+                            optionValue: "Другое",
                         },
                     ],
                 },
@@ -119,16 +123,16 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                             optionValue: "Худощавое",
                         },
                         {
-                            optionText: "Другое",
-                            optionValue: "Другое",
-                        },
-                        {
                             optionText: "Спортивное",
                             optionValue: "Спортивное",
                         },
                         {
                             optionText: "Полное",
                             optionValue: "Полное",
+                        },
+                        {
+                            optionText: "Другое",
+                            optionValue: "Другое",
                         },
                     ],
                 },
@@ -159,7 +163,7 @@ const GirlsFormListFunction = (formState, formStateGirl) => {
                     label: "Ограничение по возрасту",
 
                     type: "select",
-                    must: true,
+                    must: false,
                     fetchLabel: "age_limit",
                     default: "Все",
                     selectArrey: [

@@ -32,16 +32,20 @@ const GuysFormListFunction = (formState, manState) => {
                     default: "Другое",
                     selectArrey: [
                         {
-                            optionText: "Темные",
+                            optionText: "Темный",
                             optionValue: "Темные",
                         },
                         {
-                            optionText: "Другое",
-                            optionValue: "Другое",
+                            optionText: "Светлый",
+                            optionValue: "Светлые",
                         },
                         {
-                            optionText: "Светлые",
-                            optionValue: "Светлые",
+                            optionText: "Рыжий",
+                            optionValue: "Рыжие",
+                        },
+                        {
+                            optionText: "Другой",
+                            optionValue: "Другое",
                         },
                     ],
                 },
@@ -50,23 +54,23 @@ const GuysFormListFunction = (formState, manState) => {
                     type: "select",
                     label: "Нацианальность",
                     must: true,
-                    default: "Другая",
+                    default: "Другое",
                     selectArrey: [
                         {
-                            optionText: "Азиатская",
+                            optionText: "Азиат",
                             optionValue: "Саха",
                         },
                         {
-                            optionText: "Славянская",
+                            optionText: "Славянин",
                             optionValue: "Славянская",
                         },
                         {
-                            optionText: "Кавказская",
+                            optionText: "Митис",
                             optionValue: "Кавказская",
                         },
                         {
-                            optionText: "Другая",
-                            optionValue: "Другая",
+                            optionText: "Другое",
+                            optionValue: "Другое",
                         },
                     ],
                 },
@@ -82,16 +86,16 @@ const GuysFormListFunction = (formState, manState) => {
                             optionValue: "Худощавое",
                         },
                         {
-                            optionText: "Другое",
-                            optionValue: "Другое",
-                        },
-                        {
                             optionText: "Спортивное",
                             optionValue: "Спортивное",
                         },
                         {
                             optionText: "Полное",
                             optionValue: "Полное",
+                        },
+                        {
+                            optionText: "Другое",
+                            optionValue: "Другое",
                         },
                     ],
                 },
@@ -243,7 +247,7 @@ const GuysFormListFunction = (formState, manState) => {
                 {
                     type: "textArea",
                     fetchLabel: "description",
-                    must: true,
+                    must: false,
                 },
             ],
         },

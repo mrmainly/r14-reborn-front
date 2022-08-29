@@ -2,6 +2,8 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Grid, Typography } from "@material-ui/core";
 
+import { useLocation } from "react-router-dom";
+
 import themeMain from "../../theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
 
 const RateInfo = (props) => {
     const classes = useStyles();
+
+    const location = useLocation();
+
     const arrayRate = [
         {
             title: "Апартаменты:",
@@ -59,6 +64,7 @@ const RateInfo = (props) => {
                     elementName: "Ночь",
                     elementValue: props.apartment_per_night,
                 },
+                // location.pathname === '' ?
                 {
                     elementName: "Экспресс-программа (30 минут):",
                     elementValue: props.express,

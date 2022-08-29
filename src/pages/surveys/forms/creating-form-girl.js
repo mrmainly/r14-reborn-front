@@ -456,7 +456,7 @@ const CreatingFormGirl = () => {
                                                               <InputAdornment position="start">
                                                                   <img
                                                                       src={
-                                                                          "/image/currency.png"
+                                                                          "/image/Frame3281.png"
                                                                       }
                                                                       style={{
                                                                           width: 20,

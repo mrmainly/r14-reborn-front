@@ -8,13 +8,8 @@ const MenuAnonimList = [
                 width: "48",
             },
             {
-                label: "2000-2500",
-                value: "check_out_per_hour_min=2000&check_out_per_hour_max=2500",
-                width: "48",
-            },
-            {
-                label: "2500-3000",
-                value: "check_out_per_hour_min=2500&check_out_per_hour_max=3000",
+                label: "2000-3000",
+                value: "check_out_per_hour_min=2000&check_out_per_hour_max=3000",
                 width: "48",
             },
             {
@@ -28,8 +23,13 @@ const MenuAnonimList = [
                 width: "48",
             },
             {
-                label: "<5000",
-                value: "check_out_per_hour_min=5000",
+                label: "5000-6000",
+                value: "check_out_per_hour_min=5000&check_out_per_hour_max=6000",
+                width: "48",
+            },
+            {
+                label: "<6000",
+                value: "check_out_per_hour_min=6000",
                 width: "48",
             },
         ],
@@ -164,13 +164,13 @@ const MenuAnonimList = [
                 width: "48",
             },
             {
-                label: "Другое",
-                value: "body_type=Другое",
+                label: "Полные",
+                value: "body_type=Полное",
                 width: "48",
             },
             {
-                label: "Полные",
-                value: "body_type=Полное",
+                label: "Другое",
+                value: "body_type=Другое",
                 width: "48",
             },
         ],
@@ -189,9 +189,14 @@ const MenuAnonimList = [
                 width: "48",
             },
             {
+                label: "Рыжие",
+                value: "hair_color=Рыжие",
+                width: "48",
+            },
+            {
                 label: "Другое",
                 value: "hair_color=Другое",
-                width: "100",
+                width: "48",
             },
         ],
     },
@@ -204,12 +209,12 @@ const MenuAnonimList = [
                 width: "48",
             },
             {
-                label: "Славяне",
+                label: "Славянки",
                 value: "nationality=Славянская",
                 width: "48",
             },
             {
-                label: "Метисы",
+                label: "Метиски",
                 value: "nationality=Кавказская",
                 width: "48",
             },
